@@ -3,13 +3,13 @@
   "license": "ISC",
   "version": "0.0.9",
   "homepage": "https://github.com/Code-Y/redux-fluent#readme",
-  "description": "Tiny and Eloquent way to manage (redux) Actions",
+  "description": "Tiny and eloquent way to manage a redux-like state manager",
   "author": "CodeY (https://github.com/Code-Y)",
   "contributors": [
     "Luca Pau <luca.pau82@gmail.com> (https://github.com/Lughino)",
     "Giuseppe Mandato <gius.mand.developer@gmail.com> (https://github.com/hitmands)"
   ],
-  "keywords": ["redux"],
+  "keywords": ["redux", "ngrx-store", "typescript", "state-management"],
   "main": "index.js",
   "scripts": {
     "test": "jest --coverage",
