@@ -11,15 +11,11 @@ export default function ActionCreator<P = GenericPayload, M = GenericMeta>(type:
     const action = Object.create(null);
 
     action.payload = payload;
-    action.meta = meta;
     action.error = payload instanceof Error;
+    action.meta = meta;
+    action.type = type;
 
-    Object.defineProperty(action, 'type', {
-      enumerable: true,
-      value: type,
-    });
-
-    return action;
+    return Object.freeze(action);
   }
 
   actionCreator.toString = () => type;
