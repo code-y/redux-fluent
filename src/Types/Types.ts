@@ -15,7 +15,7 @@ export interface GenericPayload extends PlainObject {}
 export interface GenericAction<P = GenericPayload, M = GenericMeta> {
   readonly type: ACTION_TYPE;
   error?: boolean;
-  payload?: P;
+  payload?: P | Error;
   meta?: M;
 }
 
