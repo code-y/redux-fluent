@@ -1,0 +1,22 @@
+engines:
+  duplication:
+    enabled: true
+    config:
+      languages:
+      - javascript
+  tslint:
+    enabled: true
+    config: tslint.json
+    channel: "beta"
+  fixme:
+    enabled: true
+ratings:
+  paths:
+  - "src/*.ts"
+exclude_paths:
+  - "src/**/*.spec.ts"
+  - "build/**/*.*"
+  - "coverage/**/*.*"
+  - "node_modules/**/*.*"
+  - "webpack.config.js"
+  - "package.json"

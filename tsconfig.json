@@ -1,0 +1,23 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "lib": ["es5", "es6"],
+    "module": "commonjs",
+    "declaration": true,
+    "sourceMap": true,
+    "strict": true,
+    "noImplicitAny": true,
+    "strictNullChecks": true,
+     "noImplicitThis": true,
+     "alwaysStrict": true,
+     "moduleResolution": "node",
+     "types": [
+       "@types/jest"
+     ],
+     "experimentalDecorators": true
+  },
+  "exclude": [
+    "node_modules",
+    "**/*.spec.ts"
+  ]
+}
