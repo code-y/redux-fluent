@@ -1,7 +1,7 @@
 {
   "name": "redux-fluent",
   "license": "ISC",
-  "version": "0.0.2",
+  "version": "0.0.6",
   "homepage": "https://github.com/Code-Y/redux-fluent#readme",
   "description": "Tiny and Eloquent way to manage (redux) Actions",
   "author": "CodeY (https://github.com/Code-Y)",

@@ -22,7 +22,7 @@ export interface GenericAction<P = GenericPayload, M = GenericMeta> {
 export interface ActionCreator<P = GenericPayload, M = GenericMeta> {
   readonly type: ACTION_TYPE;
   toString(): ACTION_TYPE;
-  (payload?: P, meta?: M): GenericAction<P, M>;
+  (payload?: P | Error, meta?: M): GenericAction<P | Error, M>;
 }
 
 export interface GenericReducer<S = GenericState, A = GenericAction> {
