@@ -63,7 +63,7 @@ module.exports = (env = {}) => {
 
   const tasks = [ config({ ENV: 'development' }) ];
 
-  if(env.production === 'true') {
+  if(env.name === 'production') {
     const task = config({ ENV: 'production' });
     task.plugins.push(new webpack.optimize.UglifyJsPlugin({ sourceMap: true }));
 

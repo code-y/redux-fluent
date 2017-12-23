@@ -13,7 +13,7 @@
   "main": "index.js",
   "scripts": {
     "test": "jest --coverage",
-    "build": "npm run test && npm run webpack -- --env.production true",
+    "build": "npm run webpack -- --env.name production",
     "webpack": "webpack --config webpack.config.js",
     "cz": "git-cz"
   },

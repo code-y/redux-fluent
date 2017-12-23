@@ -6,7 +6,7 @@ before_script:
   - npm install
 
 script:
-  - npm t
+  - npm run test
   - npm run build
 
 after_script:

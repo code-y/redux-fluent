@@ -14,9 +14,7 @@ ratings:
   paths:
   - "src/*.ts"
 exclude_paths:
+  - ".*"
+  - "**/*.*"
+  - "!src/**/*.ts"
   - "src/**/*.spec.ts"
-  - "build/**/*.*"
-  - "coverage/**/*.*"
-  - "node_modules/**/*.*"
-  - "webpack.config.js"
-  - "package.json"
