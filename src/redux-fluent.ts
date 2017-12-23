@@ -1,5 +1,2 @@
-import Reducer from './Reducer/Reducer';
-import Action from './Action/Action';
-
-export { Reducer as createReducer };
-export { Action as createAction };
+export { default as createReducer } from './Reducer/Reducer';
+export { default as createAction } from './Action/Action';
