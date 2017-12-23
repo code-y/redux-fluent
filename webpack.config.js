@@ -1,18 +1,33 @@
 const path = require('path');
 const webpack = require('webpack');
-
 const ROOT = __dirname;
+const pkg = require('./package');
 
-module.exports = env => {
-  const configs = {
-    devtool: 'source-map',
+const banner = (buildDate => env => `/**!
+  * @name redux-fluent
+  * @version ${pkg.version}
+  * @author ${pkg.author}
+  * @description ${pkg.description}
+  * @contributors [
+    * ${pkg.contributors.join('\n    * ')}
+  * ]
+
+  * @build-info ${env} - ${buildDate}
+  * @homepage ${pkg.homepage}
+  * @keywords [ ${pkg.keywords.join(', ')} ]
+  * @license ${pkg.license}
+**/`)(new Date());
+
+module.exports = (env = {}) => {
+  const config = ({ ENV }) => ({
     target: 'web',
+    devtool: 'source-map',
     context: path.join(ROOT, 'src'),
+    entry: [ './redux-fluent.ts' ],
     output: {
       path: path.join(ROOT, 'build'),
-      filename: 'redux-fluent.js',
+      filename: `redux-fluent.${ENV}.js`,
     },
-    entry: [ './redux-fluent.ts' ],
     module: {
       rules: [
         {
@@ -35,15 +50,25 @@ module.exports = env => {
     resolve: {
       extensions: [ '.tsx', '.ts', '.js' ]
     },
-    plugins: []
-  };
+    plugins: [
+      new webpack.BannerPlugin({
+        banner: banner(ENV),
+        raw: true,
+      }),
+      new webpack.DefinePlugin({
+        'process.env.NODE_ENV': JSON.stringify(ENV),
+      }),
+    ]
+  });
 
+  const tasks = [ config({ ENV: 'development' }) ];
 
-  if(process.env.NODE_ENV === 'production') {
-    configs.plugins.push(
-      new webpack.optimize.UglifyJsPlugin({ sourceMap: true })
-    );
+  if(env.production === 'true') {
+    const task = config({ ENV: 'production' });
+    task.plugins.push(new webpack.optimize.UglifyJsPlugin({ sourceMap: true }));
+
+    tasks.push(task);
   }
 
-  return Promise.resolve(configs);
+  return Promise.resolve(tasks);
 };

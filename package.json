@@ -1,39 +1,42 @@
 {
   "name": "redux-fluent",
+  "license": "ISC",
   "version": "0.0.1",
-  "description": "Thiny and Eloquent way to manage (redux) Actions",
-  "main": "build/redux-fluent.js",
+  "homepage": "https://github.com/Code-Y/redux-fluent#readme",
+  "description": "Tiny and Eloquent way to manage (redux) Actions",
+  "author": "CodeY (https://github.com/Code-Y)",
+  "contributors": [
+    "Luca Pau <luca.pau82@gmail.com> (https://github.com/Lughino)",
+    "Giuseppe Mandato <gius.mand.developer@gmail.com> (https://github.com/hitmands)"
+  ],
+  "keywords": ["redux"],
+  "main": "index.js",
   "scripts": {
-    "test": "npm run jest",
-    "test:watch": "npm run jest:watch",
+    "test": "jest --coverage",
+    "build": "npm run test && npm run webpack -- --env.production true",
     "webpack": "webpack --config webpack.config.js",
-    "webpack:watch": "npm run webpack -- --watch",
-    "start": "npm run webpack:watch",
-    "build": "NODE_ENV=production npm run webpack",
-    "jest": "jest --coverage",
-    "jest:watch": "npm run jest -- --watch"
+    "cz": "git-cz"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Code-Y/redux-fluent.git"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
   "bugs": {
     "url": "https://github.com/Code-Y/redux-fluent/issues"
   },
-  "homepage": "https://github.com/Code-Y/redux-fluent#readme",
   "devDependencies": {
-    "@types/jest": "^21.1.0",
-    "jest": "^21.1.0",
-    "ts-jest": "^21.0.1",
-    "ts-loader": "^2.3.7",
-    "tslint": "^5.7.0",
-    "tslint-config-airbnb": "^5.3.0",
+    "@types/jest": "^21.1.9",
+    "@types/node": "^8.5.2",
+    "commitizen": "^2.9.6",
+    "cz-conventional-changelog": "^2.1.0",
+    "jest": "^21.2.1",
+    "ts-jest": "^21.2.4",
+    "ts-loader": "^3.2.0",
+    "tslint": "^5.8.0",
+    "tslint-config-airbnb": "^5.4.2",
     "tslint-loader": "^3.5.3",
-    "typescript": "^2.5.2",
-    "webpack": "^3.6.0"
+    "typescript": "^2.6.2",
+    "webpack": "^3.10.0"
   },
   "jest": {
     "transform": {
