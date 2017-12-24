@@ -1,40 +1,45 @@
 import Queue, { squashQueues } from '../helpers/Queue/Queue';
 import Type from '../helpers/Type/Type';
 import {
-  GenericConfig,
-  GenericMeta,
-  GenericPayload,
-  GenericState,
-  GenericAction,
-  GenericReducer,
-  ReduxFluentReducer, PlainObject,
+  State,
+  Action,
+  Reducer,
+  ReduxFluentReducer,
+  PlainObject,
 } from '../Types/Types';
 
-export function $default(arg: GenericState | any, data: any): GenericReducer {
+
+export function $default(arg: State | ReduxFluentReducer, data: any): Reducer {
   squashQueues<ReduxFluentReducer, string>(data.caseQueue, data.doQueue, data.actions);
 
-  const getDefaultState: ReduxFluentReducer = (state: GenericState, action: GenericAction): GenericState => (
-    state || (Type.isFunction(arg) ? arg(state, action) : arg)
-  );
-
-  function reducer(state: GenericState, action: GenericAction): GenericState {
-    return (data.actions[action.type] || [getDefaultState])
-      .reduce((res: GenericState, predicate: ReduxFluentReducer) => predicate(res, action, data.config), state);
+  function getDefaultState<S extends State, A extends Action>(state: S, action: A): S {
+    return state || (Type.isFunction(arg) ? (<ReduxFluentReducer>arg)(state, action, data.config) : arg as State);
   }
 
-  reducer.toString = () => data.domain;
-  Object.defineProperty(reducer, 'domain', {
-    enumerable: true,
-    value: data.domain,
+  function reducer<S extends State, A extends Action>(state: S, action: A): S {
+    return (data.actions[action.type] || [getDefaultState])
+      .reduce((res: State, predicate: ReduxFluentReducer) => predicate(res, action, data.config), state);
+  }
+
+  Object.defineProperties(reducer, {
+    domain: {
+      enumerable: true,
+      value: data.domain,
+    },
+    toString: {
+      enumerable: true,
+      value: () => data.domain,
+    },
   });
+
   return reducer;
 }
 
-export function $case(action: GenericAction, data: any) {
+export function $case(action: Action, data: any) {
   data.caseQueue.push(action.type || action.toString());
 
   return {
-    case(action: GenericAction) {
+    case(action: Action) {
       return $case(action, data);
     },
     do(reducer: ReduxFluentReducer) {
@@ -50,10 +55,10 @@ export function $do(predicate: ReduxFluentReducer, data: any) {
     do(reducer: ReduxFluentReducer) {
       return $do(reducer, data);
     },
-    default(arg: GenericState | GenericReducer) {
+    default(arg: State | ReduxFluentReducer) {
       return $default(arg, data);
     },
-    case(action: GenericAction) {
+    case(action: Action) {
       squashQueues<ReduxFluentReducer, string>(data.caseQueue, data.doQueue, data.actions);
 
       return $case(action, data);
@@ -63,10 +68,10 @@ export function $do(predicate: ReduxFluentReducer, data: any) {
 
 export function $caseAndDefault(data: any) {
   return {
-    case(action: GenericAction) {
+    case(action: Action) {
       return $case(action, data);
     },
-    default(arg: GenericState | GenericReducer) {
+    default(arg: State | Reducer) {
       return $default(arg, data);
     },
   };
@@ -82,7 +87,8 @@ export default function CreateReducer(domain: string) {
   };
 
   return Object.assign(
-    $caseAndDefault(data), {
+    $caseAndDefault(data),
+    {
       config(config: PlainObject) {
         (<any>data).config = config;
 

@@ -9,7 +9,12 @@
     "Luca Pau <luca.pau82@gmail.com> (https://github.com/Lughino)",
     "Giuseppe Mandato <gius.mand.developer@gmail.com> (https://github.com/hitmands)"
   ],
-  "keywords": ["redux", "ngrx-store", "typescript", "state-management"],
+  "keywords": [
+    "redux",
+    "ngrx-store",
+    "typescript",
+    "state-management"
+  ],
   "main": "index.js",
   "scripts": {
     "test": "jest --coverage",
