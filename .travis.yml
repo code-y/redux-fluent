@@ -1,17 +1,16 @@
 language: node_js
+
 node_js:
-  - "8.5.0"
+  - "8"
 
 before_script:
   - npm install
+  - npm run test
 
 script:
-  - npm run test
   - npm run build
 
 after_script:
   - npm install codeclimate-test-reporter
   - codeclimate-test-reporter < coverage/lcov.info
 
-git:
-  depth: 10

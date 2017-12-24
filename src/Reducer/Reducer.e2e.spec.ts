@@ -27,7 +27,6 @@ function editTodoReducer(state: TodosState, action: Action<Todo>): TodosState {
 
   // @ts-ignore
   return Object.assign({}, state, {
-    // @ts-ignore
     list: state.list.map(todo => action.payload.id !== todo.id ? todo : action.payload),
   });
 }
