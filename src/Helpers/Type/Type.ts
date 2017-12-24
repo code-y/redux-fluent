@@ -1,21 +1,13 @@
 export default class Type {
-  static of(value: any) {
+  static of(value: any): string {
     return ({}).toString.call(value);
   }
 
-  static is(value: any, expected: any) {
+  static is(value: any, expected: string): boolean {
     return Type.of(value) === expected;
   }
 
-  static isString(value: any) {
-    return Type.is(value, '[object String]');
-  }
-
-  static isFunction(value: any) {
+  static isFunction(value: any): value is () => {} {
     return Type.is(value, '[object Function]');
-  }
-
-  static isObject(value: any) {
-    return Type.is(value, '[object Object]');
   }
 }

@@ -1,6 +1,7 @@
 import { createAction } from '../redux-fluent';
 import { Meta, Payload } from '../Types/Types';
 
+
 describe('createAction', () => {
   interface ExamplePayload extends Payload {
     test: string;
@@ -11,8 +12,8 @@ describe('createAction', () => {
   }
 
   const type = '@@test/todos:add';
-  const payload: ExamplePayload = { test: 'test' };
-  const meta: ExampleMeta = { test: 'test' };
+  const payload: ExamplePayload = {test: 'test'};
+  const meta: ExampleMeta = {test: 'test'};
 
   it('Factory should return a function actionCreator', () => {
     expect(
@@ -43,7 +44,7 @@ describe('createAction', () => {
 
     it('should return an action', () => {
       const actionCreator = createAction<ExamplePayload, ExampleMeta>(type);
-      const action = actionCreator({ test: 'hello world' });
+      const action = actionCreator({test: 'hello world'});
 
       expect(
         action,

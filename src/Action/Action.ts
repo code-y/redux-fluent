@@ -1,13 +1,11 @@
-import {
-  ACTION_TYPE, Action,
-  ActionCreator, Payload, Meta,
-} from '../Types/Types';
+import { Action, ActionCreator, PlainObject } from '../Types/Types';
 
-export default function ActionCreatorFactory<P = Payload, M = Meta>(
-  type: ACTION_TYPE,
-): ActionCreator<P, M> {
 
-  function actionCreator(payload?: P, meta?: M): Action<P, M> {
+export default function ActionCreatorFactory<
+  Payload extends PlainObject = {}, Meta extends PlainObject = {}
+>(type: string): ActionCreator<Payload, Meta> {
+
+  function actionCreator(payload?: Payload | Error, meta?: Meta): Action<Payload, Meta> {
     const action = Object.create(null);
 
     action.type = type;

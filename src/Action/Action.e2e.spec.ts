@@ -1,33 +1,48 @@
-import { createAction } from '../redux-fluent';
-import {ACTION_TYPE, Meta, Payload} from '../Types/Types';
+import { createAction, createReducer } from '../redux-fluent';
+import { Action } from '../Types/Types';
 
-describe('createAction', () => {
-  it('todos / add', () => {
-    const type: ACTION_TYPE = '@@test/todos:add';
-    const addTodo = createAction(type);
-    const exampleTodo = {
-      title: 'Early Morning',
-      body: 'Walk Gipsy',
-    };
 
-    const action = addTodo(exampleTodo);
+interface Todo {
+  title: string;
+  body?: string;
+}
 
-    expect(action).toHaveProperty('payload', exampleTodo);
-    expect(action).toHaveProperty('meta', null);
-    expect(action).toHaveProperty('error', false);
-    expect(action).toHaveProperty('type', type);
+interface Todo {
+  title: string;
+}
+
+interface TodosState {
+  list: Todo[];
+}
+
+function getDefaultState(): TodosState {
+  return { list: [] };
+}
+
+function addTodoReducer(state: TodosState, action: Action<Todo>): TodosState {
+
+  // @ts-ignore
+  return Object.assign({}, state, {
+    list: state.list.concat(action.payload),
   });
+}
 
-  it('todos / add / error', () => {
-    const type: ACTION_TYPE = '@@test/todos:add';
-    const addTodo = createAction(type);
-    const error = new Error('impossible to add todo');
+it('should add a new todo', () => {
+  const addTodo = createAction<Todo>('@@todos:add');
+  const reducer = createReducer<TodosState>('@@todos')
 
-    const action = addTodo(error);
+    .case(addTodo)
+    .do(addTodoReducer)
 
-    expect(action).toHaveProperty('payload', error);
-    expect(action).toHaveProperty('meta', null);
-    expect(action).toHaveProperty('error', true);
-    expect(action).toHaveProperty('type', type);
-  });
+    .default(getDefaultState)
+  ;
+
+  const todo = { title: 'Walk Gipsy' };
+
+  let state: TodosState = reducer();
+  expect(state.list).toHaveLength(0);
+
+  state = reducer(state, addTodo(todo));
+  expect(state.list).toHaveLength(1);
+  expect(state.list[0]).toHaveProperty('title', todo.title);
 });

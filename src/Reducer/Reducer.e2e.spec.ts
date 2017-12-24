@@ -1,59 +1,69 @@
-import { createReducer } from '../redux-fluent';
+import { createAction, createReducer } from '../redux-fluent';
+import { Action } from '../Types/Types';
 
 
-describe('createReducer E2E', () => {
-  function Action(type: string) {
-    function creator(payload) {
+interface Todo {
+  title: string;
+  id: string;
+}
 
-      return { type, payload };
-    }
+interface TodosState {
+  list: Todo[];
+}
 
-    creator.toString = () => type;
-    return creator;
-  }
+function getDefaultState(): TodosState {
+  return {list: []};
+}
 
-  it('Should handle a custom action', () => {
-    const saySomething = Action('saySomething');
-    const defaultState = { message: 'Hello Universe' };
+function addTodoReducer(state: TodosState, action: Action<Todo>): TodosState {
 
-    const logger = jasmine.createSpy().and.callFake(state => state);
-    const setMessage = jasmine.createSpy().and.callFake((state, action, config) => {
-      expect(config).toHaveProperty('logger', logger);
-
-      return { ...state, message: action.payload };
-    });
-    const incrementEditsCount = jasmine.createSpy().and.callFake((state, action, config) => {
-      expect(config).toHaveProperty('logger', logger);
-
-      return { ...state, edits: (state.edits || 0) + 1 };
-    });
-
-    const reducer = createReducer('hello world')
-      .config({ logger })
-
-      .case(saySomething)
-        .do(setMessage)
-        .do(incrementEditsCount)
-        .do(logger)
-
-      .default(defaultState)
-    ;
-
-    const newMsg = 'Hello EveryBody';
-
-    const initialState = reducer(null, { type: 'unknown action type' });
-    expect(initialState).toEqual(defaultState);
-
-
-    const firstEdit = reducer(initialState, saySomething(newMsg));
-    expect(firstEdit).not.toEqual(defaultState);
-    expect(firstEdit).toHaveProperty('message', newMsg);
-    expect(firstEdit).toHaveProperty('edits', 1);
-
-    expect(reducer(firstEdit, { type: 'unknown action type' })).toEqual(firstEdit);
-
-    expect(setMessage).toHaveBeenCalled();
-    expect(incrementEditsCount).toHaveBeenCalled();
-    expect(logger).toHaveBeenCalledWith(firstEdit, saySomething(newMsg), { logger });
+  // @ts-ignore
+  return Object.assign({}, state, {
+    list: state.list.concat(action.payload),
   });
+}
+
+function editTodoReducer(state: TodosState, action: Action<Todo>): TodosState {
+
+  // @ts-ignore
+  return Object.assign({}, state, {
+    // @ts-ignore
+    list: state.list.map(todo => action.payload.id !== todo.id ? todo : action.payload),
+  });
+}
+
+it('should add a new todo', () => {
+  const addTodo = createAction<Todo>('@@todos:add');
+  const editTodo = createAction<Todo>('@@todos:edit');
+  const reducer = createReducer<TodosState>('@@todos')
+
+    .case(addTodo)
+    .do(addTodoReducer)
+
+    .case(editTodo)
+    .do(editTodoReducer)
+
+    .default(getDefaultState)
+  ;
+
+  const todo = {
+    title: 'Walk Gipsy',
+    id: Math.random().toString(2),
+  };
+
+  let state: TodosState = reducer();
+  expect(state.list).toHaveLength(0);
+
+  state = reducer(state, addTodo(todo));
+  expect(state.list).toHaveLength(1);
+  expect(state.list[0]).toHaveProperty('title', todo.title);
+
+  const editedTodo = {
+    title: 'Walk Gipsy to the park',
+    id: todo.id,
+  };
+
+  state = reducer(state, editTodo(editedTodo));
+  expect(state.list).toHaveLength(1);
+  expect(state.list[0]).toHaveProperty('title', editedTodo.title);
 });

@@ -1,31 +1,35 @@
-export type ACTION_TYPE = string;
-
 export interface PlainObject {
-  [key: string]: {};
+  [key: string]: any;
 }
 
-export interface State extends PlainObject {}
-export interface Meta extends PlainObject {}
-export interface Payload extends PlainObject {}
-
-export interface Action<P = Payload, M = Meta> {
-  readonly type: ACTION_TYPE;
-  readonly error: boolean;
-  readonly payload: P | Error | null;
-  readonly meta: M | null;
+export interface Action<Payload = PlainObject, Meta = PlainObject, isError extends boolean = false> {
+  readonly type: string;
+  readonly error: isError;
+  readonly payload: Payload;
+  readonly meta: Meta;
 }
 
-export interface ActionCreator<P = Payload, M = Meta> {
-  readonly type: ACTION_TYPE;
-  toString(): ACTION_TYPE;
-  (payload?: P | Error, meta?: M): Action<P | Error, M>;
+export interface ActionCreator<Payload = PlainObject, Meta = PlainObject> {
+  readonly type: string;
+
+  toString(): string;
+
+  (payload: Error, meta: Meta): Action<Error, Meta, true>;
+
+  (payload: Error): Action<Error, null, true>;
+
+  (payload: Payload, meta: Meta): Action<Payload, Meta>;
+
+  (payload: Payload): Action<Payload, null>;
+
+  (): Action<null, null>;
 }
 
-export interface Reducer<S = State, A = Action> {
-  (state: S, action: A): S;
+export interface Reducer<State = PlainObject, Action = Action> {
+  (state: State, action: Action): State;
 }
 
-export interface ReduxFluentReducer<S = State, A = Action, C = PlainObject> {
-  (state: S, action: A, config: C): S;
+export interface ReduxFluentReducer<State extends PlainObject, Action = Action, Config = PlainObject | undefined> {
+  (state: State, action: Action, config: Config): State;
 }
 
