@@ -4,32 +4,28 @@ export interface PlainObject {
   [key: string]: {};
 }
 
-export interface GenericState extends PlainObject {}
+export interface State extends PlainObject {}
+export interface Meta extends PlainObject {}
+export interface Payload extends PlainObject {}
 
-export interface GenericConfig extends PlainObject {}
-
-export interface GenericMeta extends PlainObject {}
-
-export interface GenericPayload extends PlainObject {}
-
-export interface GenericAction<P = GenericPayload, M = GenericMeta> {
+export interface Action<P = Payload, M = Meta> {
   readonly type: ACTION_TYPE;
-  error?: boolean;
-  payload?: P | Error;
-  meta?: M;
+  readonly error: boolean;
+  readonly payload: P | Error | null;
+  readonly meta: M | null;
 }
 
-export interface ActionCreator<P = GenericPayload, M = GenericMeta> {
+export interface ActionCreator<P = Payload, M = Meta> {
   readonly type: ACTION_TYPE;
   toString(): ACTION_TYPE;
-  (payload?: P | Error, meta?: M): GenericAction<P | Error, M>;
+  (payload?: P | Error, meta?: M): Action<P | Error, M>;
 }
 
-export interface GenericReducer<S = GenericState, A = GenericAction> {
+export interface Reducer<S = State, A = Action> {
   (state: S, action: A): S;
 }
 
-export interface ReduxFluentReducer<S = GenericState, A = GenericAction, C = GenericConfig> {
+export interface ReduxFluentReducer<S = State, A = Action, C = PlainObject> {
   (state: S, action: A, config: C): S;
 }
 

@@ -1,5 +1,5 @@
 import { createAction } from '../redux-fluent';
-import {ACTION_TYPE, GenericMeta, GenericPayload} from '../Types/Types';
+import {ACTION_TYPE, Meta, Payload} from '../Types/Types';
 
 describe('createAction', () => {
   it('todos / add', () => {

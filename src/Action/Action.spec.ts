@@ -1,12 +1,12 @@
 import { createAction } from '../redux-fluent';
-import { GenericMeta, GenericPayload } from '../Types/Types';
+import { Meta, Payload } from '../Types/Types';
 
 describe('createAction', () => {
-  interface ExamplePayload extends GenericPayload {
+  interface ExamplePayload extends Payload {
     test: string;
   }
 
-  interface ExampleMeta extends GenericMeta {
+  interface ExampleMeta extends Meta {
     test: string;
   }
 

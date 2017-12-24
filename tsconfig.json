@@ -1,20 +1,21 @@
 {
   "compilerOptions": {
     "target": "es5",
-    "lib": ["es5", "es6"],
+    "lib": ["es5", "es6", "DOM"],
     "module": "commonjs",
-    "declaration": true,
+    "declaration": false,
     "sourceMap": true,
     "strict": true,
     "noImplicitAny": true,
     "strictNullChecks": true,
-     "noImplicitThis": true,
-     "alwaysStrict": true,
-     "moduleResolution": "node",
-     "types": [
-       "@types/jest"
-     ],
-     "experimentalDecorators": true
+    "noImplicitThis": true,
+    "alwaysStrict": true,
+    "jsx": "react",
+    "experimentalDecorators": true,
+    "moduleResolution": "node",
+    "types": [
+      "@types/jest"
+    ]
   },
   "exclude": [
     "node_modules",
