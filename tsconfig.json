@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "forceConsistentCasingInFileNames": true,
     "target": "es5",
     "lib": ["es5", "es6", "DOM"],
     "module": "commonjs",

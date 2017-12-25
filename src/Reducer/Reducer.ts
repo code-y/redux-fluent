@@ -1,5 +1,5 @@
-import Queue, { squashQueues } from '../helpers/Queue/Queue';
-import Type from '../helpers/Type/Type';
+import Queue, { squashQueues } from '../Helpers/Queue/Queue';
+import Type from '../Helpers/Type/Type';
 import {
   Action, ActionCreator,
   ReduxFluentReducer,
