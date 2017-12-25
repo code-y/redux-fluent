@@ -1,24 +1,18 @@
 language: node_js
-
 node_js:
-  - "8"
-
+- '8'
 before_script:
-  - npm install
-  - npm install codeclimate-test-reporter
-
+- npm install
+- npm install codeclimate-test-reporter
 script:
-  - npm run test
-  - codeclimate-test-reporter < coverage/lcov.info
-
-  - npm run build
-  - npm prune --production
-
+- npm run test
+- codeclimate-test-reporter < coverage/lcov.info
+- npm run build
+- npm prune --production
 deploy:
   provider: npm
-    email: $CodeY_NPM_RELEASE_EMAIL
-    api_key: $CodeY_NPM_RELEASE_AUTHTOKEN
   on:
     branch: master
     tags: true
-
+  api_key:
+    secure: nrzGkaDcN9S4OsFgTiK1yRGWh0F6ixkw4l1mBzOkricXtA9K8Hhnq4+HyCidAUmocHpGEmB7CNyqA7vBhnHNc+Otz6yZrETNePAkK009WpqKeOBZWHNCaACMqlEOEYlWTO8gqgl9BQOhiyv89CuhbGn4LNWf7tSnz9xTcDzHFBm5hNb8oPxroUct2txolf1Q7sSi8BUQpKJ8yICp8ztY74J2ZufLe3yOcaS4Mm3xRCAxfXsH11w0fHIKnsukt9m0sqvNKCnEo+4sD+O19XmkmceIUmx+bodhMNna6Flcjkz3H4CfyfMhx9RVskDNKCmXUjSFlb/Kp030k6wgX6yjGt1Q/5FyYyGHpG9udkIpMYQA0/v0hccNkmAvh4sGg+iVKr80ypb9YZarO8rITtOyrN4QYOyxBVrxcWEsgUWEeF/UPkyJkslH/7bRz0J1GtP/aYda7IRqhTcKZVT4Cl6YcWqrcGFTMT9AM8IDJLd7c6pv9GvHaJaTf7xrt8PLFKjcfAI5Ll2qt6YYn5BahadNYNqiAkCvVMYKuMQWJxsZDkxhX8KFdwpLsYXdUeu6f3nrdj4tuHTXEJ3XiKBtvoxseF+O0L/Z2sdYTjuFl+lb4hC77xuyparu5L1/Ax0JlrvvkU5L3jKhaEy8CjKkwnDoZEj5qYHlRpT2DkddKMPUCoE=

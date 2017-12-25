@@ -2,7 +2,6 @@
   "name": "redux-fluent",
   "license": "ISC",
   "version": "0.1.1",
-  "private": false,
   "homepage": "https://github.com/Code-Y/redux-fluent#readme",
   "description": "Tiny and eloquent way to manage a redux-like state manager",
   "author": "Code-Y (https://github.com/Code-Y)",
@@ -56,5 +55,9 @@
       "jsx",
       "json"
     ]
+  },
+  "private": false,
+  "publishConfig": {
+    "access": "public"
   }
 }
