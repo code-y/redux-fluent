@@ -11,6 +11,7 @@ script:
 - npm prune --production
 deploy:
   provider: npm
+  skip_cleanup: true
   on:
     branch: master
     tags: true
