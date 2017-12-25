@@ -17,14 +17,8 @@ export default function ActionCreatorFactory<
   }
 
   Object.defineProperties(actionCreator, {
-    type: {
-      enumerable: true,
-      value: type,
-    },
-    toString: {
-      enumerable: true,
-      value: () => type,
-    },
+    type: { enumerable: true, value: type },
+    toString: { enumerable: true, value: () => type },
   });
 
   // @ts-ignore TS2322 `type` is missing: being defined via Object.defineProperty
