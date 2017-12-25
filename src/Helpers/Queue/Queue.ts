@@ -1,10 +1,5 @@
-export interface IQueue<T> {
-  push(...arg: T[]): void;
+import { IQueue } from '../../Types/Types';
 
-  forEach(callback?: (t: T, i: number, list: T[]) => void): void;
-
-  flush(): void;
-}
 
 export default function Queue<T>(): IQueue<T> {
   let queue: T[] = [];

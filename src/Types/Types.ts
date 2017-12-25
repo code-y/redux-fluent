@@ -33,3 +33,20 @@ export interface ReduxFluentReducer<State extends PlainObject, Action = Action, 
   (state: State, action: Action, config: Config): State;
 }
 
+export interface IQueue<T> {
+  push(...arg: T[]): void;
+
+  forEach(callback?: (t: T, i: number, list: T[]) => void): void;
+
+  flush(): void;
+}
+
+export interface ReducerData<State, Config extends PlainObject | undefined> {
+  domain: string;
+  actions: {
+    [index: string]: ReduxFluentReducer<State>[];
+  };
+  caseQueue: IQueue<string>;
+  doQueue: IQueue<ReduxFluentReducer<State>>;
+  config?: Config;
+}
