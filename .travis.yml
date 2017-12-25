@@ -12,7 +12,13 @@ script:
   - codeclimate-test-reporter < coverage/lcov.info
 
   - npm run build
-  - npm run prune --production
+  - npm prune --production
 
-after_script:
+deploy:
+  provider: npm
+    email: $CodeY_NPM_RELEASE_EMAIL
+    api_key: $CodeY_NPM_RELEASE_AUTHTOKEN
+  on:
+    branch: master
+    tags: true
 
