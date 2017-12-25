@@ -4,6 +4,7 @@ import {
   Action, ActionCreator,
   ReduxFluentReducer,
   ReducerData,
+  PlainObject,
 } from '../Types/Types';
 
 function $default<State, Config>(arg: State | ReduxFluentReducer<State>, data: ReducerData<State, Config>) {
