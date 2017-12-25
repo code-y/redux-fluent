@@ -5,12 +5,20 @@ node_js:
 
 before_script:
   - npm install
-  - npm run test
+  - npm install codeclimate-test-reporter
 
 script:
-  - npm run build
-
-after_script:
-  - npm install codeclimate-test-reporter
+  - npm run test
   - codeclimate-test-reporter < coverage/lcov.info
+
+  - npm run build
+  - npm prune --production
+
+deploy:
+  provider: npm
+    email: $CodeY_NPM_RELEASE_EMAIL
+    api_key: $CodeY_NPM_RELEASE_AUTHTOKEN
+  on:
+    branch: master
+    tags: true
 
