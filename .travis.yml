@@ -3,10 +3,9 @@ node_js:
 - '8'
 before_script:
 - npm install
-- npm install codeclimate-test-reporter
-script:
 - npm run test
-- codeclimate-test-reporter < coverage/lcov.info
+- node_modules/.bin/codeclimate-test-reporter < coverage/lcov.info
+script:
 - npm run build
 - npm prune --production
 deploy:
