@@ -1,7 +1,8 @@
 {
-  "name": "redux-fluent",
+  "name": "@code-y/redux-fluent",
   "license": "ISC",
   "version": "0.0.9",
+  "private": false,
   "homepage": "https://github.com/Code-Y/redux-fluent#readme",
   "description": "Tiny and eloquent way to manage a redux-like state manager",
   "author": "CodeY (https://github.com/Code-Y)",
