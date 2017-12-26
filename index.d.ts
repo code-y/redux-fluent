@@ -1,4 +1,4 @@
-declare module Types {
+declare namespace /* Interfaces */ I {
   export interface Action {
     type: string;
     error?: boolean;
@@ -6,15 +6,15 @@ declare module Types {
     meta?: { [key: string]: any } | null;
   }
 
-  export interface ActionError<E extends Error, M> extends Action {
-    type: string;
+  export interface ActionError<T extends string , Error, M> extends Action {
+    type: T;
     error: true;
-    payload: E;
+    payload: Error;
     meta: M;
   }
 
-  export interface ActionSuccess<P extends { [key: string] : any } | null, M> extends Action {
-    type: string;
+  export interface ActionSuccess<T extends string, P, M> extends Action {
+    type: T;
     error: false;
     payload: P;
     meta: M;
@@ -41,22 +41,22 @@ declare module Types {
   }
 
   export interface Do<S, C> {
-    <E extends Error, M>(reducer: (state: S, action: ActionError<E, M>, config: C) => S): {
+    <E extends Error, M>(reducer: (state: S, action: ActionError<string, E, M>, config: C) => S): {
       default: Default<S, C>;
       case: Case<S, C>;
       do: Do<S, C>;
     };
-    <E extends Error>(reducer: (state: S, action: ActionError<E, null>, config: C) => S): {
+    <E extends Error>(reducer: (state: S, action: ActionError<string, E, null>, config: C) => S): {
       default: Default<S, C>;
       case: Case<S, C>;
       do: Do<S, C>;
     };
-    <P, M>(reducer: (state: S, action: ActionSuccess<P, M>, config: C) => S): {
+    <P, M>(reducer: (state: S, action: ActionSuccess<string, P, M>, config: C) => S): {
       default: Default<S, C>;
       case: Case<S, C>;
       do: Do<S, C>;
     };
-    <P>(reducer: (state: S, action: ActionSuccess<P, null>, config: C) => S): {
+    <P>(reducer: (state: S, action: ActionSuccess<string, P, null>, config: C) => S): {
       default: Default<S, C>;
       case: Case<S, C>;
       do: Do<S, C>;
@@ -68,17 +68,17 @@ declare module Types {
     };
   }
 
-  interface ActionCreator<P, M> {
+  interface ActionCreator<P, M, T extends string> {
     readonly type: string;
     toString(): string;
 
-    <EM extends M>(payload: Error, meta: EM): ActionError<Error, EM>;
-    (payload: Error): ActionError<Error, null>;
+    <E extends Error, EM extends M>(payload: E, meta: EM): ActionError<T, E, EM>;
+    <E extends Error>(payload: E): ActionError<T, E, null>;
 
-    <PS extends P, MS extends M>(payload: PS, meta: MS): ActionSuccess<PS, MS>;
-    <PS extends P>(payload: PS): ActionSuccess<PS, null>;
-    <MS extends M>(payload: null | undefined, meta: MS): ActionSuccess<null, MS>;
-    (): ActionSuccess<null, null>;
+    <PS extends P, MS extends M>(payload: PS, meta: MS): ActionSuccess<T, PS, MS>;
+    <PS extends P>(payload: PS): ActionSuccess<T, PS, null>;
+    <MS extends M>(payload: null | undefined, meta: MS): ActionSuccess<T, null, MS>;
+    (): ActionSuccess<T, null, null>;
   }
 }
 
@@ -86,16 +86,17 @@ export function createReducer<
   S extends { [key: string]: any },
   C extends { [key: string]: any } = { [key: string]: any }
 >(domain: string): {
-  default: Types.Default<S, C>;
-  case: Types.Case<S, C>;
+  default: I.Default<S, C>;
+  case: I.Case<S, C>;
 
   config(config: C): {
-    default: Types.Default<S, C>;
-    case: Types.Case<S, C>
+    default: I.Default<S, C>;
+    case: I.Case<S, C>
   }
 };
 
 export function createAction<
   P extends { [key: string]: any } = { [key: string]: any },
-  M extends { [key: string]: any } = { [key: string]: any }
->(type: string): Types.ActionCreator<P, M>;
+  M extends { [key: string]: any } = { [key: string]: any },
+  T extends string = string
+>(type: T): I.ActionCreator<P, M, T>;
