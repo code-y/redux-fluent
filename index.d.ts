@@ -1,3 +1,25 @@
+declare module 'redux-fluent' {
+  export function createReducer<
+    S extends { [key: string]: any },
+    C extends { [key: string]: any } = { [key: string]: any },
+    D extends string = string
+  >(domain: D): {
+    default: I.Default<D, S, C>;
+    case: I.Case<D, S, C>;
+
+    config<CC extends C>(config: CC): {
+      default: I.Default<D, S, CC>;
+      case: I.Case<D, S, CC>
+    }
+  };
+
+  export function createAction<
+    P extends { [key: string]: any } = { [key: string]: any },
+    M extends { [key: string]: any } = { [key: string]: any },
+    T extends string = string
+  >(type: T): I.ActionCreator<P, M, T>;
+}
+
 declare namespace /* Interfaces */ I {
   export interface Action {
     type: string;
@@ -79,23 +101,3 @@ declare namespace /* Interfaces */ I {
     (): ActionSuccess<T, null, null>;
   }
 }
-
-export function createReducer<
-  S extends { [key: string]: any },
-  C extends { [key: string]: any } = { [key: string]: any },
-  D extends string = string
->(domain: D): {
-  default: I.Default<D, S, C>;
-  case: I.Case<D, S, C>;
-
-  config<CC extends C>(config: CC): {
-    default: I.Default<D, S, CC>;
-    case: I.Case<D, S, CC>
-  }
-};
-
-export function createAction<
-  P extends { [key: string]: any } = { [key: string]: any },
-  M extends { [key: string]: any } = { [key: string]: any },
-  T extends string = string
->(type: T): I.ActionCreator<P, M, T>;
