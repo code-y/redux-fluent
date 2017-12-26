@@ -83,7 +83,7 @@ export default function CreateReducer<State, Config = undefined>(domain: string)
     actions: Object.create(null),
     caseQueue: Queue<string>(),
     doQueue: Queue<ReduxFluentReducer<State>>(),
-    config: void 0,
+    config: Object.create(null),
   };
 
   return Object.assign(

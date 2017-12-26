@@ -20,51 +20,57 @@ declare namespace /* Interfaces */ I {
     meta: M;
   }
 
-  export interface Default<S, C> {
-    (state: S): (state: S, action: Action) => S;
-    <A extends Action>(reducer: (state: S, action: A, config: C) => S): (state: S, action: Action) => S;
+  interface IReducer<D, S, C> {
+    domain: D;
+    toString(): D;
+    (state: S, action: Action): S;
   }
 
-  export interface Case<S, C> {
+  interface Default<D, S, C> {
+    (state: S): IReducer<D, S, C>;
+    <A extends Action>(reducer: (state: S, action: A, config: C) => S): IReducer<D, S, C>;
+  }
+
+  interface Case<D, S, C> {
     (actionType: string): {
-      case: Case<S, C>;
-      do: Do<S, C>;
+      case: Case<D, S, C>;
+      do: Do<D, S, C>;
     };
     (action: Action): {
-      case: Case<S, C>;
-      do: Do<S, C>;
+      case: Case<D, S, C>;
+      do: Do<D, S, C>;
     };
     (actionCreator: { toString(): string }): {
-      case: Case<S, C>;
-      do: Do<S, C>;
+      case: Case<D, S, C>;
+      do: Do<D, S, C>;
     };
   }
 
-  export interface Do<S, C> {
+  interface Do<D, S, C> {
     <E extends Error, M>(reducer: (state: S, action: ActionError<string, E, M>, config: C) => S): {
-      default: Default<S, C>;
-      case: Case<S, C>;
-      do: Do<S, C>;
+      default: Default<D, S, C>;
+      case: Case<D, S, C>;
+      do: Do<D, S, C>;
     };
     <E extends Error>(reducer: (state: S, action: ActionError<string, E, null>, config: C) => S): {
-      default: Default<S, C>;
-      case: Case<S, C>;
-      do: Do<S, C>;
+      default: Default<D, S, C>;
+      case: Case<D, S, C>;
+      do: Do<D, S, C>;
     };
     <P, M>(reducer: (state: S, action: ActionSuccess<string, P, M>, config: C) => S): {
-      default: Default<S, C>;
-      case: Case<S, C>;
-      do: Do<S, C>;
+      default: Default<D, S, C>;
+      case: Case<D, S, C>;
+      do: Do<D, S, C>;
     };
     <P>(reducer: (state: S, action: ActionSuccess<string, P, null>, config: C) => S): {
-      default: Default<S, C>;
-      case: Case<S, C>;
-      do: Do<S, C>;
+      default: Default<D, S, C>;
+      case: Case<D, S, C>;
+      do: Do<D, S, C>;
     };
     (reducer: (state: S, action: Action, config: C) => S): {
-      default: Default<S, C>;
-      case: Case<S, C>;
-      do: Do<S, C>;
+      default: Default<D, S, C>;
+      case: Case<D, S, C>;
+      do: Do<D, S, C>;
     };
   }
 
@@ -84,14 +90,15 @@ declare namespace /* Interfaces */ I {
 
 export function createReducer<
   S extends { [key: string]: any },
-  C extends { [key: string]: any } = { [key: string]: any }
->(domain: string): {
-  default: I.Default<S, C>;
-  case: I.Case<S, C>;
+  C extends { [key: string]: any } = { [key: string]: any },
+  D extends string = string
+>(domain: D): {
+  default: I.Default<D, S, C>;
+  case: I.Case<D, S, C>;
 
-  config(config: C): {
-    default: I.Default<S, C>;
-    case: I.Case<S, C>
+  config<CC extends C>(config: CC): {
+    default: I.Default<D, S, CC>;
+    case: I.Case<D, S, CC>
   }
 };
 
