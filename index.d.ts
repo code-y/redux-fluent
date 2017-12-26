@@ -1,9 +1,9 @@
 declare namespace /* Interfaces */ I {
   export interface Action {
     type: string;
-    error?: boolean;
-    payload?: Error | { [key: string]: any } | null;
-    meta?: { [key: string]: any } | null;
+    error: boolean;
+    payload: { [key: string]: any } | null;
+    meta: { [key: string]: any } | null;
   }
 
   export interface ActionError<T extends string , Error, M> extends Action {
@@ -20,17 +20,6 @@ declare namespace /* Interfaces */ I {
     meta: M;
   }
 
-  interface IReducer<D, S, C> {
-    domain: D;
-    toString(): D;
-    (state: S, action: Action): S;
-  }
-
-  interface Default<D, S, C> {
-    (state: S): IReducer<D, S, C>;
-    <A extends Action>(reducer: (state: S, action: A, config: C) => S): IReducer<D, S, C>;
-  }
-
   interface Case<D, S, C> {
     (actionType: string): {
       case: Case<D, S, C>;
@@ -40,34 +29,23 @@ declare namespace /* Interfaces */ I {
       case: Case<D, S, C>;
       do: Do<D, S, C>;
     };
-    (actionCreator: { toString(): string }): {
+    (anyToString: { toString(): string }): {
       case: Case<D, S, C>;
       do: Do<D, S, C>;
     };
   }
 
+  interface Default<D, S, C> {
+    <A extends Action>(reducer: (state: S, action: A, config: C) => S): {
+      domain: D;
+      toString(): D;
+
+      <A extends Action>(state: S, action: A): S;
+    };
+  }
+
   interface Do<D, S, C> {
-    <E extends Error, M>(reducer: (state: S, action: ActionError<string, E, M>, config: C) => S): {
-      default: Default<D, S, C>;
-      case: Case<D, S, C>;
-      do: Do<D, S, C>;
-    };
-    <E extends Error>(reducer: (state: S, action: ActionError<string, E, null>, config: C) => S): {
-      default: Default<D, S, C>;
-      case: Case<D, S, C>;
-      do: Do<D, S, C>;
-    };
-    <P, M>(reducer: (state: S, action: ActionSuccess<string, P, M>, config: C) => S): {
-      default: Default<D, S, C>;
-      case: Case<D, S, C>;
-      do: Do<D, S, C>;
-    };
-    <P>(reducer: (state: S, action: ActionSuccess<string, P, null>, config: C) => S): {
-      default: Default<D, S, C>;
-      case: Case<D, S, C>;
-      do: Do<D, S, C>;
-    };
-    (reducer: (state: S, action: Action, config: C) => S): {
+    <A extends Action>(reducer: (state: S, action: A, config: C) => S): {
       default: Default<D, S, C>;
       case: Case<D, S, C>;
       do: Do<D, S, C>;
