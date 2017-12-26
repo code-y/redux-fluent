@@ -6,14 +6,22 @@ declare namespace /* Interfaces */ I {
     meta: { [key: string]: any } | null;
   }
 
-  export interface ActionError<T extends string , Error, M> extends Action {
+  export interface ActionError<
+    T extends string,
+    E extends Error,
+    M
+  > extends Action {
     type: T;
     error: true;
-    payload: Error;
+    payload: E;
     meta: M;
   }
 
-  export interface ActionSuccess<T extends string, P, M> extends Action {
+  export interface ActionSuccess<
+    T extends string,
+    P extends { [key: string]: any } | null,
+    M
+  > extends Action {
     type: T;
     error: false;
     payload: P;
@@ -36,7 +44,13 @@ declare namespace /* Interfaces */ I {
   }
 
   interface Default<D, S, C> {
-    <A extends Action>(reducer: (state: S, action: A, config: C) => S): {
+    (state: S): {
+      domain: D;
+      toString(): D;
+
+      <A extends Action>(state: S, action: A): S;
+    };
+    <A extends Action>(arg: (state: S, action: A, config: C) => S): {
       domain: D;
       toString(): D;
 
