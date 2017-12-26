@@ -1,8 +1,7 @@
 **/*.*
 !/build/**/*.*
-!/example/src/**/*.*
-!/example/index.html
 /build/.gitkeep
 !README.md
 !package.json
 !index.js
+!index.d.ts
