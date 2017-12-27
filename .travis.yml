@@ -9,14 +9,13 @@ before_script:
   - npm install
 
 script:
-  - ./cc-test-reporter before-build
   - npm run test
-  - npm run build
-  - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
-
-after_script:
   - ./cc-test-reporter format-coverage ./coverage/lcov.info --input-type lcov
   - ./cc-test-reporter upload-coverage
+
+  - ./cc-test-reporter before-build
+  - npm run build
+  - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
 
 before_deploy:
   - npm prune --production
