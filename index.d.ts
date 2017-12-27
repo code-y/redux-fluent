@@ -92,12 +92,12 @@ declare namespace /* Interfaces */ I {
     readonly type: string;
     toString(): string;
 
-    <E extends Error, EM extends M>(payload: E, meta: EM): ActionError<T, E, EM>;
-    <E extends Error>(payload: E): ActionError<T, E, null>;
+    <E extends Error, EM extends M>(payload: E, meta: EM): Readonly<ActionError<T, E, EM>>;
+    <E extends Error>(payload: E): Readonly<ActionError<T, E, null>>;
 
-    <PS extends P, MS extends M>(payload: PS, meta: MS): ActionSuccess<T, PS, MS>;
-    <PS extends P>(payload: PS): ActionSuccess<T, PS, null>;
-    <MS extends M>(payload: null | undefined, meta: MS): ActionSuccess<T, null, MS>;
-    (): ActionSuccess<T, null, null>;
+    <PS extends P, MS extends M>(payload: PS, meta: MS): Readonly<ActionSuccess<T, PS, MS>>;
+    <PS extends P>(payload: PS): Readonly<ActionSuccess<T, PS, null>>;
+    <MS extends M>(payload: null | undefined, meta: MS): Readonly<ActionSuccess<T, null, MS>>;
+    (): Readonly<ActionSuccess<T, null, null>>;
   }
 }

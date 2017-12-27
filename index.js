@@ -1,4 +1,6 @@
+/* eslint-disable spaced-comment, strict, global-require */
 /// <reference path="./index.d.ts" />
+
 'use strict';
 
 if (process.env.NODE_ENV === 'production') {

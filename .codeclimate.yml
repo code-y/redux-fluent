@@ -19,4 +19,4 @@ exclude_paths:
   - "LICENSE"
   - ".*"
   - "**/*.*"
-  - "!src/**/*.js"
+  - "!**/*.js"
