@@ -66,7 +66,7 @@ declare namespace /* Interfaces */ I {
   }
 
   interface Default<D, S, C> {
-    (state: S): {
+    (state?: S): {
       domain: D;
       toString(): D;
 

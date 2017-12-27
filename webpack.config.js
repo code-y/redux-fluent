@@ -4,7 +4,9 @@ const ROOT = __dirname;
 const pkg = require('./package');
 
 const banner = (buildDate => env => `/**!
-  * @name redux-fluent
+  * @build-info ${env} - ${buildDate}
+
+  * @name ${pkg.name}
   * @version ${pkg.version}
   * @author ${pkg.author}
   * @description ${pkg.description}
@@ -12,7 +14,6 @@ const banner = (buildDate => env => `/**!
     * ${pkg.contributors.join('\n    * ')}
   * ]
 
-  * @build-info ${env} - ${buildDate}
   * @homepage ${pkg.homepage}
   * @keywords [ ${pkg.keywords.join(', ')} ]
   * @license ${pkg.license}
@@ -23,7 +24,7 @@ module.exports = (env = {}) => {
     target: 'web',
     devtool: 'source-map',
     context: path.join(ROOT, 'src'),
-    entry: [ './redux-fluent.ts' ],
+    entry: [ './redux-fluent.js' ],
     output: {
       path: path.join(ROOT, 'build'),
       filename: `redux-fluent.${ENV}.js`,
@@ -32,23 +33,22 @@ module.exports = (env = {}) => {
       rules: [
         {
           enforce: 'pre',
-          test: /\.tsx?$/,
-          loader: 'tslint-loader',
+          test: /\.jsx?$/,
+          loader: 'eslint-loader',
           exclude: /node_modules/,
           options: {
-            failOnHint: true,
-            configuration: require('./tslint.json'),
+            emitWarning: true,
           },
         },
         {
-          test: /\.tsx?$/,
-          use: 'ts-loader',
+          test: /\.jsx?$/,
+          use: 'babel-loader',
           exclude: /node_modules/,
         }
       ]
     },
     resolve: {
-      extensions: [ '.tsx', '.ts', '.js' ]
+      extensions: [ '.js' ]
     },
     plugins: [
       new webpack.BannerPlugin({

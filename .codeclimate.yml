@@ -4,10 +4,8 @@ engines:
     config:
       languages:
       - javascript
-  tslint:
+  eslint:
     enabled: true
-    config: tslint.json
-    channel: "beta"
   fixme:
     enabled: true
 ratings:
@@ -16,5 +14,4 @@ ratings:
 exclude_paths:
   - ".*"
   - "**/*.*"
-  - "!src/**/*.ts"
-  - "src/**/*.spec.ts"
+  - "!src/**/*.js"

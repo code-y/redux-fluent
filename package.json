@@ -1,10 +1,13 @@
 {
   "name": "redux-fluent",
   "license": "MIT",
-  "version": "0.8.2",
+  "version": "0.9.2",
   "homepage": "https://github.com/Code-Y/redux-fluent#readme",
   "description": "Tiny and eloquent way to manage a redux-like state manager",
   "author": "Code-Y (https://github.com/Code-Y)",
+  "private": false,
+  "main": "index.js",
+  "types": "index.d.ts",
   "contributors": [
     "Luca Pau <luca.pau82@gmail.com> (https://github.com/Lughino)",
     "Giuseppe Mandato <gius.mand.developer@gmail.com> (https://github.com/hitmands)"
@@ -12,11 +15,12 @@
   "keywords": [
     "redux",
     "ngrx-store",
-    "typescript",
-    "state-management"
+    "state-management",
+    "typings"
   ],
-  "main": "index.js",
-  "types": "index.d.ts",
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "test": "jest --coverage",
     "build": "npm run webpack -- --env.name production",
@@ -32,33 +36,33 @@
   },
   "devDependencies": {
     "@types/jest": "^21.1.9",
+    "babel-core": "^6.26.0",
+    "babel-env": "^2.4.1",
+    "babel-eslint": "^8.1.2",
+    "babel-jest": "^22.0.4",
+    "babel-loader": "^7.1.2",
     "codeclimate-test-reporter": "^0.5.0",
     "commitizen": "^2.9.6",
     "cz-conventional-changelog": "^2.1.0",
+    "eslint": "^4.14.0",
+    "eslint-config-airbnb": "^16.1.0",
+    "eslint-loader": "^1.9.0",
+    "eslint-plugin-import": "^2.8.0",
+    "eslint-plugin-jest": "^21.5.0",
+    "eslint-plugin-jsx-a11y": "^6.0.3",
+    "eslint-plugin-react": "^7.5.1",
     "jest": "^21.2.1",
-    "ts-jest": "^21.2.4",
-    "ts-loader": "^3.2.0",
-    "tslint": "^5.8.0",
-    "tslint-config-airbnb": "^5.4.2",
-    "tslint-loader": "^3.5.3",
-    "typescript": "^2.6.2",
     "webpack": "^3.10.0"
   },
   "jest": {
     "transform": {
-      "^.+\\.tsx?$": "<rootDir>/node_modules/ts-jest/preprocessor.js"
+      "^.+\\.jsx?$": "babel-jest"
     },
-    "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$",
+    "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.(jsx?)$",
     "moduleFileExtensions": [
-      "ts",
-      "tsx",
       "js",
       "jsx",
       "json"
     ]
-  },
-  "private": false,
-  "publishConfig": {
-    "access": "public"
   }
 }
