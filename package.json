@@ -1,7 +1,7 @@
 {
   "name": "redux-fluent",
   "license": "MIT",
-  "version": "0.8.1",
+  "version": "0.8.2",
   "homepage": "https://github.com/Code-Y/redux-fluent#readme",
   "description": "Tiny and eloquent way to manage a redux-like state manager",
   "author": "Code-Y (https://github.com/Code-Y)",
@@ -16,6 +16,7 @@
     "state-management"
   ],
   "main": "index.js",
+  "types": "index.d.ts",
   "scripts": {
     "test": "jest --coverage",
     "build": "npm run webpack -- --env.name production",
