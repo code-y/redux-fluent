@@ -12,6 +12,7 @@ ratings:
   paths:
   - "src/*.ts"
 exclude_paths:
+  - "LICENSE"
   - ".*"
   - "**/*.*"
   - "!src/**/*.js"

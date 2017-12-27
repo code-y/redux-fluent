@@ -2,7 +2,7 @@
 !/build/**/*.*
 /build/.gitkeep
 !README.md
-!LICENSE.md
+!LICENSE
 !package.json
 !index.js
 !index.d.ts
