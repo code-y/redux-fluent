@@ -1,8 +1,32 @@
 /* eslint-disable no-use-before-define */
 import Queue, { squashQueues } from '../Helpers/Queue/Queue';
-import Type from '../Helpers/Type/Type';
+import { isFunction } from '../Helpers/Type/Type';
 
-function Reducer(data, getDefaultState) {
+export default function CreateReducerFactory(domain) {
+  const data = {
+    domain,
+    actions: Object.create(null),
+    caseQueue: Queue(),
+    doQueue: Queue(),
+    config: Object.create(null),
+  };
+
+  return {
+    case(action) { return $case(action, data); },
+    default(arg) { return $default(arg, data); },
+
+    config(config) {
+      data.config = config;
+
+      return {
+        case(action) { return $case(action, data); },
+        default(arg) { return $default(arg, data); },
+      };
+    },
+  };
+}
+
+function $reducer(getDefaultState, data) {
   function reducer(state, action) {
     return (data.actions[action ? action.type : action] || [getDefaultState])
       .reduce((res, predicate) => predicate(res, action, data.config), state);
@@ -21,13 +45,13 @@ function $default(arg, data) {
 
   function getDefaultState(state, action) {
     return state || (
-      Type.isFunction(arg)
+      isFunction(arg)
         ? arg(state, action, data.config)
         : (arg || Object.create(null))
     );
   }
 
-  return Reducer(data, getDefaultState);
+  return $reducer(getDefaultState, data);
 }
 
 function $case(currentAction, data) {
@@ -49,32 +73,6 @@ function $do(predicate, data) {
       squashQueues(data.caseQueue, data.doQueue, data.actions);
 
       return $case(action, data);
-    },
-  };
-}
-
-function $caseAndDefault(data) {
-  return {
-    case(action) { return $case(action, data); },
-    default(arg) { return $default(arg, data); },
-  };
-}
-
-export default function CreateReducer(domain) {
-  const data = {
-    domain,
-    actions: Object.create(null),
-    caseQueue: Queue(),
-    doQueue: Queue(),
-    config: Object.create(null),
-  };
-
-  return {
-    ...$caseAndDefault(data),
-    config(config) {
-      data.config = config;
-
-      return $caseAndDefault(data);
     },
   };
 }

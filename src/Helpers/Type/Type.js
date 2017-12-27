@@ -1,15 +1,3 @@
-export default class Type {
-  static checker = {};
-
-  static of(value) {
-    return Type.checker.toString.call(value);
-  }
-
-  static is(value, expected) {
-    return Type.of(value) === expected;
-  }
-
-  static isFunction(value) {
-    return Type.is(value, '[object Function]');
-  }
-}
+const getType = (checker => arg => checker.toString.call(arg))({});
+// eslint-disable-next-line import/prefer-default-export
+export const isFunction = value => getType(value) === '[object Function]';

@@ -13,7 +13,7 @@ describe('createReducer', () => {
       .toHaveProperty('default', jasmine.any(Function));
   });
 
-  it('createReducer.default() should return a function', () => {
+  it('createReducer.default() should return a reducer', () => {
     const macro = (...args) => {
       args.forEach((arg) => {
         const fn = createReducer('foo').default(arg);
@@ -24,6 +24,7 @@ describe('createReducer', () => {
     };
 
     macro({}, () => ({}), undefined);
+    expect(createReducer('foo').config().default()).toEqual(jasmine.any(Function));
   });
 
   it('createReducer.default() should return a function with a property domain', () => {
@@ -57,11 +58,11 @@ describe('createReducer', () => {
 
 
     expect(addCases(createReducer('foo').case({}), 7)).toHaveProperty('case', jasmine.any(Function));
-
     expect(addCases(createReducer('foo').case({}), 32)).toHaveProperty('do', jasmine.any(Function));
 
-    expect(addDos(createReducer('foo').case({}), 7)).toHaveProperty('case', jasmine.any(Function));
+    expect(addCases(createReducer('foo').config().case({}), 32)).toHaveProperty('do', jasmine.any(Function));
 
+    expect(addDos(createReducer('foo').case({}), 7)).toHaveProperty('case', jasmine.any(Function));
     expect(addDos(createReducer('foo').case({}), 32)).toHaveProperty('do', jasmine.any(Function));
   });
 });

@@ -12,17 +12,18 @@ function addTodoReducer(state, action) {
   };
 }
 
-function removeTodoReducer(state, action) {
-  return {
+function removeTodoReducer(state, action, { identity }) {
+  return identity({
     ...state,
     list: state.list.filter(todo => todo.id !== action.payload.id),
-  };
+  });
 }
 
 it('should add a new todo', () => {
   const addTodo = createAction('@@todos:add');
   const removeTodo = createAction('@@todos:remove');
   const reducer = createReducer('@@todos')
+    .config({ identity: arg => arg })
 
     .case(addTodo)
     .do(addTodoReducer)

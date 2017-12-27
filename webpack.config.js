@@ -42,8 +42,17 @@ const config = ({ ENV }) => ({
       },
       {
         test: /\.jsx?$/,
-        use: 'babel-loader',
+        loader: 'babel-loader',
         exclude: /node_modules/,
+        options: {
+          babelrc: false,
+          presets: [
+            ['env', {
+              modules: false,
+              loose: true,
+            }],
+          ],
+        },
       },
     ],
   },
@@ -61,10 +70,10 @@ const config = ({ ENV }) => ({
   ],
 });
 
-module.exports = (env = {}) => {
+module.exports = () => {
   const tasks = [config({ ENV: 'development' })];
 
-  if (env.name === 'production') {
+  if (process.env.NODE_ENV === 'production') {
     const task = config({ ENV: 'production' });
     task.plugins.push(new webpack.optimize.UglifyJsPlugin({ sourceMap: true }));
 
