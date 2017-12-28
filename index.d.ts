@@ -65,9 +65,17 @@ declare namespace /* Interfaces */ I {
     };
   }
 
+  interface Do<D, S, C> {
+    <A extends Action>(reducer: (state: S, action: A, config: C) => S): {
+      default: Default<D, S, C>;
+      case: Case<D, S, C>;
+      do: Do<D, S, C>;
+    };
+  }
+
   interface Default<D, S, C> {
     (state?: S): {
-      domain: D;
+      readonly domain: D;
       toString(): D;
 
       <A extends Action>(state: S, action: A): S;
@@ -77,14 +85,6 @@ declare namespace /* Interfaces */ I {
       toString(): D;
 
       <A extends Action>(state: S, action: A): S;
-    };
-  }
-
-  interface Do<D, S, C> {
-    <A extends Action>(reducer: (state: S, action: A, config: C) => S): {
-      default: Default<D, S, C>;
-      case: Case<D, S, C>;
-      do: Do<D, S, C>;
     };
   }
 
