@@ -37,7 +37,7 @@ const config = ({ ENV }) => ({
         loader: 'eslint-loader',
         exclude: /node_modules/,
         options: {
-          emitWarning: true,
+          emitWarning: ENV === 'development',
         },
       },
       {
