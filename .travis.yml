@@ -11,7 +11,6 @@ before_script:
 script:
   - npm run test
   - ./cc-test-reporter format-coverage ./coverage/lcov.info --input-type lcov
-  - ./cc-test-reporter upload-coverage
 
   - ./cc-test-reporter before-build
   - npm run build
