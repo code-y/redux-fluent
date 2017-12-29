@@ -1,7 +1,7 @@
 declare module 'redux-fluent' {
   export function createReducer<
-    S extends { [key: string]: any },
-    C extends { [key: string]: any } = { [key: string]: any },
+    S extends object = object,
+    C extends object = object,
     D extends string = string
   >(domain: D): {
     default: I.Default<D, S, C>;
@@ -14,8 +14,8 @@ declare module 'redux-fluent' {
   };
 
   export function createAction<
-    P extends { [key: string]: any } = { [key: string]: any },
-    M extends { [key: string]: any } = { [key: string]: any },
+    P extends object = object,
+    M extends object = object,
     T extends string = string
   >(type: T): I.ActionCreator<P, M, T>;
 }
@@ -24,14 +24,14 @@ declare namespace /* Interfaces */ I {
   export interface Action {
     type: string;
     error: boolean;
-    payload: { [key: string]: any } | null;
-    meta: { [key: string]: any } | null;
+    payload: object | null;
+    meta: object | null;
   }
 
   export interface ActionError<
     T extends string,
     E extends Error,
-    M
+    M extends object | null
   > extends Action {
     type: T;
     error: true;
@@ -41,8 +41,8 @@ declare namespace /* Interfaces */ I {
 
   export interface ActionSuccess<
     T extends string,
-    P extends { [key: string]: any } | null,
-    M
+    P extends object | null,
+    M extends object | null
   > extends Action {
     type: T;
     error: false;
@@ -88,7 +88,11 @@ declare namespace /* Interfaces */ I {
     };
   }
 
-  interface ActionCreator<P, M, T extends string> {
+  interface ActionCreator<
+    P extends object = object,
+    M extends object = object,
+    T extends string = string
+  > {
     readonly type: string;
     toString(): string;
 
