@@ -32,7 +32,7 @@ npm install --save redux-fluent
 import { createAction, createReducer } from 'redux-fluent';
 
 
-const getDefaultState = () => ({ list: [] });
+const getDefaultState = state => state || ({ list: [] });
 
 const addTodo = createAction('@@todos | add');
 const addTodoReducer = (state, { payload }) => ({ 
