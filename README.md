@@ -10,11 +10,11 @@ Tiny and eloquent way to manage a redux-like state manager
 
 ## Motivation
 
-[Redux](https://redux.js.org/) is great, *every recent web application was most likely been built on top of it*, however we really believe we can simplify it further and after our investigation we came out with:
+[Redux](https://redux.js.org/) is great, *every recent web application was most likely been built on top of it*, however we really think we can simplify it further and after our investigation we came out with:
 
  - **Reducers** usually tend to grow and become hard to maintain, 'cause of the amount of switch-cases.
  - Concepts such as **Action**, **Action Type** and **Action Creator** could be squashed into only one.
- - Find out a way to enforce standards.
+ - The push towards the standards should be stronger.
 
 ## Installation
 
@@ -28,44 +28,27 @@ npm install --save redux-fluent
 
 ```javascript
 /** todosReducer.js **/
-
 import { createAction, createReducer } from 'redux-fluent';
 
 
-const getDefaultState = state => state || ({ list: [] });
-
 const addTodo = createAction('@@todos | add');
-const addTodoReducer = (state, { payload }) => ({ 
+const addTodoTask = (state, { payload }) => ({ 
   ...state, 
   list: state.list.concat(payload),
 });
 
-const removeTodo = createAction('@@todos/:id | remove');
-const removeTodoReducer = (state, { payload }) => ({
-  ...state, 
-  list: state.list.filter(todo => todo.id !== payload.id),
-})
-
 const todosReducer = createReducer('@@todos')
-  
   .case(addTodo)
-  .do(addTodoReducer)
-
+  .do(addTodoTask)
   
-  .case(removeTodo)
-  .do(removeTodoReducer)
-  
-  .default(getDefaultState)
+  .default()
 ;
 
-
-export { todosReducer, addTodo, removeTodo };
-
+export { todosReducer, addTodo };
 ```
 
 ```javascript
 /** application.js **/
-
 import { createStore, combineReducers } from 'redux';
 import { todosReducer, addTodo } from './todosReducer';
 
