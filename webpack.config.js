@@ -26,6 +26,7 @@ const config = ({ ENV }) => ({
   context: path.join(ROOT, 'src'),
   entry: ['./redux-fluent.js'],
   output: {
+    libraryTarget: 'commonjs2',
     path: path.join(ROOT, 'build'),
     filename: `redux-fluent.${ENV}.js`,
   },
