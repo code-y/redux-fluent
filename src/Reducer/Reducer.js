@@ -12,15 +12,15 @@ export default function CreateReducerFactory(domain) {
   };
 
   return {
-    case(action) { return $case(action, data); },
-    default(arg) { return $default(arg, data); },
+    case: action => $case(action, data),
+    default: arg => $default(arg, data),
 
     config(config) {
       data.config = config;
 
       return {
-        case(action) { return $case(action, data); },
-        default(arg) { return $default(arg, data); },
+        case: action => $case(action, data),
+        default: arg => $default(arg, data),
       };
     },
   };
@@ -54,12 +54,21 @@ function $default(arg, data) {
   return $reducer(getDefaultState, data);
 }
 
+function $then(success, error, data) {
+  const doSuccess = success && $do((s, a, c) => (a.error ? s : success(s, a, c)), data);
+  const doError = error && $do((s, a, c) => (a.error ? error(s, a, c) : s), data);
+
+  return doError || doSuccess;
+}
+
 function $case(currentAction, data) {
   data.caseQueue.push(currentAction.type || currentAction.toString());
 
   return {
-    case(action) { return $case(action, data); },
-    do(reducer) { return $do(reducer, data); },
+    case: action => $case(action, data),
+    do: reducer => $do(reducer, data),
+    then: (success, error) => $then(success, error, data),
+    catch: error => $then(null, error, data),
   };
 }
 
@@ -67,8 +76,10 @@ function $do(predicate, data) {
   data.doQueue.push(predicate);
 
   return {
-    do(reducer) { return $do(reducer, data); },
-    default(arg) { return $default(arg, data); },
+    do: reducer => $do(reducer, data),
+    then: (success, error) => $then(success, error, data),
+    catch: error => $then(null, error, data),
+    default: arg => $default(arg, data),
     case(action) {
       squashQueues(data.caseQueue, data.doQueue, data.actions);
 

@@ -20,16 +20,21 @@ function removeTodoReducer(state, action, { identity }) {
 }
 
 it('should add a new todo', () => {
-  const addTodo = createAction('@@todos:add');
-  const removeTodo = createAction('@@todos:remove');
+  const addTodo = createAction('@@todos | add');
+  const removeTodo = createAction('@@todos | remove');
+  const success = jasmine.createSpy('success').and.callFake(state => state);
+  const error = jasmine.createSpy('error').and.callFake(state => state);
+
   const reducer = createReducer('@@todos')
     .config({ identity: arg => arg })
 
     .case(addTodo)
     .do(addTodoReducer)
+    .then(success)
+    .catch(error)
 
     .case(removeTodo)
-    .do(removeTodoReducer)
+    .then(removeTodoReducer)
 
     .default(getDefaultState);
 
@@ -44,4 +49,7 @@ it('should add a new todo', () => {
 
   state = reducer(state, removeTodo(todo));
   expect(state.list).toHaveLength(0);
+
+  expect(success).toHaveBeenCalled();
+  expect(error).not.toHaveBeenCalled();
 });
