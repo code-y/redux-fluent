@@ -1,6 +1,6 @@
 declare module 'redux-fluent' {
   export function createReducer<
-    S extends object = object,
+    S extends object = {},
     C extends object = object,
     D extends string = string
   >(domain: D): {
@@ -54,14 +54,20 @@ declare namespace /* Interfaces */ I {
     (actionType: string): {
       case: Case<D, S, C>;
       do: Do<D, S, C>;
+      then: Then<D, S, C>;
+      catch: Catch<D, S, C>;
     };
     (action: Action): {
       case: Case<D, S, C>;
       do: Do<D, S, C>;
+      then: Then<D, S, C>;
+      catch: Catch<D, S, C>;
     };
     (anyToString: { toString(): string }): {
       case: Case<D, S, C>;
       do: Do<D, S, C>;
+      then: Then<D, S, C>;
+      catch: Catch<D, S, C>;
     };
   }
 
@@ -70,6 +76,8 @@ declare namespace /* Interfaces */ I {
       default: Default<D, S, C>;
       case: Case<D, S, C>;
       do: Do<D, S, C>;
+      then: Then<D, S, C>;
+      catch: Catch<D, S, C>;
     };
   }
 
@@ -86,6 +94,16 @@ declare namespace /* Interfaces */ I {
 
       <A extends Action>(state: S, action: A): S;
     };
+  }
+
+  interface Then<D, S, C> {
+    <A extends ActionSuccess, AE extends ActionError>(
+      success: (s: S, a: A, c: C) => S, error?: (s: S, a: AE, c: C) => S
+    ): Do<D, S, C>
+  }
+
+  interface Catch<D, S, C> {
+    <AE extends ActionError>(error: (s: S, a: AE, c: C) => S): Do<D, S, C>
   }
 
   interface ActionCreator<

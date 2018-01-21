@@ -1,4 +1,4 @@
-import { createReducer } from '../redux-fluent';
+import { createReducer, createAction } from '../redux-fluent';
 
 
 describe('createReducer', () => {
@@ -64,5 +64,40 @@ describe('createReducer', () => {
 
     expect(addDos(createReducer('foo').case({}), 7)).toHaveProperty('case', jasmine.any(Function));
     expect(addDos(createReducer('foo').case({}), 32)).toHaveProperty('do', jasmine.any(Function));
+  });
+
+  it('createReducer.catch() should handle only error actions', () => {
+    const addTodo = createAction('@todos | add');
+    const handler = jasmine.createSpy('catch action error');
+
+    const reducer = createReducer('@@catch')
+      .case(addTodo)
+      .catch(handler)
+
+      .default();
+
+    reducer({}, addTodo({ id: 'foo' }));
+    expect(handler).not.toHaveBeenCalled();
+
+    reducer({}, addTodo(new Error('unable to add todo')));
+    expect(handler).toHaveBeenCalled();
+  });
+
+  it('createReducer.catch() should handle only success actions', () => {
+    const addTodo = createAction('@todos | add');
+    const handler = jasmine.createSpy('catch action error');
+
+    const reducer = createReducer('@@catch')
+      .case(addTodo)
+      .then(handler)
+
+      .default();
+
+
+    reducer({}, addTodo(new Error('unable to add todo')));
+    expect(handler).not.toHaveBeenCalled();
+
+    reducer({}, addTodo({ id: 'foo' }));
+    expect(handler).toHaveBeenCalled();
   });
 });

@@ -41,7 +41,7 @@ const addTodoTask = (state, { payload }) => ({
 
 const todosReducer = createReducer('@@todos')
   .case(addTodo)
-  .do(addTodoTask)
+  .then(addTodoTask)
   
   .default()
 ;
