@@ -52,12 +52,14 @@ export { todosReducer, addTodo };
 ```javascript
 /** application.js **/
 import { createStore, combineReducers } from 'redux';
+import { createCombinableReducers } from 'redux-fluent';
+import { otherReducer } from './otherReducer';
 import { todosReducer, addTodo } from './todosReducer';
 
 
-const reducers = combineReducers({
-  [todosReducer]: todosReducer,
-});
+const reducers = combineReducers(
+  createCombinableReducers(todosReducer, otherReducer),
+);
 
 const store = createStore(reducers);
 
