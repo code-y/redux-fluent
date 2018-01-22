@@ -29,6 +29,7 @@ node_modules
 
 # IDEs and editors (shamelessly copied from @angular/cli's .gitignore)
 .idea
+.vscode
 .project
 .classpath
 .c9/
