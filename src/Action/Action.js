@@ -1,11 +1,14 @@
 const identity = arg => arg;
 
 export default function ActionCreatorFactory(type, payloadCreator, metaCreator) {
+  const pCreator = payloadCreator || identity;
+  const mCreator = metaCreator || identity;
+
   function actionCreator(rawPayload, rawMeta) {
     const action = Object.create(null);
 
-    const payload = (payloadCreator || identity)(rawPayload) || null;
-    const meta = (metaCreator || identity)(rawMeta) || null;
+    const payload = pCreator(rawPayload) || null;
+    const meta = mCreator(rawMeta) || null;
 
     action.type = type;
     action.error = payload instanceof Error;
