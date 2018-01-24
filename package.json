@@ -26,7 +26,7 @@
     "build": "NODE_ENV=production npm run webpack",
     "webpack": "webpack --config webpack.config.js",
     "cz": "git-cz",
-    "release": "standard-version && git push --follow-tags origin master && npm publish"
+    "release": "standard-version && git push --follow-tags origin master"
   },
   "repository": {
     "type": "git",
