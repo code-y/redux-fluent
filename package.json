@@ -25,7 +25,8 @@
     "test": "jest --coverage",
     "build": "NODE_ENV=production npm run webpack",
     "webpack": "webpack --config webpack.config.js",
-    "cz": "git-cz"
+    "cz": "git-cz",
+    "release": "standard-version && git push --follow-tags origin master && npm publish"
   },
   "repository": {
     "type": "git",
@@ -51,6 +52,7 @@
     "eslint-plugin-jsx-a11y": "^6.0.3",
     "eslint-plugin-react": "^7.5.1",
     "jest": "^21.2.1",
+    "standard-version": "^4.3.0",
     "webpack": "^3.10.0"
   },
   "jest": {
