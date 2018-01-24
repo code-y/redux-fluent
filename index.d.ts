@@ -18,6 +18,12 @@ declare module 'redux-fluent' {
     M extends object = object,
     T extends string = string
     >(type: T, payloadCreator?: (p: any) => P, metaCreator?: (m: any) => M): I.ActionCreator<P, M, T>;
+
+  export function createCombinableReducers<
+    R extends { domain: string }
+  >(...reducers: R[]): {
+    [domain: string]: R
+  }
 }
 
 declare namespace /* Interfaces */ I {
