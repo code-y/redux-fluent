@@ -9,6 +9,28 @@ describe('createAction', () => {
     expect(createAction('test')).toEqual(jasmine.any(Function));
   });
 
+  it('Factory should accept a payloadCreator', () => {
+    const payloadCreator = jasmine.createSpy('payloadCreator')
+      .and.callFake(todoId => ({ id: todoId }));
+
+    const deleteTodo = createAction('@@todos/:id | delete', payloadCreator);
+    const todoId = 12;
+
+    expect(deleteTodo(todoId).payload).toEqual({ id: todoId });
+    expect(payloadCreator).toHaveBeenCalledWith(todoId);
+  });
+
+  it('Factory should accept a metaCreator', () => {
+    const metaCreator = jasmine.createSpy('metaCreator')
+      .and.callFake(metaThing => ({ id: metaThing }));
+
+    const deleteTodo = createAction('@@todos/:id | delete', null, metaCreator);
+    const metaThing = 'Hello World';
+
+    expect(deleteTodo(null, metaThing).meta).toEqual({ id: metaThing });
+    expect(metaCreator).toHaveBeenCalledWith(metaThing);
+  });
+
   describe('actionCreator', () => {
     it('should have a property type', () => {
       expect(createAction(type)).toHaveProperty('type', type);

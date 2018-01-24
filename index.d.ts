@@ -17,7 +17,7 @@ declare module 'redux-fluent' {
     P extends object = object,
     M extends object = object,
     T extends string = string
-  >(type: T): I.ActionCreator<P, M, T>;
+    >(type: T, payloadCreator?: (p: any) => P, metaCreator?: (m: any) => M): I.ActionCreator<P, M, T>;
 }
 
 declare namespace /* Interfaces */ I {
