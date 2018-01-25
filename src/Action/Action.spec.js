@@ -1,6 +1,4 @@
-import {
-  createAction,
-} from '../redux-fluent';
+import createAction from './Action';
 
 describe('createAction', () => {
   const payload = { test: 'test' };

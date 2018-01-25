@@ -1,5 +1,5 @@
-import { createReducer, createAction } from '../redux-fluent';
-
+import createAction from '../Action/Action';
+import createReducer from './Reducer';
 
 describe('createReducer', () => {
   it('createReducer() should return: { configs, case, default }', () => {

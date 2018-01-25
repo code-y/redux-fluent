@@ -1,7 +1,6 @@
-import {
-  createCombinableReducers,
-  createReducer,
-} from '../redux-fluent';
+import createCombinableReducers from './CombinableReducers';
+import createReducer from '../Reducer/Reducer';
+
 
 describe('createCombinableReducers', () => {
   it('should return Object<domain, reducer>', () => {
