@@ -1,6 +1,5 @@
 import {
-  createAction, createCombinableReducers,
-  createReducer
+  createAction,
 } from '../redux-fluent';
 
 describe('createAction', () => {
