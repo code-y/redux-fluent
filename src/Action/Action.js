@@ -8,7 +8,7 @@ export default function ActionCreatorFactory(rawType, payloadCreator, metaCreato
   if (process.env.NODE_ENV !== 'production') {
     // eslint-disable-next-line block-scoped-var
     if (actions.indexOf(type) > -1) {
-      throw new TypeError(`[redux-fluent] Action ${type} already exists.`);
+      throw new TypeError(`[redux-fluent] Action "${type}" already exists.`);
     }
 
     // eslint-disable-next-line block-scoped-var
