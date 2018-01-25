@@ -1,4 +1,4 @@
-engines:
+plugins:
   duplication:
     enabled: true
     config:
@@ -11,11 +11,7 @@ engines:
   fixme:
     enabled: true
 
-ratings:
-  paths:
-  - "src/*.ts"
-
-exclude_paths:
+exclude_patterns:
   - "LICENSE"
   - ".*"
   - "**/*.*"
