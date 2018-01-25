@@ -3,7 +3,7 @@ import { createAction } from './redux-fluent';
 
 describe('Flux Standard Action Compliance', () => {
   it('redux fluent actions should be valid Flux Standard Actions', () => {
-    const addTodo = createAction('@@todos | add');
+    const addTodo = createAction('@@fsa/todos | createNew');
 
     expect(isFSA(addTodo({ title: 'Walk Gipsy' }))).toBe(true);
     expect(isError(addTodo({ title: 'Walk Gipsy' }))).toBe(false);
@@ -13,7 +13,7 @@ describe('Flux Standard Action Compliance', () => {
   });
 
   it('redux fluent error actions should be valid Flux Standard Actions', () => {
-    const addTodo = createAction('@@todos | add');
+    const addTodo = createAction('@@fsa/todos | add');
 
     expect(isFSA(addTodo(new Error('unable to add todo')))).toBe(true);
     expect(isError(addTodo(new Error('unable to add todo')))).toBe(true);

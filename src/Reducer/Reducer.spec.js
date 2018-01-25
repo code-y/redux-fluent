@@ -67,7 +67,7 @@ describe('createReducer', () => {
   });
 
   it('createReducer.catch() should handle only error actions', () => {
-    const addTodo = createAction('@todos | add');
+    const addTodo = createAction('@todos | create');
     const handler = jasmine.createSpy('catch action error');
 
     const reducer = createReducer('@@catch')
@@ -84,7 +84,7 @@ describe('createReducer', () => {
   });
 
   it('createReducer.catch() should handle only success actions', () => {
-    const addTodo = createAction('@todos | add');
+    const addTodo = createAction('@todos | addNew');
     const handler = jasmine.createSpy('catch action error');
 
     const reducer = createReducer('@@catch')

@@ -16,10 +16,17 @@ describe('createCombinableReducers', () => {
       });
   });
 
-  it('should throw if doubled reducers', () => {
+  it('should throw if a reducer already exists [!PRODUCTION ONLY]', () => {
+    const isProd = process.env.NODE_ENV === 'production';
+
     const foo = createReducer('foo').default();
 
-    expect(() => createCombinableReducers(foo, foo))
-      .toThrow(TypeError);
+    if (isProd) {
+      expect(() => createCombinableReducers(foo, foo))
+        .not.toThrow(TypeError);
+    } else {
+      expect(() => createCombinableReducers(foo, foo))
+        .toThrow(TypeError);
+    }
   });
 });

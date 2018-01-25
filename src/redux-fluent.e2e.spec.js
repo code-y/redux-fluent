@@ -20,8 +20,8 @@ function removeTodoReducer(state, action, { identity }) {
 }
 
 it('should add a new todo', () => {
-  const addTodo = createAction('@@todos | add');
-  const removeTodo = createAction('@@todos | remove');
+  const addTodo = createAction('@@todos | new');
+  const removeTodo = createAction('@@todos/:id | remove');
   const success = jasmine.createSpy('success').and.callFake(state => state);
   const error = jasmine.createSpy('error').and.callFake(state => state);
 
