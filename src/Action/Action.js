@@ -6,12 +6,10 @@ export default function ActionCreatorFactory(rawType, payloadCreator, metaCreato
   const type = rawType.toString();
 
   if (process.env.NODE_ENV !== 'production') {
-    // eslint-disable-next-line block-scoped-var
     if (actions.indexOf(type) > -1) {
       throw new TypeError(`[redux-fluent] Action "${type}" already exists.`);
     }
 
-    // eslint-disable-next-line block-scoped-var
     actions.push(type);
   }
 
