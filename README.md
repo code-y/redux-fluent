@@ -27,7 +27,7 @@ Tiny and eloquent way to manage a redux-like state manager (*3K*, dependencies f
  - [FSA action](https://github.com/acdlite/flux-standard-action#actions) may have `error = true` but this involves `IF Statements` inside reducers, so, developers tend to have separate `cases` via `ACTION_SUCCESS` and `ACTION_ERROR`.
  - Uncontrolled scaffolding growth.
 
-**Why not [redux-actions](https://github.com/reduxactions/redux-actions)?** It does merge the concepts of `Action` and `Reducer` while we think an action should only [describe the state changes](https://redux.js.org/docs/introduction/CoreConcepts.html) and not provide any implementation. Actions may be handled by multiple reducers or middlewares.
+**Why not [redux-actions](https://github.com/reduxactions/redux-actions)?** The surface Api should be cleaner, the implementation of the Action should only [describe the state changes](https://redux.js.org/docs/introduction/CoreConcepts.html) without tanking care about asynchronous stuff, like promises or observables. 
 
 ## Installation
 
