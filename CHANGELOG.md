@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.24.0"></a>
+# [0.24.0](https://github.com/Code-Y/redux-fluent/compare/v0.22.2...v0.24.0) (2018-01-26)
+
+
+### Features
+
+* **Action,CreateCombinableReducers:** check and throw if a reducer, action already exist only if NODE_ENV === production ([77caf8d](https://github.com/Code-Y/redux-fluent/commit/77caf8d))
+* **docs:** add function signature to Action.MD ([e6be54b](https://github.com/Code-Y/redux-fluent/commit/e6be54b))
+* **docs:** Detailed Documentation for Action ([#13](https://github.com/Code-Y/redux-fluent/issues/13)) ([55ba4ee](https://github.com/Code-Y/redux-fluent/commit/55ba4ee))
+
+
+
 <a name="0.23.1"></a>
 ## [0.23.1](https://github.com/Code-Y/redux-fluent/compare/v0.23.0...v0.23.1) (2018-01-25)
 
