@@ -1,13 +1,13 @@
 # Action
 
 1. a ***redux-fluent Action*** is a [Flux Standard Action](https://github.com/acdlite/flux-standard-action).
-1. a ***redux-fluent Action*** represents all the concepts of Action, Action Type, Action Creator.
+2. a ***redux-fluent Action*** represents all the concepts of Action, Action Type, Action Creator.
 
 ## Signature
 
 ```typescript
 /**
- * @param {String} type
+ * @param {string} type
  * @param {(rawPayload) => payload} [payloadCreator = null]
  * @param {(rawMeta) => meta} [metaCreator = null]
  *
