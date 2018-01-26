@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.24.3"></a>
+## [0.24.3](https://github.com/Code-Y/redux-fluent/compare/v0.24.2...v0.24.3) (2018-01-26)
+
+
+
 <a name="0.24.2"></a>
 ## [0.24.2](https://github.com/Code-Y/redux-fluent/compare/v0.24.1...v0.24.2) (2018-01-26)
 
