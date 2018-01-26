@@ -3,6 +3,27 @@
 1. a ***redux-fluent Action*** is a [Flux Standard Action](https://github.com/acdlite/flux-standard-action).
 1. a ***redux-fluent Action*** represents all the concepts of Action, Action Type, Action Creator.
 
+## Signature
+
+```typescript
+/**
+ * @param {String} type
+ * @param {(rawPayload) => payload} [payloadCreator = null]
+ * @param {(rawMeta) => meta} [metaCreator = null]
+ *
+ * @return {(payload, meta) => Flux Standard Action} - Action Creator
+**/
+function createAction(type, payloadCreator?, metaCreator?) { /* ... */ };
+
+/**
+ * @param {object | Error} [payload = null]
+ * @param {object} [meta = null]
+ *
+ * @return { type: string, error: boolean, meta, payload } Flux Standard Action
+**/
+function actionCreator(payload?, meta?) { /* ... */ }
+```
+
 ## Anatomy
 The ***Action Type*** is a `string` representing a **path** to an entity and a **pipe** of operations, it can eventually start with `@@` whenever the entity is being held by the store (`path/to/entity | op1 | op2 | opN`):
 
