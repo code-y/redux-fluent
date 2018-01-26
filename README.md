@@ -4,29 +4,38 @@
 [![npm downloads](https://img.shields.io/npm/dm/redux-fluent.svg)](https://www.npmjs.com/package/redux-fluent)
 [![Code Climate](https://codeclimate.com/github/Code-Y/redux-fluent/badges/gpa.svg)](https://codeclimate.com/github/Code-Y/redux-fluent)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/02e8b0d9ba383c19ae50/test_coverage)](https://codeclimate.com/github/Code-Y/redux-fluent/test_coverage)
-[![npm version](https://img.shields.io/npm/l/redux-fluent.svg)](https://github.com/Code-Y/redux-fluent/blob/master/LICENSE) 
- 
+[![npm version](https://img.shields.io/npm/l/redux-fluent.svg)](https://github.com/Code-Y/redux-fluent/blob/master/LICENSE)
+
 
 Tiny and eloquent way to manage a redux-like state manager (*3K*, dependencies free, definitions included).
 
+[Try it out on RunKit](https://runkit.com/hitmands/5a6ae5fccfee52001263345f)
+
+
+## Documentation
+
+1. [Action](./docs/Action.MD)
+2. [Reducer](./docs/Reducer.MD)
+3. [CombinableReducers](./docs/CombinableReducers.MD)
 
 ## Motivation
 
-[Redux](https://redux.js.org/) is great, *every recent web application was most likely been built on top of it*, however we really think we can simplify it further and after our investigation we came out with:
+[Redux](https://redux.js.org/) is great, *every recent web application was most likely been built on top of it*, however we really think we can simplify it further and, after our investigation, we came out with:
 
- - **Reducers** usually tend to grow and become hard to maintain, 'cause of the amount of switch-cases.
+ - **Reducers** tend to grow and become hard to maintain, 'cause of the amount of switch-cases.
  - Concepts such as **Action**, **Action Type** and **Action Creator** could be squashed into only one.
- - The push towards the standards should be stronger.
+ - [FSA action](https://github.com/acdlite/flux-standard-action#actions) may have `error = true` but this involves `IF Statements` inside reducers, so, developers tend to have separate `cases` via `ACTION_SUCCESS` and `ACTION_ERROR`.
+ - Uncontrolled scaffolding growth.
+
+**Why not [redux-actions](https://github.com/reduxactions/redux-actions)?** It does merge the concepts of `Action` and `Reducer` while we think an action should only [describe the state changes](https://redux.js.org/docs/introduction/CoreConcepts.html) and not provide any implementation. Actions may be handled by multiple reducers or middlewares.
 
 ## Installation
-
-To install the stable version:
 
 ```bash
 npm install --save redux-fluent
 ```
 
-## Usage
+## Getting Started
 
 ```javascript
 /** todosReducer.js **/
@@ -34,15 +43,15 @@ import { createAction, createReducer } from 'redux-fluent';
 
 
 const addTodo = createAction('@@todos | add');
-const addTodoTask = (state, { payload }) => ({ 
-  ...state, 
+const addTodoTask = (state, { payload }) => ({
+  ...state,
   list: state.list.concat(payload),
 });
 
 const todosReducer = createReducer('@@todos')
   .case(addTodo)
   .then(addTodoTask)
-  
+
   .default()
 ;
 
