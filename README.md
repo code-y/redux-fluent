@@ -43,16 +43,12 @@ import { createAction, createReducer } from 'redux-fluent';
 
 
 const addTodo = createAction('@@todos | add');
-const addTodoTask = (state, { payload }) => ({
-  ...state,
-  list: state.list.concat(payload),
-});
 
 const todosReducer = createReducer('@@todos')
   .case(addTodo)
-  .then(addTodoTask)
+  .then((state, { payload }) => state.list.concat(payload))
 
-  .default()
+  .default(() => [])
 ;
 
 export { todosReducer, addTodo };
