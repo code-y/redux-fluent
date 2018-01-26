@@ -9,7 +9,7 @@
 
 Tiny and eloquent way to manage a redux-like state manager (*3K*, dependencies free, definitions included).
 
-[Try it out on RunKit](https://runkit.com/hitmands/5a6ae5fccfee52001263345f)
+[Try it out on RunKit](https://runkit.com/hitmands/redux-fluent-playground)
 
 
 ## Documentation
