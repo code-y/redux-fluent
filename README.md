@@ -46,7 +46,7 @@ const addTodo = createAction('@@todos | add');
 
 const todosReducer = createReducer('@@todos')
   .case(addTodo)
-  .then((state, { payload }) => state.list.concat(payload))
+  .then((state, { payload }) => state.concat(payload))
 
   .default(() => [])
 ;
