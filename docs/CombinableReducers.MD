@@ -5,7 +5,7 @@
 
 ## Signature
 
-```typescript
+```javascript
 /**
  * @param {...{ toString(): string }} reducers
  *
@@ -17,7 +17,7 @@ function createCombinableReducers(...reducers) { /* ... */ };
 
 ## Usage
 
-```typescript
+```javascript
 import { combineReducers } from 'redux';
 import { createCombinableReducers, createReducer } from 'redux-fluent';
 
