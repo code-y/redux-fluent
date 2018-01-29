@@ -1,55 +1,70 @@
-import { createAction, createReducer } from './redux-fluent';
+import { isError, isFSA } from 'flux-standard-action';
+import { combineReducers, createStore } from 'redux';
+import { createAction, createReducer, createCombinableReducers } from './redux-fluent';
 
+describe('E2E', () => {
+  let reducer;
+  let reducers;
 
-function getDefaultState() {
-  return { list: [] };
-}
+  const addTodoReducer = (state, action) => state.concat(action.payload);
+  const removeTodoReducer = (state, action, { identity }) => (
+    identity(state.filter(todo => todo.id !== action.payload.id))
+  );
 
-function addTodoReducer(state, action) {
-  return {
-    ...state,
-    list: state.list.concat(action.payload),
-  };
-}
-
-function removeTodoReducer(state, action, { identity }) {
-  return identity({
-    ...state,
-    list: state.list.filter(todo => todo.id !== action.payload.id),
-  });
-}
-
-it('should add a new todo', () => {
   const addTodo = createAction('@@todos | new');
   const removeTodo = createAction('@@todos/:id | remove');
-  const success = jasmine.createSpy('success').and.callFake(state => state);
-  const error = jasmine.createSpy('error').and.callFake(state => state);
+  const error = jasmine.createSpy('success').and.callFake(state => state);
+  const success = jasmine.createSpy('error').and.callFake(state => state);
 
-  const reducer = createReducer('@@todos')
-    .config({ identity: arg => arg })
+  beforeEach(() => {
+    reducer = createReducer('@@todos')
+      .config({ identity: arg => arg })
 
-    .case(addTodo)
-    .do(addTodoReducer)
-    .then(success)
-    .catch(error)
+      .case(addTodo)
+      .do(addTodoReducer)
+      .then(success)
+      .catch(error)
 
-    .case(removeTodo)
-    .then(removeTodoReducer)
+      .case(removeTodo)
+      .then(removeTodoReducer)
 
-    .default(getDefaultState);
+      .default(() => []);
 
-  const todo = { title: 'Walk Gipsy', id: Math.random().toString(32).slice(2) };
+    reducers = createCombinableReducers(reducer);
+  });
 
-  let state = reducer();
-  expect(state.list).toHaveLength(0);
+  it('[redux] should add a new todo', () => {
+    const store = createStore(combineReducers(reducers));
 
-  state = reducer(state, addTodo(todo));
-  expect(state.list).toHaveLength(1);
-  expect(state.list[0]).toHaveProperty('title', todo.title);
+    const todo = { title: 'Walk Gipsy', id: Math.random().toString(32).slice(2) };
+    const getTodos = () => store.getState()[reducer.domain];
 
-  state = reducer(state, removeTodo(todo));
-  expect(state.list).toHaveLength(0);
+    expect(getTodos()).toHaveLength(0);
 
-  expect(success).toHaveBeenCalled();
-  expect(error).not.toHaveBeenCalled();
+    store.dispatch(addTodo(todo));
+    expect(getTodos()).toHaveLength(1);
+    expect(getTodos()[0]).toHaveProperty('title', todo.title);
+
+    store.dispatch(removeTodo(todo));
+    expect(getTodos()).toHaveLength(0);
+
+    expect(success).toHaveBeenCalled();
+    expect(error).not.toHaveBeenCalled();
+  });
+
+  it('[flux standard action] compliance', () => {
+    expect(isFSA(addTodo({ title: 'Walk Gipsy' }))).toBe(true);
+    expect(isError(addTodo({ title: 'Walk Gipsy' }))).toBe(false);
+
+    expect(isFSA(addTodo({}, { date: new Date() }))).toBe(true);
+    expect(isError(addTodo({}, { date: new Date() }))).toBe(false);
+
+    expect(isFSA(removeTodo(new Error('unable to remove todo')))).toBe(true);
+    expect(isError(removeTodo(new Error('unable to remove todo')))).toBe(true);
+
+    expect(isFSA(removeTodo(new Error(), { reason: 'some real reason' }))).toBe(true);
+    expect(isError(removeTodo(new Error(), { reason: 'some real reason' }))).toBe(true);
+  });
+
+  it.skip('[@ngrx/store] should add a new todo');
 });
