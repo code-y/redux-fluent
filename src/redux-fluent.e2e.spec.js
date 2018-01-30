@@ -3,21 +3,23 @@ import { combineReducers, createStore } from 'redux';
 import { createAction, createReducer, createCombinableReducers } from './redux-fluent';
 
 describe('E2E', () => {
-  let reducer;
-  let reducers;
+  // eslint-disable-next-line one-var, one-var-declaration-per-line
+  let reducer, reducers, addTodo, removeTodo, error, success;
 
   const addTodoReducer = (state, action) => state.concat(action.payload);
   const removeTodoReducer = (state, action, { identity }) => (
     identity(state.filter(todo => todo.id !== action.payload.id))
   );
 
-  const addTodo = createAction('@@todos | new');
-  const removeTodo = createAction('@@todos/:id | remove');
-  const error = jasmine.createSpy('success').and.callFake(state => state);
-  const success = jasmine.createSpy('error').and.callFake(state => state);
-
   beforeEach(() => {
-    reducer = createReducer('@@todos')
+    const uid = Math.random().toString(32).slice(2);
+
+    addTodo = createAction(`@@todos/${uid} | new`);
+    removeTodo = createAction(`@@todos/${uid}/:id | remove`);
+    error = jasmine.createSpy(`success/${uid}`).and.callFake(state => state);
+    success = jasmine.createSpy(`error/${uid}`).and.callFake(state => state);
+
+    reducer = createReducer(`@@todos/${uid}`)
       .config({ identity: arg => arg })
 
       .case(addTodo)
