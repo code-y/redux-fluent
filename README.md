@@ -15,7 +15,7 @@ Tiny and eloquent way to manage a redux-like state manager (*3K*, dependencies f
 ## Documentation
 
 1. [Action](./docs/Action.MD)
-2. [Reducer](./docs/Reducer.MD)
+2. [Reducer](./docs/Reducer.MD) WIP
 3. [CombinableReducers](./docs/CombinableReducers.MD)
 
 ## Motivation
