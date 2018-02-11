@@ -4,8 +4,8 @@ const webpack = require('webpack');
 const ROOT = __dirname;
 const pkg = require('./package');
 
-const banner = (buildDate => env => `/**!
-  * @build-info ${env} - ${buildDate}
+const banner = env => `/**!
+  * @build-info ${env} - ${new Date()}
 
   * @name ${pkg.name}
   * @version ${pkg.version}
@@ -18,23 +18,27 @@ const banner = (buildDate => env => `/**!
   * @homepage ${pkg.homepage}
   * @keywords [ ${pkg.keywords.join(', ')} ]
   * @license ${pkg.license}
-**/`)(new Date());
+**/`;
 
 const config = ({ ENV }) => ({
+  mode: ENV,
   target: 'web',
   devtool: 'source-map',
   context: path.join(ROOT, 'src'),
-  entry: ['./redux-fluent.js'],
+  entry: {
+    'redux-fluent': ['./redux-fluent.js'],
+    'redux-fluent.testing': ['./redux-fluent.testing.js'],
+  },
   output: {
     libraryTarget: 'commonjs2',
     path: path.join(ROOT, 'build'),
-    filename: `redux-fluent.${ENV}.js`,
+    filename: `[name].${ENV}.js`,
   },
   module: {
     rules: [
       {
         enforce: 'pre',
-        test: /\.jsx?$/,
+        test: /\.js?$/,
         loader: 'eslint-loader',
         exclude: /node_modules/,
         options: {
@@ -42,23 +46,11 @@ const config = ({ ENV }) => ({
         },
       },
       {
-        test: /\.jsx?$/,
+        test: /\.js?$/,
         loader: 'babel-loader',
         exclude: /node_modules/,
-        options: {
-          babelrc: false,
-          presets: [
-            ['env', {
-              modules: false,
-              loose: true,
-            }],
-          ],
-        },
       },
     ],
-  },
-  resolve: {
-    extensions: ['.js'],
   },
   plugins: [
     new webpack.BannerPlugin({
@@ -76,7 +68,6 @@ module.exports = () => {
 
   if (process.env.NODE_ENV === 'production') {
     const task = config({ ENV: 'production' });
-    task.plugins.push(new webpack.optimize.UglifyJsPlugin({ sourceMap: true }));
 
     tasks.push(task);
   }
