@@ -24,11 +24,13 @@ const config = ({ ENV }) => ({
   target: 'web',
   devtool: 'source-map',
   context: path.join(ROOT, 'src'),
-  entry: ['./redux-fluent.js'],
+  entry: {
+    [pkg.name]: [`./${pkg.name}.js`],
+  },
   output: {
     libraryTarget: 'commonjs2',
     path: path.join(ROOT, 'build'),
-    filename: `redux-fluent.${ENV}.js`,
+    filename: `[name]t.${ENV}.js`,
   },
   module: {
     rules: [
