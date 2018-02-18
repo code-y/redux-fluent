@@ -1,5 +1,5 @@
-import createFakeStore from './TestingUtilities';
-import createReducer from '../Reducer/Reducer';
+import { createFakeStore, patchReducerConfig } from './TestingUtilities';
+import { createReducer } from '../redux-fluent';
 
 describe('TestingUtilities', () => {
   it('createFakeStore should return { dispatch, getState }', () => {
@@ -52,5 +52,29 @@ describe('TestingUtilities', () => {
     const store = createFakeStore();
 
     expect(store.getState()).toEqual({});
+  });
+
+  it('patchReducerConfig should preserve the original reducer', () => {
+    const reducer = createReducer('twoReducer')
+      .config({ getTwo: () => 2 })
+      .case('BAZ')
+      .do((state, action, { getTwo }) => getTwo() + state)
+      .default(() => 2);
+
+    const patchedReducer = patchReducerConfig(reducer, { getTwo: () => '2' });
+
+    const store = createFakeStore(reducer);
+    const patchedStore = createFakeStore(patchedReducer);
+
+    store.dispatch({ type: 'BAZ' });
+    expect(store.getState().twoReducer).toBe(4);
+
+    patchedStore.dispatch({ type: 'BAZ' });
+    expect(patchedStore.getState().twoReducer).toBe('22');
+  });
+
+  it('patchReducerConfig should throw for non redux-fluent reducers', () => {
+    const reducer = () => 'just a function';
+    expect(() => patchReducerConfig(reducer)).toThrow(TypeError);
   });
 });
