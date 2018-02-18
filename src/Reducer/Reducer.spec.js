@@ -3,20 +3,20 @@ import createReducer from './Reducer';
 
 describe('createReducer', () => {
   it('createReducer() should return: { configs, case, default }', () => {
-    expect(createReducer('foo'))
+    expect(createReducer(`foo${Math.random()}`))
       .toHaveProperty('config', jasmine.any(Function));
 
-    expect(createReducer('foo'))
+    expect(createReducer(`foo${Math.random()}`))
       .toHaveProperty('case', jasmine.any(Function));
 
-    expect(createReducer('foo'))
+    expect(createReducer(`foo${Math.random()}`))
       .toHaveProperty('default', jasmine.any(Function));
   });
 
   it('createReducer.default() should return a reducer', () => {
     const macro = (...args) => {
       args.forEach((arg) => {
-        const fn = createReducer('foo').default(arg);
+        const fn = createReducer(`foo${Math.random()}`).default(arg);
 
         expect(fn).toEqual(jasmine.any(Function));
         expect(fn()).toEqual(jasmine.any(Object));
@@ -24,24 +24,22 @@ describe('createReducer', () => {
     };
 
     macro({}, () => ({}), undefined);
-    expect(createReducer('foo').config().default()).toEqual(jasmine.any(Function));
+    expect(createReducer(`foo${Math.random()}`).config().default()).toEqual(jasmine.any(Function));
   });
 
   it('createReducer.default() should return a function with a property domain', () => {
-    const domain = 'baz';
+    expect(createReducer('domain1').default(() => ({})))
+      .toHaveProperty('domain', 'domain1');
 
-    expect(createReducer(domain).default(() => ({})))
-      .toHaveProperty('domain', domain);
-
-    expect(createReducer(domain).default(() => ({})).toString())
-      .toEqual(domain);
+    expect(createReducer('domain2').default(() => ({})).toString())
+      .toEqual('domain2');
   });
 
   it('createReducer.config() should return { case, default }', () => {
-    expect(createReducer('foo').config({}))
+    expect(createReducer(`foo${Math.random()}`).config({}))
       .toHaveProperty('case', jasmine.any(Function));
 
-    expect(createReducer('foo').config({}))
+    expect(createReducer(`foo${Math.random()}`).config({}))
       .toHaveProperty('default', jasmine.any(Function));
   });
 
@@ -57,20 +55,20 @@ describe('createReducer', () => {
     );
 
 
-    expect(addCases(createReducer('foo').case({}), 7)).toHaveProperty('case', jasmine.any(Function));
-    expect(addCases(createReducer('foo').case({}), 32)).toHaveProperty('do', jasmine.any(Function));
+    expect(addCases(createReducer(`foo${Math.random()}`).case({}), 7)).toHaveProperty('case', jasmine.any(Function));
+    expect(addCases(createReducer(`foo${Math.random()}`).case({}), 32)).toHaveProperty('do', jasmine.any(Function));
 
-    expect(addCases(createReducer('foo').config().case({}), 32)).toHaveProperty('do', jasmine.any(Function));
+    expect(addCases(createReducer(`foo${Math.random()}`).config().case({}), 32)).toHaveProperty('do', jasmine.any(Function));
 
-    expect(addDos(createReducer('foo').case({}), 7)).toHaveProperty('case', jasmine.any(Function));
-    expect(addDos(createReducer('foo').case({}), 32)).toHaveProperty('do', jasmine.any(Function));
+    expect(addDos(createReducer(`foo${Math.random()}`).case({}), 7)).toHaveProperty('case', jasmine.any(Function));
+    expect(addDos(createReducer(`foo${Math.random()}`).case({}), 32)).toHaveProperty('do', jasmine.any(Function));
   });
 
   it('createReducer.catch() should handle only error actions', () => {
     const addTodo = createAction('@todos | create');
     const handler = jasmine.createSpy('catch action error');
 
-    const reducer = createReducer('@@catch')
+    const reducer = createReducer('@@catch1')
       .case(addTodo)
       .catch(handler)
 
