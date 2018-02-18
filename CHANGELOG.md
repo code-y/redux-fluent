@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.26.0"></a>
+# [0.26.0](https://github.com/Code-Y/redux-fluent/compare/v0.25.5...v0.26.0) (2018-02-18)
+
+
+### Features
+
+* **testing:** add patchReducerConfig ([#17](https://github.com/Code-Y/redux-fluent/issues/17)) ([3ed9002](https://github.com/Code-Y/redux-fluent/commit/3ed9002))
+
+
+
 <a name="0.24.4"></a>
 ## [0.24.4](https://github.com/Code-Y/redux-fluent/compare/v0.24.3...v0.24.4) (2018-01-27)
 
