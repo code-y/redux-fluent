@@ -12,8 +12,6 @@ before_script:
 script:
   - npm run test
   - npm run build
-
-after_script:
   - ./codeclimate format-coverage ./coverage/lcov.info --input-type lcov
   - ./codeclimate after-build --exit-code $TRAVIS_TEST_RESULT
 
