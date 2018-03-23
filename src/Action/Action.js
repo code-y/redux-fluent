@@ -1,5 +1,6 @@
-const identity = arg => arg;
+import { PRIVATE_KEY } from '../Helpers/PRIVATE_KEY';
 
+const identity = arg => arg;
 const actions = [];
 
 export default function ActionCreatorFactory(rawType, payloadCreator, metaCreator) {
@@ -33,6 +34,7 @@ export default function ActionCreatorFactory(rawType, payloadCreator, metaCreato
   Object.defineProperties(actionCreator, {
     type: { enumerable: true, value: type },
     toString: { enumerable: true, value: () => type },
+    [PRIVATE_KEY]: { value: 'action' },
   });
 
   return actionCreator;

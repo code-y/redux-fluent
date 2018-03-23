@@ -1,6 +1,7 @@
 **/*.*
 !/build/**/*.*
 !/docs/**/*.*
+!/extra/**/*.*
 /build/.gitkeep
 !CHANGELOG.md
 !README.md

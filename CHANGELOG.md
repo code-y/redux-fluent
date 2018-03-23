@@ -2,13 +2,26 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.26.1"></a>
+## [0.26.1](https://github.com/Code-Y/redux-fluent/compare/v0.25.0...v0.26.1) (2018-03-23)
+
+
+
 <a name="0.25.0"></a>
 # [0.25.0](https://github.com/Code-Y/redux-fluent/compare/v0.24.4...v0.25.0) (2018-03-23)
+=======
+<a name="0.26.0"></a>
+# [0.26.0](https://github.com/Code-Y/redux-fluent/compare/v0.25.5...v0.26.0) (2018-02-18)
+>>>>>>> e7a1b8beaf855f82560404c0e6aad7e9eac45931
 
 
 ### Features
 
+<<<<<<< HEAD
 * **e2e:** add redux, flux standard action integration tests ([#14](https://github.com/Code-Y/redux-fluent/issues/14)) ([efdf697](https://github.com/Code-Y/redux-fluent/commit/efdf697))
+=======
+* **testing:** add patchReducerConfig ([#17](https://github.com/Code-Y/redux-fluent/issues/17)) ([3ed9002](https://github.com/Code-Y/redux-fluent/commit/3ed9002))
+>>>>>>> e7a1b8beaf855f82560404c0e6aad7e9eac45931
 
 
 
