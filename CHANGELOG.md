@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.25.0"></a>
+# [0.25.0](https://github.com/Code-Y/redux-fluent/compare/v0.24.4...v0.25.0) (2018-03-23)
+
+
+### Features
+
+* **e2e:** add redux, flux standard action integration tests ([#14](https://github.com/Code-Y/redux-fluent/issues/14)) ([efdf697](https://github.com/Code-Y/redux-fluent/commit/efdf697))
+
+
+
 <a name="0.24.4"></a>
 ## [0.24.4](https://github.com/Code-Y/redux-fluent/compare/v0.24.3...v0.24.4) (2018-01-27)
 
