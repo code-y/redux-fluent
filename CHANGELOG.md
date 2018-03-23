@@ -2,6 +2,41 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.27.0"></a>
+# [0.27.0](https://github.com/Code-Y/redux-fluent/compare/v0.25.0...v0.27.0) (2018-03-23)
+
+
+
+<a name="0.26.0"></a>
+# [0.26.0](https://github.com/Code-Y/redux-fluent/compare/v0.25.5...v0.26.0) (2018-02-18)
+
+
+### Features
+
+* **testing:** add patchReducerConfig ([#17](https://github.com/Code-Y/redux-fluent/issues/17)) ([3ed9002](https://github.com/Code-Y/redux-fluent/commit/3ed9002))
+
+
+
+<a name="0.25.5"></a>
+## [0.25.5](https://github.com/Code-Y/redux-fluent/compare/v0.25.4...v0.25.5) (2018-02-16)
+
+
+### Bug Fixes
+
+* **webpack:** export Testing Utilities ([d8dfd66](https://github.com/Code-Y/redux-fluent/commit/d8dfd66))
+
+
+
+<a name="0.25.4"></a>
+## [0.25.4](https://github.com/Code-Y/redux-fluent/compare/v0.24.4...v0.25.4) (2018-02-16)
+
+
+### Features
+
+* **Testing:** add createFakeStore(...reducers) ([#16](https://github.com/Code-Y/redux-fluent/issues/16)) ([55ccabf](https://github.com/Code-Y/redux-fluent/commit/55ccabf))
+
+
+
 <a name="0.26.1"></a>
 ## [0.26.1](https://github.com/Code-Y/redux-fluent/compare/v0.25.0...v0.26.1) (2018-03-23)
 
