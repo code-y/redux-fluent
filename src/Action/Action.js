@@ -18,7 +18,7 @@ export default function ActionCreatorFactory(rawType, payloadCreator, metaCreato
   const mCreator = metaCreator || identity;
 
   function actionCreator(rawPayload, rawMeta) {
-    const action = Object.create(null);
+    const action = {};
 
     const payload = pCreator(rawPayload) || null;
     const meta = mCreator(rawMeta) || null;
