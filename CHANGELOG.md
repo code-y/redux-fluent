@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.27.1"></a>
+## [0.27.1](https://github.com/Code-Y/redux-fluent/compare/v0.27.0...v0.27.1) (2018-05-22)
+
+
+### Bug Fixes
+
+* **Action:** redux isPlainObject doesn't accept bare objects ([#18](https://github.com/Code-Y/redux-fluent/issues/18)) ([5ad16c5](https://github.com/Code-Y/redux-fluent/commit/5ad16c5))
+
+
+
 <a name="0.27.0"></a>
 # [0.27.0](https://github.com/Code-Y/redux-fluent/compare/v0.25.0...v0.27.0) (2018-03-23)
 
