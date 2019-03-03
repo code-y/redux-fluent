@@ -25,6 +25,7 @@ plugins:
 
 exclude_patterns:
   - "LICENSE"
+  - "CHANGELOG.md"
   - ".*"
   - "**/*.*"
   - "!**/*.js"

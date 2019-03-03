@@ -36,8 +36,8 @@
   "contributors": [],
   "keywords": [
     "redux",
-    "ngrx-store",
-    "state-management",
+    "functional programming",
+    "ramda",
     "typings"
   ],
   "publishConfig": {

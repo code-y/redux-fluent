@@ -52,7 +52,7 @@ export const todos = createReducer('todos')
     ofType(actions.addTodo).map(addTodo),
     /* and so on */
   )
-  .default(() => []); 
+  .default(() => []);
 ```
 
 ```javascript
