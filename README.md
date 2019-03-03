@@ -1,11 +1,11 @@
 # <a href='https://github.com/hitmands/redux-fluent'><img src='https://raw.githubusercontent.com/hitmands/redux-fluent/master/redux-fluent-logo.png' height='60' alt='Redux Fluent' aria-label='https://github.com/hitmands/redux-fluent' /></a> redux-fluent
-[![npm version](https://img.shields.io/npm/v/redux-fluent.svg)](https://www.npmjs.com/package/redux-fluent)
 [![Build Status](https://travis-ci.org/hitmands/redux-fluent.svg?branch=master)](https://travis-ci.org/hitmands/redux-fluent)
-[![npm downloads](https://img.shields.io/npm/dm/redux-fluent.svg)](https://www.npmjs.com/package/redux-fluent)
-[![Maintainability](https://api.codeclimate.com/v1/badges/02e8b0d9ba383c19ae50/maintainability)](https://codeclimate.com/github/Code-Y/redux-fluent/maintainability)
-[![Test Coverage](https://api.codeclimate.com/v1/badges/02e8b0d9ba383c19ae50/test_coverage)](https://codeclimate.com/github/Code-Y/redux-fluent/test_coverage)
+[![npm version](https://img.shields.io/npm/v/redux-fluent.svg)](https://www.npmjs.com/package/redux-fluent)
 [![License](https://img.shields.io/npm/l/redux-fluent.svg)](https://github.com/hitmands/redux-fluent/blob/master/LICENSE)
 [![Conventional Commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-yellow.svg)](https://conventionalcommits.org)
+[![npm downloads](https://img.shields.io/npm/dm/redux-fluent.svg)](https://www.npmjs.com/package/redux-fluent)
+[![Maintainability](https://api.codeclimate.com/v1/badges/474e33d67c5fa25495ec/maintainability)](https://codeclimate.com/github/hitmands/redux-fluent/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/474e33d67c5fa25495ec/test_coverage)](https://codeclimate.com/github/hitmands/redux-fluent/test_coverage)
 
 
 Tiny and eloquent way to manage a redux-like state manager (*~3K*, dependencies free, definitions included).

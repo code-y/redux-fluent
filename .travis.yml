@@ -28,17 +28,15 @@ script:
   - ./codeclimate after-build --exit-code $TRAVIS_TEST_RESULT
 
 after_deploy:
-  - git config --local user.email "travis@travis-ci.org"
+  - git config --local user.email "${EMAIL}"
   - git config --local user.password "${GITHUB_ACCESS_TOKEN}"
-  - git config --local user.name "Travis CI"
-  - git push origin master
+  - git config --local user.name "CI"
+  - git push origin master --follow-tags
 
 deploy:
   provider: npm
   skip_cleanup: true
   on:
     branch: master
-  api_key:
-    secure: nrzGkaDcN9S4OsFgTiK1yRGWh0F6ixkw4l1mBzOkricXtA9K8Hhnq4+HyCidAUmocHpGEmB7CNyqA7vBhnHNc+Otz6yZrETNePAkK009WpqKeOBZWHNCaACMqlEOEYlWTO8gqgl9BQOhiyv89CuhbGn4LNWf7tSnz9xTcDzHFBm5hNb8oPxroUct2txolf1Q7sSi8BUQpKJ8yICp8ztY74J2ZufLe3yOcaS4Mm3xRCAxfXsH11w0fHIKnsukt9m0sqvNKCnEo+4sD+O19XmkmceIUmx+bodhMNna6Flcjkz3H4CfyfMhx9RVskDNKCmXUjSFlb/Kp030k6wgX6yjGt1Q/5FyYyGHpG9udkIpMYQA0/v0hccNkmAvh4sGg+iVKr80ypb9YZarO8rITtOyrN4QYOyxBVrxcWEsgUWEeF/UPkyJkslH/7bRz0J1GtP/aYda7IRqhTcKZVT4Cl6YcWqrcGFTMT9AM8IDJLd7c6pv9GvHaJaTf7xrt8PLFKjcfAI5Ll2qt6YYn5BahadNYNqiAkCvVMYKuMQWJxsZDkxhX8KFdwpLsYXdUeu6f3nrdj4tuHTXEJ3XiKBtvoxseF+O0L/Z2sdYTjuFl+lb4hC77xuyparu5L1/Ax0JlrvvkU5L3jKhaEy8CjKkwnDoZEj5qYHlRpT2DkddKMPUCoE=
-  email:
-    secure: dDefrdmIxCVoT+PyJAdTeGt2ozRLbgoESgA2wLOhDZuiX8kvCJTVSM8qCy1HIn9486GxCg+1zypM4r9ZKdWNzyy98NP48XHaav8UMmlz+lLmQgN4IFXdgxZHZGDTlufVnI3HZsW2XinjZWdBjg6YizK8GhH1nzkg0rogePYG0a8sQunLf6zeUifkwfR5I4Z+YY+Vv1Be/r1uwMP49JcrDzO1eykBXqaWbUI3NNNYy8P+rtCMoefieHJTrxxiHWheTcM1UPbwK2kvLig949yxmbj8wtK25PkvcGLRBTNzyvgbjNb84MMLpp6JZFzXx7iPcqEShQMG9JB6hrlBAWl+w+KYaQV8/PZb99+sjvpdDGCFNl+FhYA6/zW3UrZ0QTaQ/rLzMu2HHDM96a8/2ckEzDXUv+3WiHEsXHcACs7JyqvQEffJb41lIoSeu8XoAHlD2QyQt0QgS9egnqfvqbgsxwKkEaGU2XyGTPakvy09tQYhuAMN+KbiY6ExpkP5G65omWjqKjItzgB9miDgv+VT6MhWKqnoUIqWsuBwWynUrBMEuoBiDLOHGl+o3p7TWKOwgtaZOnTy3E4Y4Ljw6UZnrg7PJOD1KNuEg8bfQosrdUUj404hUMMbcD128I3Lxrdmbt2hipyKu/jIAz78f0A2Aczb3ClHR7yhVs3t2BSuSWw=
+  api_key: ${NPM_ACCESS_TOKEN}
+  email: ${EMAIL}
