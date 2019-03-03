@@ -8,6 +8,11 @@ cache:
   directories:
     - node_modules
 
+before_install:
+  - yarn standard-version -m 'chore(release): %s [ci skip]'
+  - exit 1
+
+
 install:
   - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./codeclimate
   - chmod +x ./codeclimate
