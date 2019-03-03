@@ -28,9 +28,8 @@ script:
   - ./codeclimate after-build --exit-code $TRAVIS_TEST_RESULT
 
 after_deploy:
-  - git config --local user.email "${EMAIL}"
-  - git config --local user.password "${GITHUB_ACCESS_TOKEN}"
-  - git config --local user.name "CI"
+  - git remote rm origin
+  - git remote add origin "https://hitmands:${GITHUB_ACCESS_TOKEN}@github.com/hitmands/redux-fluent.git"
   - git push origin master --follow-tags
 
 deploy:

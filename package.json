@@ -1,7 +1,7 @@
 {
   "name": "redux-fluent",
   "license": "MIT",
-  "version": "0.5.0",
+  "version": "0.5.2",
   "homepage": "https://github.com/hitmands/redux-fluent#readme",
   "description": "Enjoy Redux - Less Scaffolding / More Functional",
   "author": "Giuseppe Mandato (https://github.com/hitmands)",

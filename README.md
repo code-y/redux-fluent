@@ -66,6 +66,6 @@ const rootReducer = combineReducers(todos, ...);
 const store = createStore(rootReducer);
 store.getState(); // { todos: [] }
 
-store.dispatch(actions.addTodo('1'));
-store.getState(); // { todos: [1] }
+store.dispatch(actions.addTodo({ title: 'Walk Gipsy' }));
+store.getState(); // { todos: [{ title: 'Walk Gipsy' }] }
 ```
