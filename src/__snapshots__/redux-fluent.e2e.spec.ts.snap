@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`redux-fluent E2E should add a todo 1`] = `
+Object {
+  "todos": Array [
+    Object {
+      "id": "first-todo-id",
+      "status": "pending",
+    },
+  ],
+}
+`;
+
+exports[`redux-fluent E2E should not add a todo if action.error 1`] = `
+Object {
+  "todos": Array [],
+}
+`;
