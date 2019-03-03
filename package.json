@@ -1,17 +1,21 @@
 {
   "name": "redux-fluent",
   "license": "MIT",
-  "version": "0.27.2",
-  "homepage": "https://github.com/Code-Y/redux-fluent#readme",
-  "description": "Tiny and eloquent way to manage a redux-like state manager",
-  "author": "Code-Y (https://github.com/Code-Y)",
-  "private": false,
+  "version": "1.0.0",
+  "homepage": "https://github.com/hitmands/redux-fluent#readme",
+  "description": "Enjoy Redux - Less Scaffolding / More Functional",
+  "author": "Giuseppe Mandato (https://github.com/hitmands)",
+  "sideEffects": false,
   "main": "index.js",
-  "types": "index.d.ts",
-  "contributors": [
-    "Luca Pau <luca.pau82@gmail.com> (https://github.com/Lughino)",
-    "Giuseppe Mandato <gius.mand.developer@gmail.com> (https://github.com/hitmands)"
+  "types": "dist/redux-fluent.d.ts",
+  "files": [
+    "/dist",
+    "node_modules",
+    "CHANGELOG.md",
+    "LICENSE",
+    "index.js"
   ],
+  "contributors": [],
   "keywords": [
     "redux",
     "ngrx-store",
@@ -22,50 +26,48 @@
     "access": "public"
   },
   "scripts": {
-    "test": "jest --coverage",
-    "build": "NODE_ENV=production npm run webpack",
-    "webpack": "webpack --config webpack.config.js",
-    "cz": "git-cz",
-    "release": "standard-version && git push --follow-tags origin master"
+    "lint": "eslint *.js src/**/*.ts",
+    "build": "webpack --config webpack.config.js",
+    "test": "jest --coverage"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Code-Y/redux-fluent.git"
+    "url": "git+https://github.com/hitmands/redux-fluent.git"
   },
   "bugs": {
-    "url": "https://github.com/Code-Y/redux-fluent/issues"
+    "url": "https://github.com/hitmands/redux-fluent/issues"
+  },
+  "peerDependencies": {
+    "flux-standard-action": "^2.0.3",
+    "redux": "^4.0.1"
   },
   "devDependencies": {
-    "@types/jest": "^21.1.9",
-    "babel-core": "^6.26.0",
-    "babel-env": "^2.4.1",
-    "babel-eslint": "^8.1.2",
-    "babel-jest": "^22.0.4",
-    "babel-loader": "^7.1.2",
-    "commitizen": "^2.9.6",
-    "cz-conventional-changelog": "^2.1.0",
-    "eslint": "^4.14.0",
-    "eslint-config-airbnb": "^16.1.0",
-    "eslint-loader": "^1.9.0",
-    "eslint-plugin-import": "^2.8.0",
-    "eslint-plugin-jest": "^21.5.0",
-    "eslint-plugin-jsx-a11y": "^6.0.3",
-    "eslint-plugin-react": "^7.5.1",
-    "flux-standard-action": "^2.0.1",
-    "jest": "^21.2.1",
-    "redux": "^3.7.2",
-    "standard-version": "^4.3.0",
-    "webpack": "^3.10.0"
-  },
-  "jest": {
-    "transform": {
-      "^.+\\.jsx?$": "babel-jest"
-    },
-    "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.(jsx?)$",
-    "moduleFileExtensions": [
-      "js",
-      "jsx",
-      "json"
-    ]
+    "@types/chai": "^4.1.6",
+    "@types/jest": "^23.3.2",
+    "@types/node": "^10.12.0",
+    "@types/ramda": "^0.25.39",
+    "@types/sinon": "^5.0.2",
+    "@types/sinon-chai": "^3.2.0",
+    "@typescript-eslint/eslint-plugin": "^1.4.2",
+    "@typescript-eslint/parser": "^1.4.2",
+    "awesome-typescript-loader": "^5.2.1",
+    "chai": "^4.1.2",
+    "eslint": "^5.14.1",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-loader": "^2.1.1",
+    "eslint-plugin-chai-friendly": "^0.4.1",
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-jest": "^21.22.1",
+    "flux-standard-action": "^2.0.3",
+    "jest": "^23.6.0",
+    "ramda": "^0.25.0",
+    "redux": "^4.0.1",
+    "sinon": "^6.3.4",
+    "sinon-chai": "^3.2.0",
+    "standard-version": "^5.0.1",
+    "ts-jest": "^23.10.4",
+    "typescript": "^3.1.3",
+    "webpack": "^4.19.1",
+    "webpack-cli": "^3.1.0"
   }
 }
