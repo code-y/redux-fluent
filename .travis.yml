@@ -16,12 +16,13 @@ install:
 script:
   - ./codeclimate before-build
 
-  - commitlint-travis
   - if [[ $TRAVIS_BRANCH == "master" ]]; then yarn release; fi
 
+  - commitlint-travis
   - yarn lint
   - yarn test
-  - NODE_ENV=production yarn build
+
+  - NODE_ENV=production yarn build --bail
 
   - ./codeclimate format-coverage ./coverage/lcov.info --input-type lcov
   - ./codeclimate after-build --exit-code $TRAVIS_TEST_RESULT
