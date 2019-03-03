@@ -16,7 +16,7 @@ install:
 script:
   - ./codeclimate before-build
 
-  - if [[ $TRAVIS_BRANCH == "master" ]]; then yarn release; fi
+  - if [[ $TRAVIS_BRANCH == "master" ]]; then git checkout master && yarn release; fi
 
   - commitlint-travis
   - yarn lint
@@ -30,7 +30,8 @@ script:
 after_deploy:
   - git remote rm origin
   - git remote add origin "https://hitmands:${GITHUB_ACCESS_TOKEN}@github.com/hitmands/redux-fluent.git"
-  - git status
+  - git branch
+  - git log -n 3
   - git push --follow-tags origin master
 
 deploy:
