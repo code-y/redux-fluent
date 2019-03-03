@@ -1,76 +1,71 @@
-# <a href='https://github.com/Code-Y/redux-fluent'><img src='https://raw.githubusercontent.com/Code-Y/redux-fluent/master/redux-fluent-logo.png' height='60' alt='Redux Fluent Logo' aria-label='https://github.com/Code-Y/redux-fluent' /></a> Redux Fluent
+# <a href='https://github.com/hitmands/redux-fluent'><img src='https://raw.githubusercontent.com/hitmands/redux-fluent/master/redux-fluent-logo.png' height='60' alt='Redux Fluent' aria-label='https://github.com/hitmands/redux-fluent' /></a> redux-fluent
 [![npm version](https://img.shields.io/npm/v/redux-fluent.svg)](https://www.npmjs.com/package/redux-fluent)
-[![Build Status](https://travis-ci.org/Code-Y/redux-fluent.svg?branch=master)](https://travis-ci.org/Code-Y/redux-fluent)
+[![Build Status](https://travis-ci.org/hitmands/redux-fluent.svg?branch=master)](https://travis-ci.org/hitmands/redux-fluent)
 [![npm downloads](https://img.shields.io/npm/dm/redux-fluent.svg)](https://www.npmjs.com/package/redux-fluent)
-[![Code Climate](https://codeclimate.com/github/Code-Y/redux-fluent/badges/gpa.svg)](https://codeclimate.com/github/Code-Y/redux-fluent)
+[![Maintainability](https://api.codeclimate.com/v1/badges/02e8b0d9ba383c19ae50/maintainability)](https://codeclimate.com/github/Code-Y/redux-fluent/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/02e8b0d9ba383c19ae50/test_coverage)](https://codeclimate.com/github/Code-Y/redux-fluent/test_coverage)
-[![npm version](https://img.shields.io/npm/l/redux-fluent.svg)](https://github.com/Code-Y/redux-fluent/blob/master/LICENSE)
+[![License](https://img.shields.io/npm/l/redux-fluent.svg)](https://github.com/hitmands/redux-fluent/blob/master/LICENSE)
+[![Conventional Commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-yellow.svg)](https://conventionalcommits.org)
 
 
-Tiny and eloquent way to manage a redux-like state manager (*3K*, dependencies free, definitions included).
+Tiny and eloquent way to manage a redux-like state manager (*~3K*, dependencies free, definitions included).
 
 [Try it out on RunKit](https://runkit.com/hitmands/redux-fluent-playground)
 
 
 ## Documentation
 
-1. [Action](./docs/Action.MD)
-2. [Reducer](./docs/Reducer.MD)
-3. [CombinableReducers](./docs/CombinableReducers.MD)
 
 ## Motivation
 
-[Redux](https://redux.js.org/) is great, *every recent web application was most likely been built on top of it*, however we really think we can simplify it further and, after our investigation, we came out with:
+**[Redux](https://redux.js.org/)** is great, every recent web application has most likely been built on top of it. **How can we make it even better?**
 
- - **Reducers** tend to grow and become hard to maintain, 'cause of the amount of switch-cases.
- - Concepts such as **Action**, **Action Type** and **Action Creator** could be squashed into only one.
- - [FSA action](https://github.com/acdlite/flux-standard-action#actions) may have `error = true` but this involves `IF Statements` inside reducers, so, developers tend to have separate `cases` via `ACTION_SUCCESS` and `ACTION_ERROR`.
- - Uncontrolled scaffolding growth.
+ - **λ Go Functional**, Everything is a function and reducers are built by function composition rather than piling up if and switch-case statements: *Let's introduce Redux Fluent Reducers*.
+ - **Reducers at scale**, due to being handling multiple actions, reducers tend to grow and become difficult to maintain: *Let's introduce Redux Fluent Action Handlers*.
+ - **Less boilerplate**, Flux architecture is usually verbose and some of their concepts, such as `Action`, `Action Type` and `Action Creator` could all be implemented in a single entity: *Let's introduce Redux Fluent Actions*.
+ - **FSA compliance**, FSA Actions may have a `error: boolean` field, which indicates whether the action represents a failure or not. Respecting this pattern leads to a series of if statements inside reducers, compromising both readability and maintainability, so the community normally tends to split error and failures into two separate actions (eg: `ADD_TODO_SUCCESS` and `ADD_TODO_ERROR`) which reduces cognitive complexity on one hand but produces even more boilerplate on the other. *Let's embrace FSA and abstract error handling with filterable action handlers*.
 
 ## Installation
 
 ```bash
-npm install --save redux-fluent
+yarn add redux-fluent
 ```
 
 ## Getting Started
 
 ```javascript
-/** todosReducer.js **/
-import { createAction, createReducer } from 'redux-fluent';
+/** todos.actions.js **/
+import { createAction } from 'redux-fluent';
 
+export const addTodo = createAction('todos | add');
+```
 
-const addTodo = createAction('@@todos | add');
+```javascript
+/** todos.reducer.js **/
+import { createReducer, ofType } from 'redux-fluent';
+import * as actions from './todos.actions.js';
 
-const todosReducer = createReducer('@@todos')
-  .case(addTodo)
-  .then((state, { payload }) => state.concat(payload))
+const addTodo = (state, { payload }) => state.concat(payload);
 
-  .default(() => [])
-;
-
-export { todosReducer, addTodo };
+export const todos = createReducer('todos')
+  .actions(
+    ofType(actions.addTodo).map(addTodo),
+    /* and so on */
+  )
+  .default(() => []); 
 ```
 
 ```javascript
 /** application.js **/
-import { createStore, combineReducers } from 'redux';
-import { createCombinableReducers } from 'redux-fluent';
-import { otherReducer } from './otherReducer';
-import { todosReducer, addTodo } from './todosReducer';
+import { createStore } from 'redux';
+import { combineReducers } from 'redux-fluent';
+import * as actions from './todos.actions.js';
+import { todos } from './todos.reducer.js';
 
+const rootReducer = combineReducers(todos, ...);
+const store = createStore(rootReducer);
+store.getState(); // { todos: [] }
 
-const reducers = combineReducers(
-  createCombinableReducers(todosReducer, otherReducer),
-);
-
-const store = createStore(reducers);
-
-// You can think of `addTodo` as an action creator itself
-store.dispatch(
-  addTodo({
-    id: 1,
-    title: 'Walk Gipsy',
-  }),
-);
+store.dispatch(actions.addTodo('1'));
+store.getState(); // { todos: [1] }
 ```

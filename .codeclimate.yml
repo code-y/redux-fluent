@@ -4,6 +4,9 @@ plugins:
   nodesecurity:
     enabled: true
 
+  editorconfig:
+    enabled: true
+
   markdownlint:
     enabled: true
 
@@ -15,6 +18,7 @@ plugins:
 
   eslint:
     enabled: true
+    channel: eslint-5
 
   fixme:
     enabled: true
