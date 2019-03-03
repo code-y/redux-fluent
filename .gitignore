@@ -112,4 +112,4 @@ $RECYCLE.BIN/
 lib/
 data/
 
-build/
+dist/

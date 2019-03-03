@@ -1,11 +1,16 @@
+/* eslint-disable strict */
+
+'use strict';
+
 const path = require('path');
 const webpack = require('webpack');
-
-const ROOT = __dirname;
 const pkg = require('./package');
 
-const banner = (buildDate => env => `/**!
-  * @build-info ${env} - ${buildDate}
+
+const ROOT = __dirname;
+const BUILD_DATE = new Date();
+const banner = env => `/**!
+  * @build-info ${env} - ${BUILD_DATE}
 
   * @name ${pkg.name}
   * @version ${pkg.version}
@@ -18,26 +23,27 @@ const banner = (buildDate => env => `/**!
   * @homepage ${pkg.homepage}
   * @keywords [ ${pkg.keywords.join(', ')} ]
   * @license ${pkg.license}
-**/`)(new Date());
+**/`;
 
-const config = ({ ENV }) => ({
+const config = ({ ENV } = {}) => ({
+  mode: ENV,
   target: 'web',
   devtool: 'source-map',
   context: path.join(ROOT, 'src'),
+  externals: /^(redux)$/,
   entry: {
-    [pkg.name]: [`./${pkg.name}.js`],
-    [`${pkg.name}.extra`]: [`./${pkg.name}.extra.js`],
+    [pkg.name]: [`./${pkg.name}.ts`],
   },
   output: {
     libraryTarget: 'commonjs2',
-    path: path.join(ROOT, 'build'),
+    path: path.join(ROOT, 'dist'),
     filename: `[name].${ENV}.js`,
   },
   module: {
     rules: [
       {
         enforce: 'pre',
-        test: /\.jsx?$/,
+        test: /\.tsx?$/,
         loader: 'eslint-loader',
         exclude: /node_modules/,
         options: {
@@ -45,23 +51,19 @@ const config = ({ ENV }) => ({
         },
       },
       {
-        test: /\.jsx?$/,
-        loader: 'babel-loader',
+        test: /\.tsx?$/,
         exclude: /node_modules/,
-        options: {
-          babelrc: false,
-          presets: [
-            ['env', {
-              modules: false,
-              loose: true,
-            }],
-          ],
-        },
+        use: [
+          {
+            loader: 'awesome-typescript-loader',
+            options: {},
+          },
+        ],
       },
     ],
   },
   resolve: {
-    extensions: ['.js'],
+    extensions: ['.ts', '.js'],
   },
   plugins: [
     new webpack.BannerPlugin({
@@ -75,13 +77,10 @@ const config = ({ ENV }) => ({
 });
 
 module.exports = () => {
-  const tasks = [config({ ENV: 'development' })];
+  const tasks = [].concat(config({ ENV: 'development' }));
 
   if (process.env.NODE_ENV === 'production') {
-    const task = config({ ENV: 'production' });
-    task.plugins.push(new webpack.optimize.UglifyJsPlugin({ sourceMap: true }));
-
-    tasks.push(task);
+    tasks.push(config({ ENV: 'production' }));
   }
 
   return Promise.resolve(tasks);

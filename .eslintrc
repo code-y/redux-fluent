@@ -1,8 +1,30 @@
 {
-  "parser": "babel-eslint",
-  "extends": "airbnb",
-  "plugins": ["jest"],
+  "parser": "@typescript-eslint/parser",
+  "extends": ["airbnb-base"],
+  "plugins": ["@typescript-eslint", "jest", "chai-friendly"],
   "env": {
     "jest/globals": true
+  },
+  "settings": {
+    "import/resolver": {
+      "node": {
+        "extensions": [".ts", ".js"]
+      }
+    }
+  },
+  "parserOptions": {
+    "sourceType": "module"
+  },
+  "rules": {
+    "no-unused-expressions": 0,
+    "chai-friendly/no-unused-expressions": 2,
+    "no-undef": "off",
+    "import/prefer-default-export": 0,
+    "import/no-default-export": 2,
+    "import/no-extraneous-dependencies": ["error", { "devDependencies": true }],
+    "import/extensions": ["error", "always", {
+      "js": "never",
+      "ts": "never"
+    }]
   }
 }

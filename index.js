@@ -1,10 +1,7 @@
-/* eslint-disable spaced-comment, strict, global-require */
-/// <reference path="./index.d.ts" />
+// eslint-disable-next-line spaced-comment
+/// <reference path="./dist/index.d.ts" />
 
-'use strict';
-
-if (process.env.NODE_ENV === 'production') {
-  module.exports = require('./build/redux-fluent.production.js');
-} else {
-  module.exports = require('./build/redux-fluent.development.js');
-}
+// eslint-disable-next-line import/no-dynamic-require
+module.exports = require(
+  `./dist/redux-fluent.${process.env.NODE_ENV === 'production' ? 'production' : 'development'}.js`,
+);

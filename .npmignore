@@ -1,8 +1,8 @@
 **/*.*
-!/build/**/*.*
+!/dist/**/*.*
 !/docs/**/*.*
 !/extra/**/*.*
-/build/.gitkeep
+/dist/.gitkeep
 !CHANGELOG.md
 !README.md
 !LICENSE

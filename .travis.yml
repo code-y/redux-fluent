@@ -1,23 +1,36 @@
 language: node_js
 
 node_js:
-  - '8'
+  - '10'
 
-before_script:
+cache:
+  yarn: true
+  directories:
+    - node_modules
+
+install:
   - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./codeclimate
   - chmod +x ./codeclimate
-  - ./codeclimate before-build
-  - npm install
+  - yarn install --silent --frozen-lockfile
 
 script:
-  - npm run test
-  - npm run build
+  - ./codeclimate before-build
+
+  - commitlint-travis
+  - if [[ $TRAVIS_BRANCH == "master" ]]; then yarn release; fi
+
+  - yarn lint
+  - yarn test
+  - NODE_ENV=production yarn build
+
   - ./codeclimate format-coverage ./coverage/lcov.info --input-type lcov
   - ./codeclimate after-build --exit-code $TRAVIS_TEST_RESULT
 
-before_deploy:
-  - rm ./codeclimate
-  - npm prune --production
+after_deploy:
+  - git config --local user.email "travis@travis-ci.org"
+  - git config --local user.password "${GITHUB_ACCESS_TOKEN}"
+  - git config --local user.name "Travis CI"
+  - git push origin master
 
 deploy:
   provider: npm
