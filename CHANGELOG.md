@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.6.1](https://github.com/hitmands/redux-fluent/compare/v0.27.2...v0.6.1) (2019-03-03)
+
+
+
 <a name="0.27.2"></a>
 ## [0.27.2](https://github.com/Code-Y/redux-fluent/compare/v0.27.1...v0.27.2) (2018-05-22)
 
