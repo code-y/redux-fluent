@@ -30,7 +30,8 @@ script:
 after_deploy:
   - git remote rm origin
   - git remote add origin "https://hitmands:${GITHUB_ACCESS_TOKEN}@github.com/hitmands/redux-fluent.git"
-  - git push origin master --follow-tags
+  - git status
+  - git push --follow-tags origin master
 
 deploy:
   provider: npm
