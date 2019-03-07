@@ -2,15 +2,15 @@
   "name": "redux-fluent",
   "license": "MIT",
   "version": "0.6.1",
-  "homepage": "https://github.com/hitmands/redux-fluent#readme",
-  "description": "Enjoy Redux - Less Scaffolding / More Functional",
-  "author": "Giuseppe Mandato (https://github.com/hitmands)",
+  "homepage": "https://github.com/Code-Y/redux-fluent#readme",
+  "description": "Enjoy Redux - Less Boilerplate / Go Functional",
+  "author": "Code-Y",
   "sideEffects": false,
   "main": "index.js",
   "types": "dist/redux-fluent.d.ts",
   "files": [
     "/dist",
-    "node_modules",
+    "/node_modules",
     "CHANGELOG.md",
     "LICENSE",
     "index.js"
@@ -28,12 +28,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/hitmands/redux-fluent.git"
+    "url": "git+https://github.com/Code-Y/redux-fluent.git"
   },
   "bugs": {
-    "url": "https://github.com/hitmands/redux-fluent/issues"
+    "url": "https://github.com/Code-Y/redux-fluent/issues"
   },
-  "contributors": [],
+  "contributors": [
+    "Giuseppe Mandato (https://github.com/hitmands)",
+    "Luca Pau (https://github.com/Lughino)"
+  ],
   "keywords": [
     "redux",
     "functional programming",

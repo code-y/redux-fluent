@@ -1,16 +1,16 @@
-# <a href='https://github.com/hitmands/redux-fluent'><img src='https://raw.githubusercontent.com/hitmands/redux-fluent/master/redux-fluent-logo.png' height='60' alt='Redux Fluent' aria-label='https://github.com/hitmands/redux-fluent' /></a> redux-fluent
-[![Build Status](https://travis-ci.org/hitmands/redux-fluent.svg?branch=master)](https://travis-ci.org/hitmands/redux-fluent)
+# <a href='https://github.com/Code-Y/redux-fluent'><img src='https://raw.githubusercontent.com/Code-Y/redux-fluent/master/redux-fluent-logo.png' height='60' alt='Redux Fluent' aria-label='https://github.com/Code-Y/redux-fluent' /></a> redux-fluent
+[![Build Status](https://travis-ci.org/Code-Y/redux-fluent.svg?branch=master)](https://travis-ci.org/Code-Y/redux-fluent)
 [![npm version](https://img.shields.io/npm/v/redux-fluent.svg)](https://www.npmjs.com/package/redux-fluent)
-[![License](https://img.shields.io/npm/l/redux-fluent.svg)](https://github.com/hitmands/redux-fluent/blob/master/LICENSE)
+[![License](https://img.shields.io/npm/l/redux-fluent.svg)](https://github.com/Code-Y/redux-fluent/blob/master/LICENSE)
 [![Conventional Commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-yellow.svg)](https://conventionalcommits.org)
 [![npm downloads](https://img.shields.io/npm/dm/redux-fluent.svg)](https://www.npmjs.com/package/redux-fluent)
-[![Maintainability](https://api.codeclimate.com/v1/badges/474e33d67c5fa25495ec/maintainability)](https://codeclimate.com/github/hitmands/redux-fluent/maintainability)
-[![Test Coverage](https://api.codeclimate.com/v1/badges/474e33d67c5fa25495ec/test_coverage)](https://codeclimate.com/github/hitmands/redux-fluent/test_coverage)
+[![Maintainability](https://api.codeclimate.com/v1/badges/2e98502fb6072892995d/maintainability)](https://codeclimate.com/github/Code-Y/redux-fluent/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/2e98502fb6072892995d/test_coverage)](https://codeclimate.com/github/Code-Y/redux-fluent/test_coverage)
 
 
-Tiny and eloquent way to manage a redux-like state manager (*~3K*, dependencies free, definitions included).
+Tiny and eloquent way of bringing redux to the next level (*~3K*, dependencies free, typings included).
 
-[Try it out on RunKit](https://runkit.com/hitmands/redux-fluent-playground)
+[Try it out on RunKit](https://runkit.com/Code-Y/redux-fluent-playground)
 
 
 ## Documentation
@@ -18,7 +18,7 @@ Tiny and eloquent way to manage a redux-like state manager (*~3K*, dependencies 
 
 ## Motivation
 
-**[Redux](https://redux.js.org/)** is great, every recent web application has most likely been built on top of it. **How can we make it even better?**
+**[Redux](https://redux.js.org/)** is great, every recent web application has most likely been built on top of it, **how can we make it even better?**
 
  - **λ Go Functional**, Everything is a function and reducers are built by function composition rather than piling up if and switch-case statements: *Let's introduce Redux Fluent Reducers*.
  - **Reducers at scale**, due to being handling multiple actions, reducers tend to grow and become difficult to maintain: *Let's introduce Redux Fluent Action Handlers*.
@@ -38,6 +38,7 @@ yarn add redux-fluent
 import { createAction } from 'redux-fluent';
 
 export const addTodo = createAction('todos | add');
+console.log(addTodo.type); // 'todos | add'
 ```
 
 ```javascript
@@ -64,8 +65,8 @@ import { todos } from './todos.reducer.js';
 
 const rootReducer = combineReducers(todos, ...);
 const store = createStore(rootReducer);
-store.getState(); // { todos: [] }
+console.log(store.getState()); // { todos: [] }
 
 store.dispatch(actions.addTodo({ title: 'Walk Gipsy' }));
-store.getState(); // { todos: [{ title: 'Walk Gipsy' }] }
+console.log(store.getState()); // { todos: [{ title: 'Walk Gipsy' }] }
 ```

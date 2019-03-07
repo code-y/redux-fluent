@@ -29,7 +29,7 @@ script:
 
 after_deploy:
   - git remote rm origin
-  - git remote add origin "https://hitmands:${GITHUB_ACCESS_TOKEN}@github.com/hitmands/redux-fluent.git"
+  - git remote add origin "https://hitmands:${GITHUB_ACCESS_TOKEN}@github.com/Code-Y/redux-fluent.git"
   - git push --follow-tags origin master
 
 deploy:
