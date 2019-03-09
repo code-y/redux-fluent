@@ -9,7 +9,7 @@ interface ActionHandler<S, C> {
 interface ReducerContext<S, C> {
   config: any,
   handlers: ActionHandler<S, C>[],
-  getDefaultState: () => S;
+  getDefaultState: (state: void, action: AnyAction, config: C) => S;
 }
 
 export interface CreateReducer<N extends string = string, S = any> {
@@ -17,22 +17,22 @@ export interface CreateReducer<N extends string = string, S = any> {
   (state: S | undefined, action: AnyAction): S;
 }
 
-const Context = <S, C>(): ReducerContext<S, C> => ({
+const createContext = <S, C>(): ReducerContext<S, C> => ({
   config: undefined,
   getDefaultState: undefined,
   handlers: [],
 });
 
 export function createReducer<N extends string, S = any, C = any>(name: N) {
-  const context = Context<S, C>();
-  const orDefault = (state: S | undefined): S => (
-    state === undefined ? context.getDefaultState() : state
+  const context = createContext<S, C>();
+  const orDefault = (state: S | undefined, action: AnyAction, config: C): S => (
+    state === undefined ? context.getDefaultState(undefined, action, config) : state
   );
 
   function $reducer(state: S | undefined, action: AnyAction): S {
     return context.handlers.reduce(
       ($state, pipe) => pipe($state, action, context.config),
-      orDefault(state),
+      orDefault(state, action, context.config),
     );
   }
 
