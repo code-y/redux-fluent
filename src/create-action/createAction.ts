@@ -1,10 +1,8 @@
 // eslint-disable-next-line no-unused-vars
 import { FSA } from 'flux-standard-action';
-// eslint-disable-next-line no-unused-vars
-import { AnyAction } from 'redux';
 
 
-export interface CreateAction<
+export interface ReduxFluentAction<
   T extends string = string,
   P = any,
   M = any,
@@ -12,32 +10,33 @@ export interface CreateAction<
   type: T;
 }
 
-export type RFA<T extends string = string, P = any, M = any> = CreateAction<T, P, M>;
+type Formatter<T, R> = (rawPayload: any, rawMeta: any, T: T) => R;
+export type RFA<T extends string = string, P = any, M = any> = ReduxFluentAction<T, P, M>;
 
 export interface ActionCreator<T extends string, P, M> {
-  (rawPayload?: any, rawMeta?: any): CreateAction<T, P, M>;
+  (rawPayload?: any, rawMeta?: any): RFA<T, P, M>;
   type: T;
 }
 
-export function createAction<P = void, M = void, T extends string = string>(
+export function createAction<T extends string = string, P = void, M = void>(
   type: T,
-  payloadCreator?: (rawPayload: any, rawMeta: any, type: T) => P,
-  metaCreator?: (rawPayload: any, rawMeta: any, type: T) => M,
+  payloadCreator?: Formatter<T, P>,
+  metaCreator?: Formatter<T, M>,
 ): ActionCreator<T, P, M> {
-  // eslint-disable-next-line no-unused-vars
-  const $payloadCreator = payloadCreator || ((p, m, t) => p);
-  // eslint-disable-next-line no-unused-vars
-  const $metaCreator = metaCreator || ((p, m, t) => m);
+  const $payloadCreator = payloadCreator || (p => p);
+  const $metaCreator = metaCreator || ((_, m) => m);
 
-  function $action(rawPayload?: any, rawMeta?: any) {
+  function $action(rawPayload?: any, rawMeta?: any): RFA<T, P, M> {
     const payload: P = $payloadCreator(rawPayload, rawMeta, type);
     const meta: M = $metaCreator(rawPayload, rawMeta, type);
 
-    const res: AnyAction = { type };
+    const res: RFA<T, P, M> = {
+      type,
+      error: payload instanceof Error,
+    };
 
     if (payload !== undefined) {
       res.payload = payload;
-      res.error = payload instanceof Error;
     }
 
     if (meta !== undefined) {
@@ -53,7 +52,6 @@ export function createAction<P = void, M = void, T extends string = string>(
     type: { enumerable: true, value: type },
   });
 
-  // property `type` is defined in Object.defineProperties($action, ...)
-  // @ts-ignore TS2322
+  // @ts-ignore TS2322 property `type` is defined in Object.defineProperties($action, ...)
   return $action;
 }

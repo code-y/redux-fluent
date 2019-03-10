@@ -13,13 +13,12 @@ describe('redux-fluent E2E', () => {
   }
 
   const actions = {
-    addTodo: createAction<Todo>('todos | add'),
+    addTodo: createAction<'todos | add', Todo>('todos | add'),
   };
 
   const todos = createReducer<'todos', Todo[]>('todos')
     .actions(
       ofType(actions.addTodo)
-        .filter(((state, action) => !action.error))
         .map(((state, action) => state.concat(action.payload))),
     )
     .default(() => []);
@@ -34,16 +33,6 @@ describe('redux-fluent E2E', () => {
     };
 
     store.dispatch(actions.addTodo(todo));
-    expect(
-      store.getState(),
-    ).toMatchSnapshot();
-  });
-
-  it('should not add a todo if action.error', () => {
-    const store = createStore(rootReducer);
-    const error = new Error('unable to add todo');
-    store.dispatch(actions.addTodo(error));
-
     expect(
       store.getState(),
     ).toMatchSnapshot();
