@@ -1,6 +1,6 @@
 export {
   combineReduxFluentReducers as combineReducers,
-  createCombinableReducers,
+  createReducersMapObject,
 } from './combine-reducers/combineReducers';
 export { createAction } from './create-action/createAction';
 export { createReducer } from './create-reducer/createReducer';

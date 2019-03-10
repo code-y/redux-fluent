@@ -2,28 +2,33 @@
 import { AnyAction } from 'redux';
 
 
-interface ActionHandler<S, C> {
-  (state: S, action: any, config: C): S;
+type GetDefaultState<S = any, C = any> = (state: void, action: AnyAction, config: C) => S;
+
+interface ReduxFluentActionHandler<S = any, C = any> {
+  <A extends AnyAction>(state: S, action: A, config: C): S;
 }
 
-interface ReducerContext<S, C> {
-  config: any,
-  handlers: ActionHandler<S, C>[],
-  getDefaultState: (state: void, action: AnyAction, config: C) => S;
+interface Context<S = any, C = any> {
+  config: C,
+  handlers: ReduxFluentActionHandler<S, C>[],
+  getDefaultState: GetDefaultState<S, C>;
 }
 
-export interface CreateReducer<N extends string = string, S = any> {
+export interface ReduxFluentReducer<N extends string = string, S = any> {
   readonly type: N;
   (state: S | undefined, action: AnyAction): S;
 }
 
-const createContext = <S, C>(): ReducerContext<S, C> => ({
+export type RFR<N extends string = string, S = any> = ReduxFluentReducer<N, S>;
+export type RFHA<S = any, C = any> = ReduxFluentActionHandler<S, C>;
+
+const createContext = <S, C>(): Context<S, C> => ({
   config: undefined,
   getDefaultState: undefined,
   handlers: [],
 });
 
-export function createReducer<N extends string, S = any, C = any>(name: N) {
+export function createReducer<N extends string, S = any, C = void>(name: N) {
   const context = createContext<S, C>();
   const orDefault = (state: S | undefined, action: AnyAction, config: C): S => (
     state === undefined ? context.getDefaultState(undefined, action, config) : state
@@ -31,7 +36,7 @@ export function createReducer<N extends string, S = any, C = any>(name: N) {
 
   function $reducer(state: S | undefined, action: AnyAction): S {
     return context.handlers.reduce(
-      ($state, pipe) => pipe($state, action, context.config),
+      ($state, handler) => handler($state, action, context.config),
       orDefault(state, action, context.config),
     );
   }
@@ -43,15 +48,14 @@ export function createReducer<N extends string, S = any, C = any>(name: N) {
   });
 
   return {
-    actions(...pipes: ActionHandler<S, C>[]) {
+    actions(...pipes: RFHA<S, C>[]) {
       context.handlers = pipes;
 
       return {
-        default(getDefaultState: () => S = () => null): CreateReducer<N, S> {
+        default(getDefaultState: GetDefaultState<S, C> = () => null): RFR<N, S> {
           context.getDefaultState = getDefaultState;
 
-          // property `type` is defined in Object.defineProperties($reducer, ...)
-          // @ts-ignore TS2322
+          // @ts-ignore TS2322 property `type` is defined in Object.defineProperties($reducer, ...)
           return $reducer;
         },
       };

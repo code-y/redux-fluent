@@ -73,7 +73,7 @@ console.log(store.getState()); // { todos: [{ title: 'Walk Gipsy' }] }
   - [`ofType()`](#oftype)
   - [`withConfig()`](#withconfig)
   - [`combineReducers()`](#combinereducers)
-  - [`createCombinableReducers()`](#createcombinablereducers)
+  - [`createReducersMapObject()`](#createreducersmapobject)
 
 ### `createReducer()`
 `createReducer` is a function combinator whose purpose is to output a [redux reducer](https://redux.js.org/basics/reducers) by combining action handlers and `getDefaultState` together.
@@ -120,7 +120,7 @@ ofType('todos | add').map(
 ```
 
 ### `withConfig()`
-Redux Fluent also comes with some additional features to help you write your code that scales. Functions that only rely on their arguments are easy to test and share.
+Redux Fluent also comes with some additional features to help you write your code that scales. Functions that only rely on their arguments are easy to test and share, so you can provide an additional argument `config: any` (multiple `config` are shallowly merged).
 ```typescript
 import * as R from 'ramda';
 import { withConfig, createReducer, ofType } from 'redux-fluent';
@@ -157,16 +157,16 @@ const rootReducer = combineReducers(todosReducer, notesReducer, otherReducer, ..
 const store = createStore(rootReducer);
 ```
 
-### `createCombinableReducers()`
+### `createReducersMapObject()`
 This api lets you combine your reducers with [`redux#combineReducers`](https://redux.js.org/api/combinereducers), and can be useful when mixing redux fluent reducers with any other reducer. 
 ```typescript
 import { createStore, combineReducers } from 'redux';
-import { createCombinableReducers } from 'redux-fluent';
+import { createReducersMapObject } from 'redux-fluent';
 import { todosReducer, notesReducer, otherReducer } from './reducers';
 
-createCombinableReducers(...reducers: ReduxFluentReducer[]);
+createReducersMapObject(...reducers: ReduxFluentReducer[]);
 
-const reducersMapObject = createCombinableReducers(todosReducer, notesReducer, otherReducer, ...);
+const reducersMapObject = createReducersMapObject(todosReducer, notesReducer, otherReducer, ...);
 const rootReducer = combineReducers({
   ...reducersMapObject,
   anyOtherReducer: (state, action) => 'any other state',

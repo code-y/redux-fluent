@@ -10,9 +10,3 @@ Object {
   ],
 }
 `;
-
-exports[`redux-fluent E2E should not add a todo if action.error 1`] = `
-Object {
-  "todos": Array [],
-}
-`;
