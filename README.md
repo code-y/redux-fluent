@@ -17,14 +17,14 @@ Tiny and eloquent way of bringing redux to the next level (*~3K*, dependencies f
 
 **[Redux](https://redux.js.org/)** is **great**, every recent web application has most likely been built on top of it, **and we can really make it better!**
 
-  - **λ Go Functional**, Everything is a function and reducers are built by function composition rather than piling up if and switch-case statements: [*Let's introduce Redux Fluent Reducers*](#createreducer).
-  - **Reducers at scale**, due to being handling multiple actions, reducers tend to grow and become difficult to maintain: [*Let's introduce Redux Fluent Action Handlers*](#oftype).
-  - **Less boilerplate**, Flux architecture is usually verbose and some of their concepts, such as `Action`, `Action Type` and `Action Creator` could all be implemented in a single entity: [*Let's introduce Redux Fluent Actions*](#createaction).
-  - **FSA compliance**, FSA Actions may have a `error: boolean` field, which indicates whether the action represents a failure or not. Respecting this pattern leads to a series of if statements inside reducers, compromising both readability and maintainability, so the community normally tends to split error and failures into two separate actions (eg: `ADD_TODO_SUCCESS` and `ADD_TODO_ERROR`) which reduces cognitive complexity on one hand but produces even more boilerplate on the other. *Let's embrace FSA and abstract error handling with filterable action handlers*.
+- **λ Go Functional**, Everything is a function and reducers are built by function composition rather than piling up if and switch-case statements: [*Let's introduce Redux Fluent Reducers*](#createreducer).
+- **Reducers at scale**, due to being handling multiple actions, reducers tend to grow and become difficult to maintain: [*Let's introduce Redux Fluent Action Handlers*](#oftype).
+- **Less boilerplate**, Flux architecture is usually verbose and some of their concepts, such as `Action`, `Action Type` and `Action Creator` could all be implemented in a single entity: [*Let's introduce Redux Fluent Actions*](#createaction).
+- **FSA compliance**, FSA Actions may have a `error: boolean` field, which indicates whether the action represents a failure or not. Respecting this pattern leads to a series of if statements inside reducers, compromising both readability and maintainability, so the community normally tends to split error and failures into two separate actions (eg: `ADD_TODO_SUCCESS` and `ADD_TODO_ERROR`) which reduces cognitive complexity on one hand but produces even more boilerplate on the other. *Let's embrace FSA and abstract error handling with filterable action handlers*.
 
 ## Installation
 
-```bash
+```
 yarn add redux-fluent redux
 ```
 
@@ -35,7 +35,6 @@ yarn add redux-fluent redux
 import { createAction } from 'redux-fluent';
 
 export const addTodo = createAction('todos | add');
-console.log(addTodo.type); // 'todos | add'
 ```
 
 ```javascript
@@ -70,12 +69,12 @@ console.log(store.getState()); // { todos: [{ title: 'Walk Gipsy' }] }
 
 ## Documentation
 
-  - [`createReducer()`](#createreducer)
-  - [`createAction()`](#createaction)
-  - [`ofType()`](#oftype)
-  - [`withConfig()`](#withconfig)
-  - [`combineReducers()`](#combinereducers)
-  - [`createReducersMapObject()`](#createreducersmapobject)
+- [`createReducer()`](#createreducer)
+- [`createAction()`](#createaction)
+- [`ofType()`](#oftype)
+- [`withConfig()`](#withconfig)
+- [`combineReducers()`](#combinereducers)
+- [`createReducersMapObject()`](#createreducersmapobject)
 
 ### `createReducer()`
 
@@ -100,13 +99,15 @@ const reducer = createReducer(name)
 ```typescript
 import { createAction } from 'redux-fluent';
 
-const action = createAction(
+createAction(
   type: string,
   payloadCreator?: (rawPayload, rawMeta, type) => payload,
   metaCreator?: (rawPayload, rawMeta, type) => meta,
 );
 
-console.log(action.type);
+const addTodo = createAction('todos | add');
+console.log(addTodo.type); // 'todos | add'
+console.log(addTodo({ id: 1, title: 'have a break' })); // { type: 'todos | add', payload: { id: 1, title: 'have a break' } }
 ```
 
 ### `ofType()`
