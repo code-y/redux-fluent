@@ -1,6 +1,6 @@
 module.exports = {
   collectCoverage: true,
-  setupTestFrameworkScriptFile: '<rootDir>/jest.framework.config.js',
+  setupFilesAfterEnv: ['<rootDir>/jest.framework.config.js'],
   transform: { '\\.tsx?$': 'ts-jest' },
   moduleFileExtensions: ['ts', 'tsx', 'js', 'json'],
   coverageReporters: ['html', 'lcov'],
