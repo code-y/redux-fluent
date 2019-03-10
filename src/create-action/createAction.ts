@@ -8,7 +8,6 @@ export interface ReduxFluentAction<
   M = any,
 > extends FSA<P, M> {
   type: T;
-  error: boolean;
 }
 
 type Formatter<T, R> = (rawPayload: any, rawMeta: any, T: T) => R;
@@ -33,10 +32,10 @@ export function createAction<T extends string = string, P = void, M = void>(
 
     const res: RFA<T, P, M> = {
       type,
-      error: payload instanceof Error,
     };
 
     if (payload !== undefined) {
+      res.error = payload instanceof Error;
       res.payload = payload;
     }
 
