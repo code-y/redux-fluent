@@ -1,4 +1,5 @@
 # <a href='https://github.com/Code-Y/redux-fluent'><img src='https://raw.githubusercontent.com/Code-Y/redux-fluent/master/redux-fluent-logo.png' height='60' alt='Redux Fluent' aria-label='https://github.com/Code-Y/redux-fluent' /></a> redux-fluent
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/832b72aed6d24f65a88c54b6b6c467f3)](https://app.codacy.com/app/hitmands/redux-fluent?utm_source=github.com&utm_medium=referral&utm_content=Code-Y/redux-fluent&utm_campaign=Badge_Grade_Settings)
 [![Build Status](https://travis-ci.org/Code-Y/redux-fluent.svg?branch=master)](https://travis-ci.org/Code-Y/redux-fluent)
 [![npm version](https://img.shields.io/npm/v/redux-fluent.svg)](https://www.npmjs.com/package/redux-fluent)
 [![License](https://img.shields.io/npm/l/redux-fluent.svg)](https://github.com/Code-Y/redux-fluent/blob/master/LICENSE)
