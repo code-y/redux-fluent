@@ -8,6 +8,7 @@ export interface ReduxFluentAction<
   M = any,
 > extends FSA<P, M> {
   type: T;
+  error: boolean;
 }
 
 type Formatter<T, R> = (rawPayload: any, rawMeta: any, T: T) => R;
