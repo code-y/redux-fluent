@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.8.1](https://github.com/Code-Y/redux-fluent/compare/v0.8.0...v0.8.1) (2019-03-10)
+
+
+
 # [0.8.0](https://github.com/Code-Y/redux-fluent/compare/v0.6.2...v0.8.0) (2019-03-10)
 
 
