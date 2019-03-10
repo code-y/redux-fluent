@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.8.5](https://github.com/Code-Y/redux-fluent/compare/v0.8.4...v0.8.5) (2019-03-10)
+
+
+### Bug Fixes
+
+* **typings:** add action.error field ([11aace0](https://github.com/Code-Y/redux-fluent/commit/11aace0))
+
+
+### Reverts
+
+* don't include action.error if no payload ([523d069](https://github.com/Code-Y/redux-fluent/commit/523d069))
+
+
+
 ## [0.8.4](https://github.com/Code-Y/redux-fluent/compare/v0.8.3...v0.8.4) (2019-03-10)
 
 
