@@ -76,7 +76,9 @@ console.log(store.getState()); // { todos: [{ title: 'Walk Gipsy' }] }
   - [`createReducersMapObject()`](#createreducersmapobject)
 
 ### `createReducer()`
+
 `createReducer` is a function combinator whose purpose is to output a [redux reducer](https://redux.js.org/basics/reducers) by combining action handlers and `getDefaultState` together.
+
 ```typescript
 import { createReducer } from 'redux-fluent';
 
@@ -90,7 +92,9 @@ const reducer = createReducer(name)
 ```
 
 ### `createAction()`
+
 `createAction` is a factory function whose purpose is to output an [action creator](https://redux.js.org/basics/actions#action-creators) responsible of shaping your actions. The resulting function holds a field `type` giving you access to the action type.
+
 ```typescript
 import { createAction } from 'redux-fluent';
 
@@ -104,7 +108,9 @@ console.log(action.type);
 ```
 
 ### `ofType()`
+
 As we just said, a reducer is nothing more than a function combinator, it does not contain any business logic. The job of actually mutating the state is left to the Action Handlers. Embracing the [Single Responsibility Principle](https://en.wikipedia.org/wiki/Single_responsibility_principle), we can build simple, easy to test, dedicated functions that do only one thing.
+
 ```typescript
 import { ofType } from 'redux-fluent';
 
@@ -120,7 +126,9 @@ ofType('todos | add').map(
 ```
 
 ### `withConfig()`
+
 Redux Fluent also comes with some additional features to help you write your code that scales. Functions that only rely on their arguments are easy to test and share, so you can provide an additional argument `config: any` (multiple `config` are shallowly merged).
+
 ```typescript
 import * as R from 'ramda';
 import { withConfig, createReducer, ofType } from 'redux-fluent';
@@ -145,7 +153,9 @@ export default R.pipe(
 ```
 
 ### `combineReducers()`
+
 This api is not strictly needed, you can still use [`redux#combineReducers`](https://redux.js.org/api/combinereducers). With Redux Fluent, by the way, both namespace and reducer are defined in the same place so that you don't need to take care of the shape when combining them.
+
 ```typescript
 import { createStore } from 'redux';
 import { combineReducers } from 'redux-fluent';
@@ -158,7 +168,9 @@ const store = createStore(rootReducer);
 ```
 
 ### `createReducersMapObject()`
+
 This api lets you combine your reducers with [`redux#combineReducers`](https://redux.js.org/api/combinereducers), and can be useful when mixing redux fluent reducers with any other reducer. 
+
 ```typescript
 import { createStore, combineReducers } from 'redux';
 import { createReducersMapObject } from 'redux-fluent';
