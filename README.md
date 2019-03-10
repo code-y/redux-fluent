@@ -5,7 +5,7 @@
 [![Conventional Commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-yellow.svg)](https://conventionalcommits.org)
 [![npm downloads](https://img.shields.io/npm/dm/redux-fluent.svg)](https://www.npmjs.com/package/redux-fluent)
 [![Maintainability](https://api.codeclimate.com/v1/badges/2e98502fb6072892995d/maintainability)](https://codeclimate.com/github/Code-Y/redux-fluent/maintainability)
-[![Test Coverage](https://api.codeclimate.com/v1/badges/2e98502fb6072892995d/test_coverage)](https://codeclimate.com/github/Code-Y/redux-fluent/test_coverage)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/2e98502fb6072892995d/test_coverage)](https://codeclimate.com/github/Code-Y/redux-fluent/test_coverage) [![Greenkeeper badge](https://badges.greenkeeper.io/Code-Y/redux-fluent.svg)](https://greenkeeper.io/)
 
 Tiny and eloquent way of bringing redux to the next level (*~3K*, dependencies free, typings included).
 
