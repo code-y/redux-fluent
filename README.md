@@ -9,15 +9,15 @@
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/832b72aed6d24f65a88c54b6b6c467f3)](https://app.codacy.com/app/hitmands/redux-fluent)
 [![Greenkeeper badge](https://badges.greenkeeper.io/Code-Y/redux-fluent.svg)](https://greenkeeper.io/)
 
-Tiny and eloquent way of bringing redux to the next level (*~3K*, dependencies free, typings included).
+Tiny and eloquent way of bringing redux to the next level (*~3K*, typings included).
 
-[Try it out on RunKit](https://runkit.com/hitmands/redux-fluent-playground)
+~~[Try it out on RunKit](https://runkit.com/hitmands/redux-fluent-playground)~~ (*coming soon*)
 
 ## Motivation
 
 **[Redux](https://redux.js.org/)** is **great**, every recent web application has most likely been built on top of it, **and we can really make it better!**
 
-- **λ Go Functional**, Everything is a function and reducers are built by function composition rather than piling up if and switch-case statements: [*Let's introduce Redux Fluent Reducers*](#createreducer).
+- **λ Go Functional**, Everything is a function and reducers are built by function composition rather than piling up *if* and *switch-case* statements: [*Let's introduce Redux Fluent Reducers*](#createreducer).
 - **Reducers at scale**, due to being handling multiple actions, reducers tend to grow and become difficult to maintain: [*Let's introduce Redux Fluent Action Handlers*](#oftype).
 - **Less boilerplate**, Flux architecture is usually verbose and some of their concepts, such as `Action`, `Action Type` and `Action Creator` could all be implemented in a single entity: [*Let's introduce Redux Fluent Actions*](#createaction).
 - **FSA compliance**, FSA Actions may have a `error: boolean` field, which indicates whether the action represents a failure or not. Respecting this pattern leads to a series of if statements inside reducers, compromising both readability and maintainability, so the community normally tends to split error and failures into two separate actions (eg: `ADD_TODO_SUCCESS` and `ADD_TODO_ERROR`) which reduces cognitive complexity on one hand but produces even more boilerplate on the other. *Let's embrace FSA and abstract error handling with filterable action handlers*.
@@ -105,6 +105,13 @@ createAction(
   metaCreator?: (rawPayload, rawMeta, type) => meta,
 );
 
+/**
+* Action Creator
+*
+* @param {*|Error} payload
+* @param {*} meta
+* @returns RFA<'todos | add', *|Error, *> - Flux Standard Action
+*/
 const addTodo = createAction('todos | add');
 console.log(addTodo.type); // 'todos | add'
 console.log(addTodo({ id: 1, title: 'have a break' })); // { type: 'todos | add', payload: { id: 1, title: 'have a break' } }
@@ -112,12 +119,12 @@ console.log(addTodo({ id: 1, title: 'have a break' })); // { type: 'todos | add'
 
 ### `ofType()`
 
-As we just said, a reducer is nothing more than a function combinator, it does not contain any business logic. The job of actually mutating the state is left to the Action Handlers. Embracing the [Single Responsibility Principle](https://en.wikipedia.org/wiki/Single_responsibility_principle), we can build simple, easy to test, dedicated functions that do only one thing.
+As we just said, a reducer is nothing more than a function combinator, it does not contain any business logic. The job of actually mutating the state is left to the Action Handlers. By embracing the [Single Responsibility Principle](https://en.wikipedia.org/wiki/Single_responsibility_principle), we can build simple, easy to test, dedicated functions that do only one thing.
 
 ```typescript
 import { ofType } from 'redux-fluent';
 
-ofType(action: ReduxFluentActionCreator).map((state: any, action: AnyAction) => state);
+ofType(action: ReduxFluentActionCreator).map((state: any, action: RFA) => state);
 ofType(type: string).map((state: any, action: AnyAction) => state);
 ofType(action: { type: string }).map((state: any, action: AnyAction) => state);
 
