@@ -1,4 +1,4 @@
-/* eslint-disable */
+/* eslint-disable max-len */
 import { combineReducers } from 'redux';
 // eslint-disable-next-line no-unused-vars
 import { RFR } from '../create-reducer/createReducer';

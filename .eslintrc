@@ -13,7 +13,8 @@
     }
   },
   "parserOptions": {
-    "sourceType": "module"
+    "sourceType": "module",
+    "project": "./tsconfig.json"
   },
   "rules": {
     "max-len": ["error", { "code": 120 }],

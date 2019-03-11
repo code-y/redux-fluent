@@ -25,7 +25,7 @@ Tiny and eloquent way of bringing redux to the next level (*~3K*, dependencies f
 ## Installation
 
 ```
-yarn add redux-fluent redux
+yarn add redux-fluent redux flux-standard-action
 ```
 
 ## Getting Started
