@@ -3,11 +3,11 @@ import { createReducer, ReduxFluentReducer } from '../create-reducer/createReduc
 
 
 // eslint-disable-next-line arrow-parens,max-len
-export const withConfig = <C = any>(config: C) => <N extends string, S = any, CC = any>(reducer: ReduxFluentReducer<N, S>) => {
+export const withConfig = <CC = any>(config: CC) => <N extends string, S = any, C = any>(reducer: ReduxFluentReducer<N, S>) => {
   // @ts-ignore $$context is a private property
   const { $$context, type } = reducer;
 
-  const $reducer = createReducer<N, S, CC & C>(type)
+  const $reducer = createReducer<N, S, C & CC>(type)
     .actions(...$$context.handlers)
     .default($$context.getDefaultState);
 

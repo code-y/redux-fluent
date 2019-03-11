@@ -20,7 +20,7 @@ export interface ReduxFluentReducer<N extends string = string, S = any> {
 }
 
 export type RFR<N extends string = string, S = any> = ReduxFluentReducer<N, S>;
-export type RFHA<S = any, C = any> = ReduxFluentActionHandler<S, C>;
+export type RFAH<S = any, C = any> = ReduxFluentActionHandler<S, C>;
 
 const createContext = <S, C>(): Context<S, C> => ({
   config: undefined,
@@ -48,7 +48,7 @@ export function createReducer<N extends string, S = any, C = void>(name: N) {
   });
 
   return {
-    actions(...pipes: RFHA<S, C>[]) {
+    actions(...pipes: RFAH<S, C>[]) {
       context.handlers = pipes;
 
       return {
