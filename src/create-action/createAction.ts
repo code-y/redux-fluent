@@ -4,8 +4,8 @@ import { FSA } from 'flux-standard-action';
 
 export interface ReduxFluentAction<
   T extends string = string,
-  P = any,
-  M = any,
+  P = void,
+  M = void,
 > extends FSA<P, M> {
   type: T;
 }
@@ -14,8 +14,8 @@ type Formatter<T, R> = (rawPayload: any, rawMeta: any, T: T) => R;
 export type RFA<T extends string = string, P = any, M = any> = ReduxFluentAction<T, P, M>;
 
 export interface ActionCreator<T extends string, P, M> {
-  (rawPayload?: any, rawMeta?: any): RFA<T, P, M>;
-  type: T;
+  readonly type: T;
+  <RP = any, RM = any>(rawPayload?: RP, rawMeta?: RM): RFA<T, P, M>;
 }
 
 export function createAction<T extends string = string, P = void, M = void>(
@@ -30,20 +30,18 @@ export function createAction<T extends string = string, P = void, M = void>(
     const payload: P = $payloadCreator(rawPayload, rawMeta, type);
     const meta: M = $metaCreator(rawPayload, rawMeta, type);
 
-    const res: RFA<T, P, M> = {
-      type,
-    };
+    const action: RFA<T, P, M> = { type };
 
     if (payload !== undefined) {
-      res.error = payload instanceof Error;
-      res.payload = payload;
+      action.error = payload instanceof Error;
+      action.payload = payload;
     }
 
     if (meta !== undefined) {
-      res.meta = meta;
+      action.meta = meta;
     }
 
-    return Object.freeze(res);
+    return Object.freeze(action);
   }
 
   Object.defineProperties($action, {

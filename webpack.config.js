@@ -4,6 +4,7 @@
 
 const path = require('path');
 const webpack = require('webpack');
+const nodeExternals = require('webpack-node-externals');
 const pkg = require('./package');
 
 
@@ -30,7 +31,7 @@ const config = ({ ENV } = {}) => ({
   target: 'web',
   devtool: 'source-map',
   context: path.join(ROOT, 'src'),
-  externals: /^(redux)$/,
+  externals: [nodeExternals()],
   entry: {
     [pkg.name]: [`./${pkg.name}.ts`],
   },
