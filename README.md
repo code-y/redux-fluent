@@ -137,7 +137,7 @@ ofType('todos | add').map(
 
 ### `withConfig()`
 
-Redux Fluent also comes with some additional features to help you write your code that scales. Functions that only rely on their arguments are easy to test and share, so you can provide an additional argument `config: any` (multiple `config` are shallowly merged).
+Redux Fluent also comes with some additional features to help you write code at scale. Functions that only rely on their arguments are easy to test and reuse, so you can provide an additional argument `config: any` to enable dependency injection (multiple `config` are shallowly merged).
 
 ```typescript
 import * as R from 'ramda';

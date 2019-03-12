@@ -2,16 +2,8 @@
 import { AnyAction } from 'redux';
 
 
-type GetDefaultState<S = any, C = any> = (state: void, action: AnyAction, config: C) => S;
-
 interface ReduxFluentActionHandler<S = any, C = any> {
   <A extends AnyAction>(state: S, action: A, config: C): S;
-}
-
-interface Context<S = any, C = any> {
-  config: C,
-  handlers: ReduxFluentActionHandler<S, C>[],
-  getDefaultState: GetDefaultState<S, C>;
 }
 
 export interface ReduxFluentReducer<N extends string = string, S = any> {
@@ -21,6 +13,14 @@ export interface ReduxFluentReducer<N extends string = string, S = any> {
 
 export type RFR<N extends string = string, S = any> = ReduxFluentReducer<N, S>;
 export type RFAH<S = any, C = any> = ReduxFluentActionHandler<S, C>;
+type GetDefaultState<S = any, C = any> = (state: void, action: AnyAction, config: C) => S;
+
+
+interface Context<S = any, C = any> {
+  config: C,
+  handlers: ReduxFluentActionHandler<S, C>[],
+  getDefaultState: GetDefaultState<S, C>;
+}
 
 const createContext = <S, C>(): Context<S, C> => ({
   config: undefined,
@@ -48,8 +48,8 @@ export function createReducer<N extends string, S = any, C = void>(name: N) {
   });
 
   return {
-    actions(...pipes: RFAH<S, C>[]) {
-      context.handlers = pipes;
+    actions(...handlers: RFAH<S, C>[]) {
+      context.handlers = handlers;
 
       return {
         default(getDefaultState: GetDefaultState<S, C> = () => null): RFR<N, S> {
