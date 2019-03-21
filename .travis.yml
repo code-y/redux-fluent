@@ -11,7 +11,7 @@ cache:
 install:
   - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./codeclimate
   - chmod +x ./codeclimate
-  - yarn install --silent --frozen-lockfile
+  - yarn install --silent
 
 script:
   - ./codeclimate before-build
