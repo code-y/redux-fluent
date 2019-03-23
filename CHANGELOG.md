@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+# [0.9.0](https://github.com/Code-Y/redux-fluent/compare/v0.8.11...v0.9.0) (2019-03-23)
+
+
+### Features
+
+* **action:** add typesafe Error ([058955a](https://github.com/Code-Y/redux-fluent/commit/058955a)), closes [#33](https://github.com/Code-Y/redux-fluent/issues/33)
+
+
+
 ## [0.8.11](https://github.com/Code-Y/redux-fluent/compare/v0.8.10...v0.8.11) (2019-03-22)
 
 
