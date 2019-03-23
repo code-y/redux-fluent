@@ -1,5 +1,5 @@
 // eslint-disable-next-line no-unused-vars
-import { FSA } from 'flux-standard-action';
+import { ErrorFSA, FSA } from 'flux-standard-action';
 
 
 export interface ReduxFluentAction<
@@ -10,11 +10,21 @@ export interface ReduxFluentAction<
   type: T;
 }
 
+export interface ReduxFluentActionError<
+  T extends string = string,
+  E extends Error = Error,
+  M = void,
+  > extends ErrorFSA<E, M> {
+  type: T;
+}
+
 type Formatter<T, R> = (rawPayload: any, rawMeta: any, T: T) => R;
 export type RFA<T extends string = string, P = any, M = any> = ReduxFluentAction<T, P, M>;
+export type RFAE<T extends string = string, P extends Error = Error, M = any> = ReduxFluentActionError<T, P, M>;
 
 export interface ActionCreator<T extends string, P, M> {
   readonly type: T;
+  <E extends Error = Error, RM = any>(rawPayload?: E, rawMeta?: RM): RFAE<T, E, M>
   <RP = any, RM = any>(rawPayload?: RP, rawMeta?: RM): RFA<T, P, M>;
 }
 

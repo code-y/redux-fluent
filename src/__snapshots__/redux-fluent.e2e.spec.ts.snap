@@ -10,3 +10,31 @@ Object {
   ],
 }
 `;
+
+exports[`redux-fluent E2E should delete a todo 1`] = `
+Object {
+  "todos": Array [
+    Object {
+      "id": "first-todo-id",
+      "status": "pending",
+    },
+  ],
+}
+`;
+
+exports[`redux-fluent E2E should delete a todo 2`] = `
+Object {
+  "todos": Array [
+    Object {
+      "id": "first-todo-id",
+      "status": "pending",
+    },
+  ],
+}
+`;
+
+exports[`redux-fluent E2E should delete a todo 3`] = `
+Object {
+  "todos": Array [],
+}
+`;
