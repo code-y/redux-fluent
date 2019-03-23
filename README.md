@@ -13,14 +13,15 @@ Tiny and eloquent way of bringing redux to the next level (*~3K*, typings includ
 
 ~~[Try it out on RunKit](https://runkit.com/hitmands/redux-fluent-playground)~~ (*coming soon*)
 
-## Motivation
+## Motivations and Design Goals
 
 **[Redux](https://redux.js.org/)** is **great**, every recent web application has most likely been built on top of it, **and we can really make it better!**
 
+- **Flux Standard Actions** as a first class concept. FSA is a pretty common standard and we committed on following it to ensure interoperability.
 - **λ Go Functional**, Everything is a function and reducers are built by function composition rather than piling up *if* and *switch-case* statements: [*Let's introduce Redux Fluent Reducers*](#createreducer).
+- **Type Safety** means great developer experience. That's what we had in mind while designing redux-fluent. *[Watch it yourself!](#typescript-definitions)*
 - **Reducers at scale**, due to being handling multiple actions, reducers tend to grow and become difficult to maintain: [*Let's introduce Redux Fluent Action Handlers*](#oftype).
 - **Less boilerplate**, Flux architecture is usually verbose and some of their concepts, such as `Action`, `Action Type` and `Action Creator` could all be implemented in a single entity: [*Let's introduce Redux Fluent Actions*](#createaction).
-- **FSA compliance**, FSA Actions may have a `error: boolean` field, which indicates whether the action represents a failure or not. Respecting this pattern leads to a series of if statements inside reducers, compromising both readability and maintainability, so the community normally tends to split error and failures into two separate actions (eg: `ADD_TODO_SUCCESS` and `ADD_TODO_ERROR`) which reduces cognitive complexity on one hand but produces even more boilerplate on the other. *Let's embrace FSA and abstract error handling with filterable action handlers*.
 
 ## Installation
 
@@ -63,8 +64,8 @@ const rootReducer = combineReducers(todos, ...);
 const store = createStore(rootReducer);
 console.log(store.getState()); // { todos: [] }
 
-store.dispatch(actions.addTodo({ title: 'Walk Gipsy' }));
-console.log(store.getState()); // { todos: [{ title: 'Walk Gipsy' }] }
+store.dispatch(actions.addTodo({ title: 'Listen for some music' }));
+console.log(store.getState()); // { todos: [{ title: 'Listen for some music' }] }
 ```
 
 ## Documentation
@@ -195,3 +196,7 @@ const rootReducer = combineReducers({
 });
 const store = createStore(rootReducer);
 ```
+
+### Typescript Definitions
+
+<img src='https://raw.githubusercontent.com/Code-Y/redux-fluent/master/redux-fluent-typescript-definitions.gif' height='356' alt='Redux Fluent' aria-label='Use redux-fluent for a typesafe developer experience' />
