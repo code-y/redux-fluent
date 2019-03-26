@@ -20,14 +20,22 @@ interface OfType {
   };
 }
 
+const $map = (types: string[], predicate) => <S = any, A extends AnyAction = AnyAction, C = void>(map: R<S, A, C>) => (
+  (state: S, action: A, config: C): S => (
+    types.includes(action.type) && predicate(state, action, config) ? map(state, action, config) : state
+  )
+);
+
 export const ofType: OfType = (...args: any[]) => {
   const types = args.map(a => a.type || a.toString());
 
   return {
-    map: <S = any, A extends AnyAction = AnyAction, C = void>(map: R<S, A, C>) => (
-      (state: S, action: A, config: C): S => (
-        types.includes(action.type) ? map(state, action, config) : state
-      )
-    ),
+    map: $map(types, () => true),
+    unless: (predicate) => ({
+      map: $map(types, (state, action, config) => !predicate(state, action, config)),
+    }),
+    when: (predicate) => ({
+      map: $map(types, predicate),
+    }),
   };
 };
