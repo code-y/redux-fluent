@@ -54,6 +54,7 @@ describe('ofType', () => {
 
     const enhanced = R.compose(
       withConfig({ c: 'c' }),
+      // @ts-ignore
       withConfig({ b: 'b' }),
       withConfig({ a: 'a' }),
     )(reducer);
