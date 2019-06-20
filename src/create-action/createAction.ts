@@ -6,7 +6,7 @@ export interface ReduxFluentAction<
   T extends string = string,
   P = void,
   M = void,
-> extends FSA<P, M> {
+> extends FSA<T, P, M> {
   type: T;
 }
 
