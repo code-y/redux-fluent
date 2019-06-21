@@ -10,10 +10,10 @@
   "types": "redux-fluent.d.ts",
   "files": [
     "/dist",
-    "/node_modules",
     "CHANGELOG.md",
     "LICENSE",
-    "index.js"
+    "index.js",
+    "index.d.ts"
   ],
   "scripts": {
     "lint": "eslint *.js src/**/*.ts",
