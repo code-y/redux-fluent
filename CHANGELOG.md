@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.9.7](https://github.com/Code-Y/redux-fluent/compare/v0.9.6...v0.9.7) (2019-06-21)
+
+
+### Bug Fixes
+
+* export typescript definitions ([9373d20](https://github.com/Code-Y/redux-fluent/commit/9373d20))
+
+
+
 ### [0.9.6](https://github.com/Code-Y/redux-fluent/compare/v0.9.5...v0.9.6) (2019-06-21)
 
 
