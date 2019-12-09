@@ -1,7 +1,7 @@
 language: node_js
 
 node_js:
-  - '10'
+  - '12'
 
 cache:
   yarn: true
@@ -16,8 +16,6 @@ install:
 script:
   - ./codeclimate before-build
 
-  - if [[ $TRAVIS_BRANCH == "master" ]]; then git checkout master && yarn release; fi
-
   - commitlint-travis
   - yarn lint
   - yarn test
@@ -26,16 +24,3 @@ script:
 
   - ./codeclimate format-coverage ./coverage/lcov.info --input-type lcov
   - ./codeclimate after-build --exit-code $TRAVIS_TEST_RESULT
-
-after_deploy:
-  - git remote rm origin
-  - git remote add origin "https://hitmands:${GITHUB_ACCESS_TOKEN}@github.com/Code-Y/redux-fluent.git"
-  - git push --follow-tags origin master
-
-deploy:
-  provider: npm
-  skip_cleanup: true
-  on:
-    branch: master
-  api_key: ${NPM_ACCESS_TOKEN}
-  email: ${EMAIL}
