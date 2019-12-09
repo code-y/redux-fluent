@@ -21,7 +21,7 @@ interface OfType {
 }
 
 export const ofType: OfType = (...args: any[]) => {
-  const types = args.map(a => a.type || a.toString());
+  const types = args.map((a) => a.type || a.toString());
 
   return {
     map: <S = any, A extends AnyAction = AnyAction, C = void>(map: R<S, A, C>) => (

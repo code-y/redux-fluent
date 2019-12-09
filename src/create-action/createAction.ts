@@ -33,7 +33,7 @@ export function createAction<T extends string = string, P = void, M = void>(
   payloadCreator?: Formatter<T, P>,
   metaCreator?: Formatter<T, M>,
 ): ActionCreator<T, P, M> {
-  const $payloadCreator = payloadCreator || (p => p);
+  const $payloadCreator = payloadCreator || ((p) => p);
   const $metaCreator = metaCreator || ((_, m) => m);
 
   function $action(rawPayload?: any, rawMeta?: any): RFA<T, P, M> {
