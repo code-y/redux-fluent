@@ -12,11 +12,11 @@ export const withConfig = <CC = any>(config: CC) => <N extends string, S = any, 
     .default($$context.getDefaultState);
 
   // @ts-ignore TS2339
-  $reducer.$$context.config = Object.assign(
-    {},
-    $$context.config || {},
-    config,
-  );
+  $reducer.$$context.config = {
+
+    ...($$context.config || {}),
+    ...config,
+  };
 
   Object.defineProperty($reducer, 'name', {
     configurable: true,

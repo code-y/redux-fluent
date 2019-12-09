@@ -18,7 +18,7 @@ interface CreateReducersMapObject {
 }
 
 export const createReducersMapObject: CreateReducersMapObject = (...reducers: RFR[]) => reducers.reduce(
-  (res, reducer) => Object.assign({}, res, { [reducer.type]: reducer }),
+  (res, reducer) => ({ ...res, [reducer.type]: reducer }),
   {},
 );
 
