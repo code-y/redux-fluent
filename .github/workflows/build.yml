@@ -1,0 +1,25 @@
+name: Quality
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node: [ '12' ]
+    name: Node ${{ matrix.node }}
+    steps:
+      - uses: actions/checkout@v1
+      - name: Redux Fluent
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node }}
+      - run: yarn install --silent --frozen-lockfile
+      - run: yarn lint
+      - run: yarn test
+      - uses: paambaati/codeclimate-action@v2.3.0
+        env:
+          CC_TEST_REPORTER_ID: ${{ secrets.CODE_CLIMATE_TOKEN }}
+        with:
+          coverageCommand: cat coverage/lcov.info
