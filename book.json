@@ -1,0 +1,7 @@
+{
+  "root": "./gitbook/",
+  "author": "Giuseppe Mandato - hitmands - gius.mand.developer@gmail.com",
+  "direction": "ltr",
+  "plugins": ["prism", "codesandbox", "-highlight"],
+  "gitbook": ">= 3.0.0"
+}
