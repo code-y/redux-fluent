@@ -1,0 +1,50 @@
+# Action
+
+A redux-fluent action is a flux standard action by design. We wanted to adopt a clear design pattern, that's it. 
+Please, refer to the [FSA documentation](https://github.com/redux-utilities/flux-standard-action) to understand why a Flux Standard Action _"is Useful, Simple and Human Friendly!"_
+
+```typescript
+// todos.actions.js
+import { createAction } from 'redux-fluent';
+
+export const addTodo = createAction('todos | add');
+export const editTodo = createAction('todos/:id | edit');
+export const deleteTodo = createAction('todos/:id | delete');
+```
+
+<br />
+
+> Actions are payloads of information that send data from your application to your store.
+> They are the only source of information for the store. You send them to the store using [`store.dispatch()`](https://redux.js.org/api/store#dispatchaction).
+
+```typescript
+import { addTodo } from './todos.actions.js';
+
+store.dispatch(
+  addTodo({ title: 'Have some fun' }),
+);
+```
+
+<br />
+___
+
+## Action Types
+
+We wanted to remove all the boilerplate normally involved in standard redux projects.
+You no longer need to either declare or export constants. 
+
+```typescript
+import { addTodo } from './todos.actions.js';
+
+console.log(addTodo.type);
+// 'todos | add'
+```
+
+<br />
+___
+
+## All-In-One
+
+A redux-fluent action squeezes the concepts of [action](https://redux.js.org/basics/actions#actions), [action type](https://redux.js.org/basics/actions#actions) and [action creator](https://redux.js.org/basics/actions#action-creators) all together.
+All you need is a one-line declaration. That's it! 
+

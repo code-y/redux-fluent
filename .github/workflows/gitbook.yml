@@ -1,0 +1,21 @@
+name: Gitbook
+
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - 'gitbook/**'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - uses: actions/setup-node@v1
+      - run: yarn install --silent --frozen-lockfile
+      - run: yarn gitbook build
+      - uses: maxheld83/ghpages@v0.2.1
+        env:
+          GH_PAT: ${{ secrets.GH_PAT }}
+          BUILD_DIR: _book/
