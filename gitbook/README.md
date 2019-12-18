@@ -24,7 +24,7 @@ We publish a UMD build inside our npm package. You can use it via the [unpkg](ht
 
 ## Contributing
 
-- [Code of Conduct](https://www.contributor-covenant.org/)
+- [Code of Conduct](https://github.com/Code-Y/redux-fluent/blob/master/CODE_OF_CONDUCT.mds)
 - [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/)
 - [SemVer](https://semver.org/)
 
