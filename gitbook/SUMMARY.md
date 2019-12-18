@@ -4,3 +4,4 @@
 
 ## [Basics](SUMMARY.md)
   * [Action](basics/Action.md)
+  * [Reducer](basics/Reducer.md)
