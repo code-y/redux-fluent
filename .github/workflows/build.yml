@@ -1,6 +1,10 @@
-name: Quality
+name: Build
 
-on: [push]
+on:
+  push:
+    paths:
+      - 'src/**'
+      - '.github/workflows/build.yml'
 
 jobs:
   build:
@@ -11,8 +15,7 @@ jobs:
     name: Node ${{ matrix.node }}
     steps:
       - uses: actions/checkout@v1
-      - name: Redux Fluent
-        uses: actions/setup-node@v1
+      - uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node }}
       - run: yarn install --silent --frozen-lockfile
@@ -23,3 +26,4 @@ jobs:
           CC_TEST_REPORTER_ID: ${{ secrets.CODE_CLIMATE_TOKEN }}
         with:
           coverageCommand: cat coverage/lcov.info
+      - run: NODE_ENV=production yarn build --bail
