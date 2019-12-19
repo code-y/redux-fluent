@@ -39,7 +39,7 @@ You no longer need to either declare or export constants.
 import { addTodo } from './todos.actions.js';
 
 console.log(addTodo.type);
-// 'todos | add'
+// 'ADD_TODO'
 ```
 
 <br />
