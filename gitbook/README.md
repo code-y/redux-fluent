@@ -8,11 +8,16 @@ A practical and functional 3K utility for [Redux](http://github.com/reactjs/redu
 yarn add redux-fluent redux flux-standard-action
 ```
 
-##### UMD
+##### Distribution
 
-We publish a UMD build inside our npm package. You can use it via the [unpkg](https://unpkg.com/) CDN:
+- NPM: [https://www.npmjs.com/package/redux-fluent](https://www.npmjs.com/package/redux-fluent)
+- UNPKG CDN: [https://unpkg.com/redux-fluent@latest/dist/redux-fluent.production.js](https://unpkg.com/redux-fluent@latest/dist/redux-fluent.production.js)
 
-[https://unpkg.com/redux-fluent@latest/dist/redux-fluent.production.js](https://unpkg.com/redux-fluent@latest/dist/redux-fluent.production.js)
+
+##### Stats
+
+- `3.2 kB` https://bundlephobia.com/result?p=redux-fluent
+
 
 ## Playground
 
@@ -36,5 +41,3 @@ We publish a UMD build inside our npm package. You can use it via the [unpkg](ht
 ***
 
 *redux-fluent is a community-driven, entirely volunteer project and is not officially affiliated with or sponsored by any company.*
-
-:shipit:

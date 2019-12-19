@@ -7,9 +7,9 @@ import { createReducer, ofType } from 'redux-fluent';
 
 export const greetingsReducer = createReducer('greetings')
   .actions(
-    ofType('Roger Waters', 'David Gilmour', 'Nick Mason', /* ... */).map(greetPinkFloyd),
+    ofType('Roger Waters', 'David Gilmour', 'Nick Mason', /* ... */).map(greetThePinkFloyd),
     ofType('B.B. King').map(greetTheBluesBoy),
-    greetEveryOneElse,
+    greetEveryoneElse,
   )
   .default(() => 'Hello World');
 ```
@@ -27,7 +27,8 @@ No more switch-cases!
 import { ofType } from 'redux-fluent';
 ```
 
-<br />
+- Yup! It really works pretty much like [redux-observable#ofType](https://redux-observable.js.org/docs/basics/Epics.html)
+
 ___
 
 ## Handling Actions
@@ -42,12 +43,15 @@ export const increment = (state) => state + 1;
 
 <br />
 ___
-___
 
 ## The Counter Example
 
 If from one side _actions_ are meant to describe _"what happened"_,
 on the other side reducers are responsible for defining the state shape and its transition logic. 
+
+{% codesandbox %}
+https://codesandbox.io/s/redux-fluent-the-counter-reducer-enoc2?fontsize=10&hidenavigation=1&theme=dark&module=%2Fsrc%2Fstore%2Fcounter%2Fcounter.reducers.ts&view=preview
+{% endcodesandbox %}
 
 ```typescript
 // counter.actions.js
