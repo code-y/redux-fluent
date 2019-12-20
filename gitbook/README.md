@@ -29,7 +29,7 @@ yarn add redux-fluent redux flux-standard-action
 
 ## Contributing
 
-- [Code of Conduct](https://github.com/Code-Y/redux-fluent/blob/master/CODE_OF_CONDUCT.mds)
+- [Code of Conduct](https://github.com/Code-Y/redux-fluent/blob/master/CODE_OF_CONDUCT.md)
 - [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/)
 - [SemVer](https://semver.org/)
 

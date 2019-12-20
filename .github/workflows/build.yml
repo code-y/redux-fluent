@@ -18,12 +18,22 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node }}
-      - run: yarn install --silent --frozen-lockfile
-      - run: yarn lint
-      - run: yarn test
-      - uses: paambaati/codeclimate-action@v2.3.0
+
+      - name: Install
+        run: yarn install --silent --frozen-lockfile
+
+      - name: Lint
+        run: yarn lint
+
+      - name: Test
+        run: yarn test
+
+      - name: Publish Testing Reports
+        uses: paambaati/codeclimate-action@v2.3.0
         env:
           CC_TEST_REPORTER_ID: ${{ secrets.CODE_CLIMATE_TOKEN }}
         with:
           coverageCommand: cat coverage/lcov.info
-      - run: NODE_ENV=production yarn build --bail
+
+      - name: Build
+        run: NODE_ENV=production yarn build --bail
