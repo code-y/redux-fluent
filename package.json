@@ -1,13 +1,13 @@
 {
   "name": "redux-fluent",
   "license": "MIT",
-  "version": "0.9.8",
+  "version": "0.26.1",
   "homepage": "https://github.com/Code-Y/redux-fluent#readme",
-  "description": "Enjoy Redux - Less Boilerplate / Go Functional",
+  "description": "A Practical and Functional utility for redux",
   "author": "Code-Y",
   "sideEffects": false,
   "main": "index.js",
-  "types": "redux-fluent.d.ts",
+  "types": "index.d.ts",
   "files": [
     "/dist",
     "CHANGELOG.md",
