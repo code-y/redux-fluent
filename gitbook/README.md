@@ -21,7 +21,7 @@ yarn add redux-fluent redux flux-standard-action
 
 ## Playground
 
-- [CodeSandbox](https://codesandbox.io/s/redux-fluent-playground-enoc2?fontsize=14&hidenavigation=1&theme=dark)
+- [CodeSandbox](https://codesandbox.io/s/redux-fluent-the-counter-reducer-enoc2?fontsize=14&hidenavigation=1&module=%2Fsrc%2Fstore%2Fcounter%2Fcounter.reducers.ts&theme=dark)
 
 ## Documentation
 

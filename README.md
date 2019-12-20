@@ -13,7 +13,7 @@ A Practical and Functional Utility for [redux](https://redux.js.org/)
 [![Maintainability](https://api.codeclimate.com/v1/badges/2e98502fb6072892995d/maintainability)](https://codeclimate.com/github/Code-Y/redux-fluent/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/2e98502fb6072892995d/test_coverage)](https://codeclimate.com/github/Code-Y/redux-fluent/test_coverage)
 
-#### [...::: TRY OUR COUNTER REDUCER EXAMPLE ON CODESANDBOX :::...](https://codesandbox.io/s/redux-fluent-the-counter-reducer-enoc2?fontsize=14&hidenavigation=1&theme=dark)
+#### [...::: TRY OUR COUNTER REDUCER EXAMPLE ON CODESANDBOX :::...](https://codesandbox.io/s/redux-fluent-the-counter-reducer-enoc2?fontsize=14&hidenavigation=1&module=%2Fsrc%2Fstore%2Fcounter%2Fcounter.reducers.ts&theme=dark)
 <hr />
 </div>
 
