@@ -17,7 +17,7 @@ export const greetingsReducer = createReducer('greetings')
 <br />
 ___
 
-## Filtering Actions
+## Matching Actions
 
 Having to manually orchestrate the _"which action to respond to"_ impacts negatively on readability and expressiveness of your program.
 redux-fluent abstracts orchestration into a clean and functional API that lets you focus on your business logic.
