@@ -35,8 +35,10 @@ yarn add redux-fluent redux flux-standard-action
 
 ## Discuss
 
-- Open a new Issue: https://github.com/Code-Y/redux-fluent/issues
-- Submit a Pull Request: https://github.com/Code-Y/redux-fluent/pulls
+- [![Gitter](https://badges.gitter.im/redux-fluent/community.svg)](https://gitter.im/redux-fluent/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
+- [StackOverflow](https://stackoverflow.com/questions/tagged/redux-fluent)
+- [Github Issues](https://github.com/Code-Y/redux-fluent/issues)
+- [Submit a Pull Request](https://github.com/Code-Y/redux-fluent/pulls)
 
 ***
 
