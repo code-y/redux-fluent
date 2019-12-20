@@ -4,16 +4,12 @@ All notable changes to this project will be documented in this file. See [standa
 
 ### [0.9.8](https://github.com/Code-Y/redux-fluent/compare/v0.9.7...v0.9.8) (2019-08-09)
 
-### [0.9.7](https://github.com/Code-Y/redux-fluent/compare/v0.9.6...v0.9.7) (2019-06-21)
-
-
 ### Bug Fixes
 
 * export typescript definitions ([9373d20](https://github.com/Code-Y/redux-fluent/commit/9373d20))
 
 
 
-### [0.9.6](https://github.com/Code-Y/redux-fluent/compare/v0.9.5...v0.9.6) (2019-06-21)
 
 
 
@@ -26,53 +22,12 @@ All notable changes to this project will be documented in this file. See [standa
 
 
 
-### [0.9.4](https://github.com/Code-Y/redux-fluent/compare/v0.9.3...v0.9.4) (2019-06-08)
-
-
-
-### [0.9.3](https://github.com/Code-Y/redux-fluent/compare/v0.9.1...v0.9.3) (2019-05-06)
-
-
-
-## [0.9.2](https://github.com/Code-Y/redux-fluent/compare/v0.9.1...v0.9.2) (2019-05-04)
-
-
-
-## [0.9.1](https://github.com/Code-Y/redux-fluent/compare/v0.9.0...v0.9.1) (2019-04-25)
-
-
-
 # [0.9.0](https://github.com/Code-Y/redux-fluent/compare/v0.8.11...v0.9.0) (2019-03-23)
 
 
 ### Features
 
 * **action:** add typesafe Error ([058955a](https://github.com/Code-Y/redux-fluent/commit/058955a)), closes [#33](https://github.com/Code-Y/redux-fluent/issues/33)
-
-
-
-## [0.8.11](https://github.com/Code-Y/redux-fluent/compare/v0.8.10...v0.8.11) (2019-03-22)
-
-
-
-## [0.8.10](https://github.com/Code-Y/redux-fluent/compare/v0.8.9...v0.8.10) (2019-03-21)
-
-
-
-## [0.8.9](https://github.com/Code-Y/redux-fluent/compare/v0.8.8...v0.8.9) (2019-03-12)
-
-
-
-## [0.8.8](https://github.com/Code-Y/redux-fluent/compare/v0.8.7...v0.8.8) (2019-03-11)
-
-
-
-## [0.8.7](https://github.com/Code-Y/redux-fluent/compare/v0.8.6...v0.8.7) (2019-03-11)
-
-
-
-## [0.8.6](https://github.com/Code-Y/redux-fluent/compare/v0.8.5...v0.8.6) (2019-03-11)
-
 
 
 ## [0.8.5](https://github.com/Code-Y/redux-fluent/compare/v0.8.4...v0.8.5) (2019-03-10)
@@ -86,22 +41,6 @@ All notable changes to this project will be documented in this file. See [standa
 ### Reverts
 
 * don't include action.error if no payload ([523d069](https://github.com/Code-Y/redux-fluent/commit/523d069))
-
-
-
-## [0.8.4](https://github.com/Code-Y/redux-fluent/compare/v0.8.3...v0.8.4) (2019-03-10)
-
-
-
-## [0.8.3](https://github.com/Code-Y/redux-fluent/compare/v0.8.1...v0.8.3) (2019-03-10)
-
-
-
-## [0.8.2](https://github.com/Code-Y/redux-fluent/compare/v0.8.1...v0.8.2) (2019-03-10)
-
-
-
-## [0.8.1](https://github.com/Code-Y/redux-fluent/compare/v0.8.0...v0.8.1) (2019-03-10)
 
 
 
@@ -122,20 +61,6 @@ All notable changes to this project will be documented in this file. See [standa
 * **api:** export createCombinableReducers ([be77848](https://github.com/Code-Y/redux-fluent/commit/be77848))
 
 
-
-## [0.6.2](https://github.com/Code-Y/redux-fluent/compare/v0.6.1...v0.6.2) (2019-03-07)
-
-
-
-## [0.6.1](https://github.com/hitmands/redux-fluent/compare/v0.27.2...v0.6.1) (2019-03-03)
-
-
-
-<a name="0.27.2"></a>
-## [0.27.2](https://github.com/Code-Y/redux-fluent/compare/v0.27.1...v0.27.2) (2018-05-22)
-
-
-
 <a name="0.27.1"></a>
 ## [0.27.1](https://github.com/Code-Y/redux-fluent/compare/v0.27.0...v0.27.1) (2018-05-22)
 
@@ -143,11 +68,6 @@ All notable changes to this project will be documented in this file. See [standa
 ### Bug Fixes
 
 * **Action:** redux isPlainObject doesn't accept bare objects ([#18](https://github.com/Code-Y/redux-fluent/issues/18)) ([5ad16c5](https://github.com/Code-Y/redux-fluent/commit/5ad16c5))
-
-
-
-<a name="0.27.0"></a>
-# [0.27.0](https://github.com/Code-Y/redux-fluent/compare/v0.25.0...v0.27.0) (2018-03-23)
 
 
 
@@ -179,51 +99,6 @@ All notable changes to this project will be documented in this file. See [standa
 
 * **Testing:** add createFakeStore(...reducers) ([#16](https://github.com/Code-Y/redux-fluent/issues/16)) ([55ccabf](https://github.com/Code-Y/redux-fluent/commit/55ccabf))
 
-
-
-<a name="0.26.1"></a>
-## [0.26.1](https://github.com/Code-Y/redux-fluent/compare/v0.25.0...v0.26.1) (2018-03-23)
-
-
-
-<a name="0.25.0"></a>
-# [0.25.0](https://github.com/Code-Y/redux-fluent/compare/v0.24.4...v0.25.0) (2018-03-23)
-=======
-<a name="0.26.0"></a>
-# [0.26.0](https://github.com/Code-Y/redux-fluent/compare/v0.25.5...v0.26.0) (2018-02-18)
->>>>>>> e7a1b8beaf855f82560404c0e6aad7e9eac45931
-
-
-### Features
-
-<<<<<<< HEAD
-* **e2e:** add redux, flux standard action integration tests ([#14](https://github.com/Code-Y/redux-fluent/issues/14)) ([efdf697](https://github.com/Code-Y/redux-fluent/commit/efdf697))
-=======
-* **testing:** add patchReducerConfig ([#17](https://github.com/Code-Y/redux-fluent/issues/17)) ([3ed9002](https://github.com/Code-Y/redux-fluent/commit/3ed9002))
->>>>>>> e7a1b8beaf855f82560404c0e6aad7e9eac45931
-
-
-
-<a name="0.24.4"></a>
-## [0.24.4](https://github.com/Code-Y/redux-fluent/compare/v0.24.3...v0.24.4) (2018-01-27)
-
-
-
-<a name="0.24.3"></a>
-## [0.24.3](https://github.com/Code-Y/redux-fluent/compare/v0.24.2...v0.24.3) (2018-01-26)
-
-
-
-<a name="0.24.2"></a>
-## [0.24.2](https://github.com/Code-Y/redux-fluent/compare/v0.24.1...v0.24.2) (2018-01-26)
-
-
-
-<a name="0.24.1"></a>
-## [0.24.1](https://github.com/Code-Y/redux-fluent/compare/v0.24.0...v0.24.1) (2018-01-26)
-
-
-
 <a name="0.24.0"></a>
 # [0.24.0](https://github.com/Code-Y/redux-fluent/compare/v0.22.2...v0.24.0) (2018-01-26)
 
@@ -248,16 +123,6 @@ All notable changes to this project will be documented in this file. See [standa
 ### Features
 
 * **Action,CreateCombinableReducers:** check and throw if a reducer, action already exist only if NODE_ENV === production ([77caf8d](https://github.com/Code-Y/redux-fluent/commit/77caf8d))
-
-
-
-<a name="0.22.2"></a>
-## [0.22.2](https://github.com/Code-Y/redux-fluent/compare/v0.22.1...v0.22.2) (2018-01-24)
-
-
-
-<a name="0.22.1"></a>
-## [0.22.1](https://github.com/Code-Y/redux-fluent/compare/v0.22.0...v0.22.1) (2018-01-24)
 
 
 
