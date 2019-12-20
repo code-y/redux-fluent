@@ -3,6 +3,15 @@
   "author": "Giuseppe Mandato - hitmands - gius.mand.developer@gmail.com",
   "title": "redux-fluent, a practical and functional 3k utility for redux",
   "direction": "ltr",
-  "plugins": ["prism", "codesandbox", "-highlight"],
-  "gitbook": ">= 3.0.0"
+  "plugins": ["prism", "codesandbox", "-highlight", "github", "edit-link"],
+  "gitbook": ">= 3.0.0",
+  "pluginsConfig": {
+    "github": {
+      "url": "https://github.com/Code-Y/redux-fluent"
+    },
+    "edit-link": {
+      "base": "https://github.com/Code-Y/redux-fluent/tree/master/gitbook",
+      "label": "Edit This Page"
+    }
+  }
 }
