@@ -1,6 +1,7 @@
 # withConfig
 
-A matcher to nail down your handler to a specific set of actions  
+A reducer enhancer to enable Dependency Injection.  
+If used, it provides a third new argument `config` to your action handlers.
 
 ```typescript
 import { withConfig } from 'redux-fluent';
