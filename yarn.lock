@@ -4305,10 +4305,10 @@ gitbook-plugin-fontsettings@1.0.2:
   resolved "https://registry.yarnpkg.com/gitbook-plugin-fontsettings/-/gitbook-plugin-fontsettings-1.0.2.tgz#6cd5db6fbbc706ccd786154ba87dd68606f97dc8"
   integrity sha1-bNXbb7vHBszXhhVLqH3Whgb5fcg=
 
-gitbook-plugin-github@^2.0.0:
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/gitbook-plugin-github/-/gitbook-plugin-github-2.0.0.tgz#5166e763cfcc402d432880b7a6c85c1c54b56a8d"
-  integrity sha1-UWbnY8/MQC1DKIC3pshcHFS1ao0=
+gitbook-plugin-github@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/gitbook-plugin-github/-/gitbook-plugin-github-3.0.0.tgz#67457df98a57ea8ef9b2518b88340db370a5317b"
+  integrity sha1-Z0V9+YpX6o75slGLiDQNs3ClMXs=
 
 gitbook-plugin-highlight@1.0.3:
   version "1.0.3"
