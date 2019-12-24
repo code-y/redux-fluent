@@ -1,6 +1,6 @@
 <div align="center">
 
-![redux-fluent](https://github.com/Code-Y/redux-fluent/blob/master/redux-fluent-logo.jpg?raw=true)
+![redux-fluent](https://github.com/Code-Y/redux-fluent/blob/master/gitbook/redux-fluent-logo.jpg?raw=true)
 
 [![Build Status](https://github.com/Code-Y/redux-fluent/workflows/Build/badge.svg)](https://github.com/Code-Y/redux-fluent/actions?query=workflow%3ABuild)
 [![npm version](https://img.shields.io/npm/v/redux-fluent.svg)](https://www.npmjs.com/package/redux-fluent)
