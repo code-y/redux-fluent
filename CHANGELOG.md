@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.99.1](https://github.com/Code-Y/redux-fluent/compare/v0.26.1...v0.99.1) (2019-12-24)
+
+
+### Bug Fixes
+
+* **docs:** logo size and link ([292d504](https://github.com/Code-Y/redux-fluent/commit/292d5040531b8fe3aacbb9b0d4a4fe7fdde0890c))
+
 ### [0.26.1](https://github.com/Code-Y/redux-fluent/compare/v0.9.8...v0.26.1) (2019-12-20)
 
 ### Bug Fixes
