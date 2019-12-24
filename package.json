@@ -56,7 +56,7 @@
     "@commitlint/travis-cli": "^8.2.0",
     "@types/chai": "^4.2.6",
     "@types/jest": "^24.0.23",
-    "@types/node": "^12.12.15",
+    "@types/node": "^13.1.0",
     "@types/ramda": "^0.26.38",
     "@types/sinon": "^7.5.1",
     "@types/sinon-chai": "^3.2.3",
