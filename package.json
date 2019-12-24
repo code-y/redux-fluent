@@ -1,7 +1,7 @@
 {
   "name": "redux-fluent",
   "license": "MIT",
-  "version": "0.26.1",
+  "version": "0.99.0",
   "homepage": "https://github.com/Code-Y/redux-fluent#readme",
   "description": "A Practical and Functional utility for redux",
   "author": "Code-Y",
