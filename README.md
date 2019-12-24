@@ -1,8 +1,6 @@
 <div align="center">
 
-# redux-fluent
-
-A Practical and Functional Utility for [redux](https://redux.js.org/) 
+![redux-fluent](https://github.com/Code-Y/redux-fluent/blob/master/redux-fluent-logo.jpg?raw=true)
 
 [![Build Status](https://github.com/Code-Y/redux-fluent/workflows/Build/badge.svg)](https://github.com/Code-Y/redux-fluent/actions?query=workflow%3ABuild)
 [![npm version](https://img.shields.io/npm/v/redux-fluent.svg)](https://www.npmjs.com/package/redux-fluent)
@@ -13,7 +11,9 @@ A Practical and Functional Utility for [redux](https://redux.js.org/)
 [![Maintainability](https://api.codeclimate.com/v1/badges/2e98502fb6072892995d/maintainability)](https://codeclimate.com/github/Code-Y/redux-fluent/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/2e98502fb6072892995d/test_coverage)](https://codeclimate.com/github/Code-Y/redux-fluent/test_coverage)
 
+#### ....................:::::::::::::::::::....................
 #### [...::: TRY OUR COUNTER REDUCER EXAMPLE ON CODESANDBOX :::...](https://codesandbox.io/s/redux-fluent-the-counter-reducer-enoc2?fontsize=14&hidenavigation=1&module=%2Fsrc%2Fstore%2Fcounter%2Fcounter.reducers.ts&theme=dark)
+#### ....................:::::::::::::::::::....................
 <hr />
 </div>
 

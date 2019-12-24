@@ -33,7 +33,7 @@ THEN state is equal to zero                /**/
 Type Safety is a must have for a great developer experience, and we've been building redux-fluent with that in mind.
 We've got first-class support for typescript declarations so that you can benefit from it in your projects (whether they are on typescript or javascript).
 
-![redux-fluent-typescript-definitions.gif](https://github.com/Code-Y/redux-fluent/blob/master/redux-fluent-typescript-definitions.gif?raw=true)
+![redux-fluent-typescript-definitions.gif](https://github.com/Code-Y/redux-fluent/blob/master/gitbook/redux-fluent-typescript-definitions.gif?raw=true)
 
 <br />
 
