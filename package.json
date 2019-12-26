@@ -81,7 +81,7 @@
     "jest": "^24.9.0",
     "ramda": "^0.26.1",
     "redux": "^4.0.4",
-    "sinon": "^7.5.0",
+    "sinon": "^8.0.1",
     "sinon-chai": "^3.3.0",
     "standard-version": "^7.0.1",
     "ts-jest": "^24.2.0",
