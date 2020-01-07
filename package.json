@@ -77,7 +77,7 @@
     "gitbook-plugin-edit-link": "^2.0.2",
     "gitbook-plugin-github": "^2.0.0",
     "gitbook-plugin-prism": "^2.4.0",
-    "husky": "^3.1.0",
+    "husky": "^4.0.0",
     "jest": "^24.9.0",
     "ramda": "^0.26.1",
     "redux": "^4.0.4",
