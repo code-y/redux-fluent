@@ -79,7 +79,7 @@
     "gitbook-plugin-prism": "^2.4.0",
     "husky": "^4.0.0",
     "jest": "^25.1.0",
-    "ramda": "^0.26.1",
+    "ramda": "^0.27.0",
     "redux": "^4.0.4",
     "sinon": "^8.0.1",
     "sinon-chai": "^3.3.0",
