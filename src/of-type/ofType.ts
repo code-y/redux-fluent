@@ -24,6 +24,7 @@ export const ofType: OfType = (...args: any[]) => {
   const types = args.map((a) => a.type || a.toString());
 
   return {
+    types,
     map: <S = any, A extends AnyAction = AnyAction, C = void>(map: R<S, A, C>) => (
       (state: S, action: A, config: C): S => (
         types.includes(action.type) ? map(state, action, config) : state

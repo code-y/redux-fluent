@@ -52,4 +52,13 @@ describe('ofType', () => {
     expect(spy)
       .not.to.have.been.calledWithExactly(state, action, config);
   });
+
+  it('should expose { types }', () => {
+    const creator = createAction('baz');
+    const result = ofType('foo', creator, 'foobaz', { type: 'bar' });
+
+    expect(result)
+      .to.have.property('types')
+      .which.is.deep.equal(['foo', 'baz', 'foobaz', 'bar']);
+  });
 });
