@@ -1,6 +1,6 @@
 import sinon from 'sinon';
 import { expect } from 'chai';
-import { createAction } from './createAction';
+import { createAction } from './create-action';
 
 
 describe('Action', () => {

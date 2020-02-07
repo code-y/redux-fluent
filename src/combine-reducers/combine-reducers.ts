@@ -1,7 +1,7 @@
 /* eslint-disable max-len */
 import { combineReducers } from 'redux';
 // eslint-disable-next-line no-unused-vars
-import { RFR } from '../create-reducer/createReducer';
+import { RFR } from '../create-reducer/create-reducer';
 
 
 // https://stackoverflow.com/questions/55086835/typescript-typings-array-of-t-to-map/55086869?noredirect=1#comment96919894_55086869

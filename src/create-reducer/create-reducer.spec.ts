@@ -1,6 +1,6 @@
 import sinon from 'sinon';
 import { expect } from 'chai';
-import { createReducer } from './createReducer';
+import { createReducer } from './create-reducer';
 
 
 describe('Reducer', () => {

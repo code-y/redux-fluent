@@ -1,9 +1,9 @@
 import { expect } from 'chai';
 import sinon from 'sinon';
 import R from 'ramda';
-import { createReducer } from '../create-reducer/createReducer';
-import { withConfig } from './withConfig';
-import { createAction } from '../create-action/createAction';
+import { createReducer } from '../create-reducer/create-reducer';
+import { withConfig } from './with-config';
+import { createAction } from '../create-action/create-action';
 import { ofType } from '../of-type/ofType';
 
 

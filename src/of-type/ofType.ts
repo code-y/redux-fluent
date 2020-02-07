@@ -1,7 +1,7 @@
 // eslint-disable-next-line no-unused-vars
 import { AnyAction } from 'redux';
 // eslint-disable-next-line no-unused-vars
-import { ActionCreator, RFA } from '../create-action/createAction';
+import { ActionCreator, RFA } from '../create-action/create-action';
 
 
 type AnyType<T extends string> = (T | ActionCreator<T, any, any> | { [key: string]: any, type: T });

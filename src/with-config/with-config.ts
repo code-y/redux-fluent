@@ -1,5 +1,5 @@
 // eslint-disable-next-line no-unused-vars
-import { createReducer, ReduxFluentReducer } from '../create-reducer/createReducer';
+import { createReducer, ReduxFluentReducer } from '../create-reducer/create-reducer';
 
 
 // eslint-disable-next-line arrow-parens,max-len

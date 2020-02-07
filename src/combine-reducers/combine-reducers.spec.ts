@@ -1,8 +1,8 @@
 import sinon from 'sinon';
 import { expect } from 'chai';
 import * as redux from 'redux';
-import { createReducer } from '../create-reducer/createReducer';
-import { combineReduxFluentReducers } from './combineReducers';
+import { createReducer } from '../create-reducer/create-reducer';
+import { combineReduxFluentReducers } from './combine-reducers';
 
 
 describe('combineReducers', () => {

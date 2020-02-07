@@ -1,8 +1,8 @@
 import { expect } from 'chai';
 import sinon from 'sinon';
 import { ofType } from './ofType';
-import { createAction } from '../create-action/createAction';
-import { createReducer } from '../create-reducer/createReducer';
+import { createAction } from '../create-action/create-action';
+import { createReducer } from '../create-reducer/create-reducer';
 
 
 describe('ofType', () => {
