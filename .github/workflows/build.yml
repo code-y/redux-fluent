@@ -5,6 +5,8 @@ on:
     paths:
       - 'src/**'
       - '.github/workflows/build.yml'
+      - 'package.json'
+      - 'yarn.lock'
 
 jobs:
   build:
