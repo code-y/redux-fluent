@@ -75,7 +75,7 @@
     "gitbook-cli": "^2.3.2",
     "gitbook-plugin-codesandbox": "^0.1.1",
     "gitbook-plugin-edit-link": "^2.0.2",
-    "gitbook-plugin-github": "^3.0.0",
+    "gitbook-plugin-github-edit": "^1.1.0",
     "gitbook-plugin-prism": "^2.4.0",
     "husky": "^4.0.0",
     "jest": "^25.1.0",

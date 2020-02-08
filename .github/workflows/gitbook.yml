@@ -6,7 +6,9 @@ on:
       - master
     paths:
       - 'gitbook/**'
-
+      - '.github/workflows/gitbook.yml'
+      - 'package.json'
+      - 'yarn.lock'
 jobs:
   build:
     runs-on: ubuntu-latest
