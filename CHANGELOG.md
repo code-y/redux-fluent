@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.100.2](https://github.com/Code-Y/redux-fluent/compare/v0.99.1...v0.100.2) (2020-02-08)
+
+
+### Features
+
+* **actions:** support aliasing ([5d9cb6f](https://github.com/Code-Y/redux-fluent/commit/5d9cb6fe705622941a48095af9bf2fcb44453e6f))
+
 ### [0.99.1](https://github.com/Code-Y/redux-fluent/compare/v0.26.1...v0.99.1) (2019-12-24)
 
 
