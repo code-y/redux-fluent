@@ -1,5 +1,6 @@
 // eslint-disable-next-line no-unused-vars
 import { ErrorFSA, FSA } from 'flux-standard-action';
+import { createAliasCreator } from './create-alias-creator';
 
 
 export interface ReduxFluentAction<
@@ -18,12 +19,13 @@ export interface ReduxFluentActionError<
   type: T;
 }
 
-type Formatter<T, R> = (rawPayload: any, rawMeta: any, T: T) => R;
+export type Formatter<T, R> = (rawPayload: any, rawMeta: any, T: T) => R;
 export type RFA<T extends string = string, P = any, M = any> = ReduxFluentAction<T, P, M>;
 export type RFAE<T extends string = string, P extends Error = Error, M = any> = ReduxFluentActionError<T, P, M>;
 
 export interface ActionCreator<T extends string, P, M> {
   readonly type: T;
+  alias(payloadCreator?: Formatter<T, P>, metaCreator?: Formatter<M, P>): ActionCreator<T, P, M>;
   <E extends Error = Error, RM = any>(rawPayload?: E, rawMeta?: RM): RFAE<T, E, M>
   <RP = any, RM = any>(rawPayload?: RP, rawMeta?: RM): RFA<T, P, M>;
 }
@@ -55,6 +57,7 @@ export function createAction<T extends string = string, P = void, M = void>(
   }
 
   Object.defineProperties($action, {
+    alias: { value: createAliasCreator<T, P, M>(type) },
     name: { configurable: true, value: `action('${type}')` },
     toString: { value: () => type },
     type: { enumerable: true, value: type },
