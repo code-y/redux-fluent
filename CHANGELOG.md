@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.100.4](https://github.com/Code-Y/redux-fluent/compare/v0.100.2...v0.100.4) (2020-02-09)
+
+
+### Bug Fixes
+
+* **build:** production mode ([0399598](https://github.com/Code-Y/redux-fluent/commit/0399598710539b072dcb4025fcd7bfbdb00fbfc5))
+
 ### [0.100.2](https://github.com/Code-Y/redux-fluent/compare/v0.99.1...v0.100.2) (2020-02-08)
 
 
