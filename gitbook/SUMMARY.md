@@ -3,8 +3,8 @@
 ## [README](/README.md)
 
 ## [Basics](SUMMARY.md)
-  * [Action](basics/Action.md)
-  * [Reducer](basics/Reducer.md)
+  * [Action](basics/action.md)
+  * [Reducer](basics/reducer.md)
   
 ## [Motivations](SUMMARY.md)
   * [Design Goals](motivations/design-goals.md)
