@@ -60,7 +60,7 @@
     "@types/ramda": "^0.27.0",
     "@types/sinon": "^9.0.0",
     "@types/sinon-chai": "^3.2.3",
-    "@typescript-eslint/eslint-plugin": "^2.11.0",
+    "@typescript-eslint/eslint-plugin": "^3.5.0",
     "@typescript-eslint/parser": "^2.11.0",
     "awesome-typescript-loader": "^5.2.1",
     "chai": "^4.2.0",
