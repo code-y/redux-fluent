@@ -1,0 +1,447 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>createReducersMapObject · redux-fluent, a practical and functional 3k utility for redux</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        <meta name="author" content="Giuseppe Mandato - hitmands - gius.mand.developer@gmail.com">
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-prism/prism.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search/search.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="combine-reducers.html" />
+    
+    
+    <link rel="prev" href="with-config.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        <li class="header">README</li>
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">Basics</li>
+        
+        
+    
+        <li class="chapter " data-level="2.1" data-path="../basics/action.html">
+            
+                <a href="../basics/action.html">
+            
+                    
+                    Action
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.2" data-path="../basics/reducer.html">
+            
+                <a href="../basics/reducer.html">
+            
+                    
+                    Reducer
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">Motivations</li>
+        
+        
+    
+        <li class="chapter " data-level="3.1" data-path="../motivations/design-goals.html">
+            
+                <a href="../motivations/design-goals.html">
+            
+                    
+                    Design Goals
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">Advanced</li>
+        
+        
+    
+        <li class="chapter " data-level="4.1" data-path="../advanced/aliasing-actions.html">
+            
+                <a href="../advanced/aliasing-actions.html">
+            
+                    
+                    Aliasing Actions
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">Api Reference</li>
+        
+        
+    
+        <li class="chapter " data-level="5.1" data-path="create-reducer.html">
+            
+                <a href="create-reducer.html">
+            
+                    
+                    createReducer
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.2" data-path="create-action.html">
+            
+                <a href="create-action.html">
+            
+                    
+                    createAction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.3" data-path="of-type.html">
+            
+                <a href="of-type.html">
+            
+                    
+                    ofType
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.4" data-path="with-config.html">
+            
+                <a href="with-config.html">
+            
+                    
+                    withConfig
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="5.5" data-path="create-reducers-map-object.html">
+            
+                <a href="create-reducers-map-object.html">
+            
+                    
+                    createReducersMapObject
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.6" data-path="combine-reducers.html">
+            
+                <a href="combine-reducers.html">
+            
+                    
+                    combineReducers
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >createReducersMapObject</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="createreducersmapobject">createReducersMapObject</h1>
+<p>Outputs a <a href="https://github.com/reduxjs/redux/blob/master/src/types/reducers.ts#L39" target="_blank"><code>ReducersMapObject</code></a>
+from a list of redux-fluent reducers.</p>
+<blockquote>
+<p>This is a secondary API, not needed for a basic integration with redux.</p>
+</blockquote>
+<h2 id="arguments">Arguments</h2>
+<ul>
+<li><code>(...ReduxFluentReducer) =&gt; ReducersMapObject</code> - a list of redux-fluent reducers</li>
+</ul>
+<h2 id="returns">Returns</h2>
+<ul>
+<li><code>ReducersMapObject</code></li>
+</ul>
+<h2 id="usages">Usages</h2>
+<pre class="language-"><code class="lang-typescript"><span class="token keyword">import</span> <span class="token punctuation">{</span> createReducersMapObject <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&apos;redux-fluent&apos;</span><span class="token punctuation">;</span> 
+<span class="token keyword">import</span> <span class="token punctuation">{</span> reducers <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&apos;./store/reducers&apos;</span><span class="token punctuation">;</span>
+
+<span class="token function">createReducersMapObject</span><span class="token punctuation">(</span><span class="token operator">...</span>reducers<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<h2 id="motivation">Motivation</h2>
+<p>Standard redux reducers do not let you infer the shape of your global state by simply combining reducers together.
+You need to define the global state interface by explicitly listing key-value pairs (<code>{ [name: string]: Reducer }</code>).</p>
+<pre class="language-"><code class="lang-typescript"><span class="token keyword">import</span> <span class="token punctuation">{</span> combineReducers <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&apos;redux&apos;</span><span class="token punctuation">;</span> 
+<span class="token keyword">import</span> <span class="token punctuation">{</span> counterReducer <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&apos;./counter&apos;</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> todosReducer <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&apos;./todos&apos;</span><span class="token punctuation">;</span>
+
+<span class="token keyword">export</span> <span class="token keyword">const</span> reducersMap <span class="token operator">=</span> <span class="token punctuation">{</span>
+  counter<span class="token operator">:</span> counterReducer<span class="token punctuation">,</span>
+  todos<span class="token operator">:</span> todosReducer<span class="token punctuation">,</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token keyword">export</span> <span class="token keyword">const</span> createRootReducer <span class="token operator">=</span> <span class="token function">combineReducers</span><span class="token punctuation">(</span>reducersMap<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<p>redux-fluent reducers are named reducers, so that the global state interface can be inferred automatically.</p>
+<pre class="language-"><code class="lang-typescript"><span class="token keyword">import</span> <span class="token punctuation">{</span> combineReducers <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&apos;redux&apos;</span><span class="token punctuation">;</span> 
+<span class="token keyword">import</span> <span class="token punctuation">{</span> createReducersMapObject <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&apos;redux-fluent&apos;</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> counterReducer <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&apos;./counter&apos;</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> todosReducer <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&apos;./todos&apos;</span><span class="token punctuation">;</span>
+
+<span class="token keyword">export</span> <span class="token keyword">const</span> reducersMap <span class="token operator">=</span> <span class="token function">createReducersMapObject</span><span class="token punctuation">(</span>counterReducer<span class="token punctuation">,</span> todosReducer<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">export</span> <span class="token keyword">const</span> <span class="token function-variable function">createRootReducer</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token function">combineReducers</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+  <span class="token operator">...</span>reducersMap<span class="token punctuation">,</span>
+  <span class="token function-variable function">nonReduxFluentReducer</span><span class="token operator">:</span> <span class="token punctuation">(</span><span class="token parameter">state<span class="token punctuation">,</span> action</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> state<span class="token punctuation">,</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<ul>
+<li>This API works with any reducer that implements the <code>{ name: string }</code> interface.</li>
+</ul>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="with-config.html" class="navigation navigation-prev " aria-label="Previous page: withConfig">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="combine-reducers.html" class="navigation navigation-next " aria-label="Next page: combineReducers">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"createReducersMapObject","level":"5.5","depth":1,"next":{"title":"combineReducers","level":"5.6","depth":1,"path":"api-reference/combine-reducers.md","ref":"api-reference/combine-reducers.md","articles":[]},"previous":{"title":"withConfig","level":"5.4","depth":1,"path":"api-reference/with-config.md","ref":"api-reference/with-config.md","articles":[]},"dir":"ltr"},"config":{"plugins":["prism","codesandbox","-highlight","github-edit","edit-link"],"root":"./gitbook/","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"prism":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"github-edit":{"repo":"https://github.com/Code-Y/redux-fluent"},"codesandbox":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"edit-link":{"label":"Edit This Page","base":"https://github.com/Code-Y/redux-fluent/tree/master/gitbook"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"Giuseppe Mandato - hitmands - gius.mand.developer@gmail.com","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"redux-fluent, a practical and functional 3k utility for redux","gitbook":">= 3.0.0","direction":"ltr"},"file":{"path":"api-reference/create-reducers-map-object.md","mtime":"2020-07-24T13:44:45.664Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-07-24T13:46:00.343Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-github-edit/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-edit-link/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+
+    </body>
+</html>
+
