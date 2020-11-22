@@ -40,7 +40,7 @@ describe('Action', () => {
 
     it('should work with no creators', () => {
       const type = 'greetings';
-      const say = createAction(type, null, null);
+      const say = createAction<string, string, string>(type);
 
       const payload = 'hello';
       const meta = 'world';

@@ -13,7 +13,7 @@ export interface ActionCreatorWithPayloadCreator<
   type: T;
   toString(): T;
 
-  <Payload extends Error | RP>(payload: Payload): Payload extends Error
+  <Payload extends Error | RP>(payload?: Payload): Payload extends Error
     ? ErrorFSA<Payload, M, T>
     : FSA<T, P, M>;
 }

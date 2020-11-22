@@ -66,7 +66,7 @@ describe('createAction(type)', () => {
 
 describe('createAction(type, payloadCreator)', () => {
   it('creator()', () => {
-    const creator = createAction<'type', 'payload'>('type', () => 'payload');
+    const creator = createAction<'type', 'payload', void, void>('type', () => 'payload');
     expect(creator.type === 'type').toBeTruthy();
 
     expect(creator().type === 'type').toBeTruthy();
@@ -76,9 +76,9 @@ describe('createAction(type, payloadCreator)', () => {
   });
 
   it('creator(payload)', () => {
-    const creator = createAction<'type', 'payload'>(
+    const creator = createAction<'type', 'payload', void, string>(
       'type',
-      (prefix: string) => `${prefix}load` as 'payload',
+      (prefix) => `${prefix}load` as 'payload',
     );
     expect(creator.type === 'type').toBeTruthy();
 
@@ -89,9 +89,9 @@ describe('createAction(type, payloadCreator)', () => {
   });
 
   it('creator(payload, meta)', () => {
-    const creator = createAction<'type', 'payload', 'meta'>(
+    const creator = createAction<'type', 'payload', 'meta', string, string>(
       'type',
-      (prefix: string) => `${prefix}load` as 'payload',
+      (prefix) => `${prefix}load` as 'payload',
     );
     expect(creator.type === 'type').toBeTruthy();
 
@@ -104,7 +104,7 @@ describe('createAction(type, payloadCreator)', () => {
 
 describe('createAction(type, payloadCreator, metaCreator)', () => {
   it('creator()', () => {
-    const creator = createAction<'type', 'payload', 'meta'>(
+    const creator = createAction<'type', 'payload', 'meta', void, void>(
       'type',
       () => 'payload',
       () => 'meta',
@@ -118,10 +118,10 @@ describe('createAction(type, payloadCreator, metaCreator)', () => {
   });
 
   it('creator(payload, meta)', () => {
-    const creator = createAction<'type', 'payload', 'meta'>(
+    const creator = createAction<'type', 'payload', 'meta', string, string>(
       'type',
-      (prefix: string) => `${prefix}load` as 'payload',
-      (_, prefix: string) => `${prefix}ta` as 'meta',
+      (prefix) => `${prefix}load` as 'payload',
+      (_, prefix) => `${prefix}ta` as 'meta',
     );
     expect(creator.type === 'type').toBeTruthy();
 

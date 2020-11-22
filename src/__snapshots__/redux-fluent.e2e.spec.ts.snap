@@ -1,30 +1,44 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`redux-fluent E2E should add a todo 1`] = `
-Array [
-  Object {
-    "id": "first-todo-id",
-    "status": "pending",
-  },
-]
+Object {
+  "errors": Array [],
+  "todos": Array [
+    Object {
+      "completed": false,
+      "id": "first-todo-id",
+    },
+  ],
+}
 `;
 
 exports[`redux-fluent E2E should delete a todo 1`] = `
-Array [
-  Object {
-    "id": "first-todo-id",
-    "status": "pending",
-  },
-]
+Object {
+  "errors": Array [],
+  "todos": Array [
+    Object {
+      "completed": true,
+      "id": "first-todo-id",
+    },
+  ],
+}
 `;
 
 exports[`redux-fluent E2E should delete a todo 2`] = `
-Array [
-  Object {
-    "id": "first-todo-id",
-    "status": "pending",
-  },
-]
+Object {
+  "errors": Array [],
+  "todos": Array [
+    Object {
+      "completed": true,
+      "id": "first-todo-id",
+    },
+  ],
+}
 `;
 
-exports[`redux-fluent E2E should delete a todo 3`] = `Array []`;
+exports[`redux-fluent E2E should delete a todo 3`] = `
+Object {
+  "errors": Array [],
+  "todos": Array [],
+}
+`;
